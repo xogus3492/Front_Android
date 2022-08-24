@@ -1,21 +1,24 @@
-package com.example.fybproject.dto;
+package com.example.fybproject.dto.authDTO;
 
-import com.google.gson.annotations.SerializedName;
-
-// DTO 모델 - PostResult Class 선언
 public class RegisterDTO {
-    private String name;
     private String email;
     private String pw;
-    /*private String gender;
+    private String name;
+    private String gender;
     private int height;
     private int weight;
-    private int age;*/
+    private int age;
+    private int status;
+    private String statusMessage;
 
-    public RegisterDTO(String name, String email, String pw) {
-        this.name = name;
+    public RegisterDTO(String email, String pw, String name, String gender, int height, int weight, int age) {
         this.email = email;
         this.pw = pw;
+        this.name = name;
+        this.gender = gender;
+        this.height = height;
+        this.weight = weight;
+        this.age = age;
     }
 
     public String getName() {
@@ -42,7 +45,7 @@ public class RegisterDTO {
         this.pw = pw;
     }
 
-    /*public String getGender() {
+    public String getGender() {
         return gender;
     }
 
@@ -72,16 +75,31 @@ public class RegisterDTO {
 
     public void setAge(int age) {
         this.age = age;
-    }*/
+    }
 
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public String getStatusMessage() {
+        return statusMessage;
+    }
+
+    public void setStatusMessage(String statusMessage) {
+        this.statusMessage = statusMessage;
+    }
 
 
     // toString()을 Override 해주지 않으면 객체 주소값을 출력함
     @Override
     public String toString() {
         return "PostResult {" +
-                "name = " + name +
-                ", email = " + email +
+                "status = " + status +
+                ", statusMessage = " + statusMessage +
                 '}';
     }
 }

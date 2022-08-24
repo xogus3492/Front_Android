@@ -1,4 +1,4 @@
-package com.example.fybproject.dto;
+package com.example.fybproject.dto.authDTO;
 
 public class LoginDTO {
     private String email;

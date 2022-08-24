@@ -8,6 +8,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Client {
     private static Client instance = null;
     private static AuthService authService;
+    //private static ShopService shopService;
+    //private static InfoService infoService;
+    //private static WishlistService wishlistService;
+    //private static MyClosetService myClosetService;
     private final static String BASE_URL = "http://10.0.2.2:8080/";
 
 
