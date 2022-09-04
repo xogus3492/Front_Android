@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FybProject">
         <activity
+            android:name=".FindPwActivity"
+            android:exported="false" />
+        <activity
             android:name=".GoogleSignInActivity"
             android:exported="false" />
         <activity
@@ -19,7 +22,7 @@
             android:name=".LocalSignInActivity"
             android:exported="false" />
         <activity
-            android:name=".SignActivity"
+            android:name=".SignInActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
