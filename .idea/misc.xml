@@ -4,9 +4,14 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/wkdxo/AndroidStudioProjects/Front_Android/app/src/main/res/drawable/register_btn.xml" value="0.265625" />
+        <entry key="..\:/Users/wkdxo/AndroidStudioProjects/Front_Android/app/src/main/res/drawable/sign_bg.xml" value="0.265625" />
+        <entry key="..\:/Users/wkdxo/AndroidStudioProjects/Front_Android/app/src/main/res/drawable/sign_btn.xml" value="0.265625" />
+        <entry key="..\:/Users/wkdxo/AndroidStudioProjects/Front_Android/app/src/main/res/drawable/sign_form_bg.xml" value="0.265625" />
+        <entry key="..\:/Users/wkdxo/AndroidStudioProjects/Front_Android/app/src/main/res/drawable/text_view_form.xml" value="0.265625" />
         <entry key="..\:/Users/wkdxo/AndroidStudioProjects/Front_Android/app/src/main/res/layout/aactivity_splash.xml" value="0.22509057971014493" />
-        <entry key="..\:/Users/wkdxo/AndroidStudioProjects/Front_Android/app/src/main/res/layout/activity_sign.xml" value="0.22509057971014493" />
-        <entry key="..\:/Users/wkdxo/AndroidStudioProjects/Front_Android/app/src/main/res/layout/activity_splash.xml" value="0.4" />
+        <entry key="..\:/Users/wkdxo/AndroidStudioProjects/Front_Android/app/src/main/res/layout/activity_local_sign_in.xml" value="0.2" />
+        <entry key="..\:/Users/wkdxo/AndroidStudioProjects/Front_Android/app/src/main/res/layout/activity_sign.xml" value="0.264" />
+        <entry key="..\:/Users/wkdxo/AndroidStudioProjects/Front_Android/app/src/main/res/layout/activity_splash.xml" value="0.264" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19791666666666666" />
       </map>
     </option>
