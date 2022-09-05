@@ -30,7 +30,7 @@ public class SignUpPagerAdapter extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return 2000; // 화면이 2000개
+        return 2; // 화면이 2000개
     }
 
     public int getRealPosition(int position) {

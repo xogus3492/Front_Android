@@ -37,7 +37,7 @@ public class SignUpActivity extends AppCompatActivity {
         indicator.createIndicators(num_page, 0);
         //ViewPager Setting
         viewPager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL); // 슬라이드 방향
-        viewPager.setCurrentItem(1000); // 시작 지점
+        viewPager.setCurrentItem(0); // 시작 지점
         viewPager.setOffscreenPageLimit(2); // 최대 프래그먼트 수
 
         viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
