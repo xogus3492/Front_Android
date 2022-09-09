@@ -75,10 +75,10 @@
 
                 <EditText
                     android:id="@+id/editTextPhone"
+                    android:background="@drawable/text_view_form"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="5"
-                    android:background="@drawable/text_view_form"
                     android:ems="10"
                     android:inputType="phone"
                     android:padding="5dp"
