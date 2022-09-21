@@ -14,6 +14,8 @@ import android.widget.TextView;
 import com.example.fybproject.main.fragment.MainCartFragment;
 import com.example.fybproject.main.fragment.MainCartUpdateFragment;
 import com.example.fybproject.main.fragment.MainHomeFragment;
+import com.example.fybproject.main.fragment.MainMypageFragment;
+import com.example.fybproject.main.fragment.MainMypageUpdateFragment;
 import com.example.fybproject.main.fragment.MainSearchFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -25,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
     MainSearchFragment mainSearchFragment;
     MainCartFragment mainCartFragment;
     MainCartUpdateFragment mainCartUpdateFragment;
+    MainMypageFragment mainMypageFragment;
+    MainMypageUpdateFragment mainMypageUpdateFragment;
 
     FragmentManager fragmentManager;
     FragmentTransaction transaction;
@@ -45,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
         mainSearchFragment = new MainSearchFragment();
         mainCartFragment = new MainCartFragment();
         mainCartUpdateFragment = new MainCartUpdateFragment();
+        mainMypageFragment = new MainMypageFragment();
+        mainMypageUpdateFragment = new MainMypageUpdateFragment();
 
         fragmentManager = getSupportFragmentManager();
         transaction = fragmentManager.beginTransaction();
@@ -82,14 +88,19 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.myPageBtn:
                     navBar.setImageResource(R.drawable.mypage_navbar);
-                    //transaction.replace(R.id.frameMain, mainMyPageFragment).commitAllowingStateLoss();
+                    transaction.replace(R.id.frameMain, mainMypageFragment).commitAllowingStateLoss();
                     break;
             }
         }
     }; // 네비게이션 바 클릭 리스너
 
-    public void changeToUpdateFragment() {
+    public void changeToCartUpdateFragment() {
         transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.frameMain, mainCartUpdateFragment).commitAllowingStateLoss();
-    }
+    } // 장바구니 수정 버튼
+
+    public void changeToMypageUpdateFragment() {
+        transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.frameMain, mainMypageUpdateFragment).commitAllowingStateLoss();
+    } // 장바구니 수정 버튼
 }
