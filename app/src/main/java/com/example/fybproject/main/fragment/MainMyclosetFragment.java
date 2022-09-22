@@ -14,9 +14,9 @@ import androidx.fragment.app.Fragment;
 import com.example.fybproject.MainActivity;
 import com.example.fybproject.R;
 
-public class MainMypageUpdateFragment extends Fragment {
+public class MainMyclosetFragment extends Fragment {
 
-    TextView cancel;
+    TextView updateBtn;
 
     MainActivity mainactivity;
 
@@ -39,14 +39,14 @@ public class MainMypageUpdateFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_main_mypage_update, container, false);
+        View view =  inflater.inflate(R.layout.fragment_mypage_mycloset, container, false);
 
-        cancel = view.findViewById(R.id.profileCancelBtn);
+        updateBtn = view.findViewById(R.id.closetUpdateBtn);
 
-        cancel.setOnClickListener(new View.OnClickListener() {
+        updateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mainactivity.porofileUpdateCancel();
+                mainactivity.changeToMyclosetUpdateFragment();
             }
         });
 

@@ -14,6 +14,8 @@ import android.widget.TextView;
 import com.example.fybproject.main.fragment.MainCartFragment;
 import com.example.fybproject.main.fragment.MainCartUpdateFragment;
 import com.example.fybproject.main.fragment.MainHomeFragment;
+import com.example.fybproject.main.fragment.MainMyclosetFragment;
+import com.example.fybproject.main.fragment.MainMyclosetUpdateFragment;
 import com.example.fybproject.main.fragment.MainMypageFragment;
 import com.example.fybproject.main.fragment.MainMypageUpdateFragment;
 import com.example.fybproject.main.fragment.MainSearchFragment;
@@ -29,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     MainCartUpdateFragment mainCartUpdateFragment;
     MainMypageFragment mainMypageFragment;
     MainMypageUpdateFragment mainMypageUpdateFragment;
+    MainMyclosetFragment mainMyclosetFragment;
+    MainMyclosetUpdateFragment mainMyclosetUpdateFragment;
 
     FragmentManager fragmentManager;
     FragmentTransaction transaction;
@@ -51,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
         mainCartUpdateFragment = new MainCartUpdateFragment();
         mainMypageFragment = new MainMypageFragment();
         mainMypageUpdateFragment = new MainMypageUpdateFragment();
+        mainMyclosetFragment = new MainMyclosetFragment();
+        mainMyclosetUpdateFragment = new MainMyclosetUpdateFragment();
 
         fragmentManager = getSupportFragmentManager();
         transaction = fragmentManager.beginTransaction();
@@ -88,19 +94,47 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.myPageBtn:
                     navBar.setImageResource(R.drawable.mypage_navbar);
-                    transaction.replace(R.id.frameMain, mainMypageFragment).commitAllowingStateLoss();
+                    transaction.replace(R.id.frameMain, mainMypageFragment).addToBackStack(null).commitAllowingStateLoss();
                     break;
             }
         }
     }; // 네비게이션 바 클릭 리스너
+
+    // 프래그먼트 내 프래그먼트 이동
 
     public void changeToCartUpdateFragment() {
         transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.frameMain, mainCartUpdateFragment).commitAllowingStateLoss();
     } // 장바구니 수정 버튼
 
+    public void changeToCartFragment() {
+        transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.frameMain, mainCartFragment).commitAllowingStateLoss();
+    } // 장바구니 확인 버튼
+
     public void changeToMypageUpdateFragment() {
         transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.frameMain, mainMypageUpdateFragment).commitAllowingStateLoss();
-    } // 장바구니 수정 버튼
+        transaction.replace(R.id.frameMain, mainMypageUpdateFragment).addToBackStack(null).commitAllowingStateLoss();
+    } // 프로필 수정 버튼
+
+    public void changeToMypageFragment() {
+        transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.frameMain, mainMypageFragment).commitAllowingStateLoss();
+    } // 프로필 변경 버튼
+
+    public void porofileUpdateCancel() {
+        getSupportFragmentManager().beginTransaction().remove(mainMypageUpdateFragment).commitAllowingStateLoss();
+        getSupportFragmentManager().popBackStack();
+    } // 프로필 취소 버튼
+
+    public void changeToMyclosetUpdateFragment() {
+        transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.frameMain, mainMyclosetUpdateFragment).commitAllowingStateLoss();
+    } // 내 옷장 수정 버튼
+
+    public void changeToMyclosetFragment() {
+        transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.frameMain, mainMyclosetFragment).commitAllowingStateLoss();
+    } // 내 옷장 확인 버튼
+
 }

@@ -61,6 +61,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.85"
                 app:srcCompat="@drawable/plus_icon" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
@@ -76,7 +77,7 @@
                 android:textSize="13sp"
                 android:text="이메일" />
 
-            <TextView
+            <EditText
                 android:id="@+id/textView23"
                 android:background="@drawable/text_view_form"
                 android:layout_width="wrap_content"
@@ -85,6 +86,7 @@
                 android:textSize="12sp"
                 android:padding="5dp"
                 android:layout_weight="1"
+                android:inputType="textEmailAddress"
                 android:text="이메일" />
         </LinearLayout>
 
@@ -101,7 +103,7 @@
                 android:textSize="13sp"
                 android:text="    이름" />
 
-            <TextView
+            <EditText
                 android:id="@+id/textView1"
                 android:background="@drawable/text_view_form"
                 android:layout_width="wrap_content"
@@ -110,6 +112,7 @@
                 android:textSize="12sp"
                 android:padding="5dp"
                 android:layout_weight="1"
+                android:inputType="textPersonName"
                 android:text="이름" />
         </LinearLayout>
 
@@ -126,7 +129,7 @@
                 android:textSize="13sp"
                 android:text="    성별" />
 
-            <TextView
+            <EditText
                 android:id="@+id/textView3"
                 android:background="@drawable/text_view_form"
                 android:layout_width="wrap_content"
@@ -151,7 +154,7 @@
                 android:textSize="13sp"
                 android:text="        키" />
 
-            <TextView
+            <EditText
                 android:id="@+id/textView30"
                 android:background="@drawable/text_view_form"
                 android:layout_width="wrap_content"
@@ -160,6 +163,7 @@
                 android:textSize="12sp"
                 android:padding="5dp"
                 android:layout_weight="1"
+                android:inputType="numberSigned"
                 android:text="키" />
         </LinearLayout>
 
@@ -176,7 +180,7 @@
                 android:textSize="13sp"
                 android:text="몸무게" />
 
-            <TextView
+            <EditText
                 android:id="@+id/textView29"
                 android:background="@drawable/text_view_form"
                 android:layout_width="wrap_content"
@@ -185,6 +189,7 @@
                 android:textSize="12sp"
                 android:padding="5dp"
                 android:layout_weight="1"
+                android:inputType="numberSigned"
                 android:text="몸무게" />
         </LinearLayout>
 
@@ -201,7 +206,7 @@
                 android:textSize="13sp"
                 android:text="    나이" />
 
-            <TextView
+            <EditText
                 android:id="@+id/textView28"
                 android:background="@drawable/text_view_form"
                 android:layout_width="wrap_content"
@@ -210,6 +215,7 @@
                 android:textSize="12sp"
                 android:padding="5dp"
                 android:layout_weight="1"
+                android:inputType="numberSigned"
                 android:text="나이" />
         </LinearLayout>
 
@@ -233,7 +239,7 @@
                 android:clickable="true"/>
 
             <TextView
-                android:id="@+id/cartCancelBtn"
+                android:id="@+id/profileCancelBtn"
                 android:background="@drawable/btn_form"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
