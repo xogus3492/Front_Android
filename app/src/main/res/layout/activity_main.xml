@@ -7,12 +7,26 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <ImageView
-        android:id="@+id/imageView11"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginHorizontal="150dp"
-        app:srcCompat="@drawable/logo_image" />
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageView18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="15dp"
+            android:visibility="gone"
+            app:srcCompat="@drawable/option_icon" />
+
+        <ImageView
+            android:id="@+id/imageView11"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="150dp"
+            app:srcCompat="@drawable/logo_image" />
+    </FrameLayout>
 
     <FrameLayout
         android:id="@+id/frameMain"
