@@ -13,9 +13,8 @@ import com.example.fybproject.R;
 
 public class MainSearchFragment extends Fragment {
 
-    @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_main_search, container, false);
+        return inflater.inflate(R.layout.fragment_mypage_settings, container, false);
     }
 }

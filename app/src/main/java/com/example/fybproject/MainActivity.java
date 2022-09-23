@@ -1,15 +1,18 @@
 package com.example.fybproject;
 
+import static android.service.controls.ControlsProviderService.TAG;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.example.fybproject.main.fragment.MainCartFragment;
 import com.example.fybproject.main.fragment.MainCartUpdateFragment;
@@ -19,10 +22,12 @@ import com.example.fybproject.main.fragment.MainMyclosetUpdateFragment;
 import com.example.fybproject.main.fragment.MainMypageFragment;
 import com.example.fybproject.main.fragment.MainMypageUpdateFragment;
 import com.example.fybproject.main.fragment.MainSearchFragment;
+import com.example.fybproject.main.fragment.MainSettingsFragment;
+import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageView navBar;
+    ImageView navBar, hideBtn;
     Button homeBtn, searchBtn, modelBtn, cartBtn, mypageBtn;
 
     MainHomeFragment mainHomeFragment;
@@ -33,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     MainMypageUpdateFragment mainMypageUpdateFragment;
     MainMyclosetFragment mainMyclosetFragment;
     MainMyclosetUpdateFragment mainMyclosetUpdateFragment;
+    MainSettingsFragment mainSettingsFragment;
 
     FragmentManager fragmentManager;
     FragmentTransaction transaction;
@@ -48,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         modelBtn = findViewById(R.id.modelBtn);
         cartBtn = findViewById(R.id.cartBtn);
         mypageBtn = findViewById(R.id.myPageBtn);
+        hideBtn = findViewById(R.id.hideBtn);
 
         mainHomeFragment = new MainHomeFragment();
         mainSearchFragment = new MainSearchFragment();
@@ -57,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         mainMypageUpdateFragment = new MainMypageUpdateFragment();
         mainMyclosetFragment = new MainMyclosetFragment();
         mainMyclosetUpdateFragment = new MainMyclosetUpdateFragment();
+        mainSettingsFragment = new MainSettingsFragment();
 
         fragmentManager = getSupportFragmentManager();
         transaction = fragmentManager.beginTransaction();
@@ -68,9 +76,12 @@ public class MainActivity extends AppCompatActivity {
         modelBtn.setOnClickListener(navListener);
         cartBtn.setOnClickListener(navListener);
         mypageBtn.setOnClickListener(navListener);
+
+        hideBtn.setOnTouchListener(hideBtnListener);
     }
 
     View.OnClickListener navListener = new View.OnClickListener() {
+        @SuppressLint("ResourceType")
         @Override
         public void onClick(View view) {
             transaction = fragmentManager.beginTransaction();
@@ -79,28 +90,57 @@ public class MainActivity extends AppCompatActivity {
             {
                 case R.id.homeBtn:
                     navBar.setImageResource(R.drawable.home_navbar);
+                    hideBtn.setVisibility(View.GONE);
                     transaction.replace(R.id.frameMain, mainHomeFragment).commitAllowingStateLoss();
                     break;
                 case R.id.searchBtn:
                     navBar.setImageResource(R.drawable.search_navbar);
+                    hideBtn.setVisibility(View.GONE);
                     transaction.replace(R.id.frameMain, mainSearchFragment).commitAllowingStateLoss();
                     break;
                 case R.id.modelBtn:
+                    //hideBtn.setVisibility(View.GONE);
                     //navBar.setImageResource(R.drawable.home_navbar);
                     break;
                 case R.id.cartBtn:
                     navBar.setImageResource(R.drawable.cart_navbar);
+                    hideBtn.setVisibility(View.GONE);
                     transaction.replace(R.id.frameMain, mainCartFragment).commitAllowingStateLoss();
                     break;
                 case R.id.myPageBtn:
                     navBar.setImageResource(R.drawable.mypage_navbar);
+                    hideBtn.setVisibility(View.VISIBLE);
                     transaction.replace(R.id.frameMain, mainMypageFragment).addToBackStack(null).commitAllowingStateLoss();
                     break;
+                /*case R.id.hideBtn:
+                    if (hideBtn.getResources().getBoolean(R.drawable.option_icon)) {
+                        transaction.replace(R.id.frameMain, mainSettingsFragment).addToBackStack(null).commitAllowingStateLoss();
+                        hideBtn.setImageResource(R.drawable.back_icon);
+                    } else {
+                        transaction.remove(mainSettingsFragment).commitAllowingStateLoss();
+                        fragmentManager.popBackStack();
+                        hideBtn.setImageResource(R.drawable.option_icon);
+                    }*/
             }
         }
     }; // 네비게이션 바 클릭 리스너
 
-    // 프래그먼트 내 프래그먼트 이동
+    View.OnTouchListener hideBtnListener = new View.OnTouchListener() {
+
+        @Override
+        public boolean onTouch(View view, MotionEvent motionEvent) {
+
+            Log.i(TAG, "1");
+            if (motionEvent.getAction() == MotionEvent.ACTION_CANCEL) {
+                Log.i(TAG, "2");
+                transaction.replace(R.id.frameMain, mainSettingsFragment).addToBackStack(null).commitAllowingStateLoss();
+                hideBtn.setImageResource(R.drawable.back_icon);
+            }
+            return true;
+        }
+    };
+
+    // 프래그먼트 내에서 다른 프래그먼트에 대한 작업
 
     public void changeToCartUpdateFragment() {
         transaction = fragmentManager.beginTransaction();
@@ -119,6 +159,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void changeToMypageFragment() {
         transaction = fragmentManager.beginTransaction();
+        transaction.remove(mainMypageUpdateFragment).commitAllowingStateLoss();  // !!
         transaction.replace(R.id.frameMain, mainMypageFragment).commitAllowingStateLoss();
     } // 프로필 변경 버튼
 
@@ -137,4 +178,9 @@ public class MainActivity extends AppCompatActivity {
         transaction.replace(R.id.frameMain, mainMyclosetFragment).commitAllowingStateLoss();
     } // 내 옷장 확인 버튼
 
+    public void changeToSettingsFragment() {
+        transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.frameMain, mainSettingsFragment).commitAllowingStateLoss();
+        hideBtn.setImageResource(R.drawable.back_icon);
+    } // 설정 버튼
 }
