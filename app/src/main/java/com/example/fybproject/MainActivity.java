@@ -16,6 +16,7 @@ import android.widget.ImageView;
 
 import com.example.fybproject.main.fragment.MainCartFragment;
 import com.example.fybproject.main.fragment.MainCartUpdateFragment;
+import com.example.fybproject.main.fragment.MainChangePwFragment;
 import com.example.fybproject.main.fragment.MainHomeFragment;
 import com.example.fybproject.main.fragment.MainMyclosetFragment;
 import com.example.fybproject.main.fragment.MainMyclosetUpdateFragment;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     MainMyclosetFragment mainMyclosetFragment;
     MainMyclosetUpdateFragment mainMyclosetUpdateFragment;
     MainSettingsFragment mainSettingsFragment;
+    MainChangePwFragment mainChangePwFragment;
 
     FragmentManager fragmentManager;
     FragmentTransaction transaction;
@@ -65,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         mainMyclosetFragment = new MainMyclosetFragment();
         mainMyclosetUpdateFragment = new MainMyclosetUpdateFragment();
         mainSettingsFragment = new MainSettingsFragment();
+        mainChangePwFragment = new MainChangePwFragment();
 
         fragmentManager = getSupportFragmentManager();
         transaction = fragmentManager.beginTransaction();
@@ -138,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
             }
             return true;
         }
-    };
+    }; // 설정버튼 클릭 이벤트 (미완)
 
     // 프래그먼트 내에서 다른 프래그먼트에 대한 작업
 
@@ -183,4 +186,9 @@ public class MainActivity extends AppCompatActivity {
         transaction.replace(R.id.frameMain, mainSettingsFragment).commitAllowingStateLoss();
         hideBtn.setImageResource(R.drawable.back_icon);
     } // 설정 버튼
+
+    public void changeToChangePwFragment() {
+        transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.frameMain, mainChangePwFragment).commitAllowingStateLoss();
+    } // 비밀번호 변경 버튼
 }
