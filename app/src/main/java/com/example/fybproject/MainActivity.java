@@ -13,6 +13,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.example.fybproject.main.fragment.MainCartFragment;
 import com.example.fybproject.main.fragment.MainCartUpdateFragment;
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     ImageView navBar, hideBtn;
     Button homeBtn, searchBtn, modelBtn, cartBtn, mypageBtn;
+    LinearLayout hideBtnWrapper;
 
     MainHomeFragment mainHomeFragment;
     MainSearchFragment mainSearchFragment;
@@ -57,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         cartBtn = findViewById(R.id.cartBtn);
         mypageBtn = findViewById(R.id.myPageBtn);
         hideBtn = findViewById(R.id.hideBtn);
+        hideBtnWrapper = findViewById(R.id.hideBtnWrapper);
 
         mainHomeFragment = new MainHomeFragment();
         mainSearchFragment = new MainSearchFragment();
@@ -80,7 +83,16 @@ public class MainActivity extends AppCompatActivity {
         cartBtn.setOnClickListener(navListener);
         mypageBtn.setOnClickListener(navListener);
 
-        hideBtn.setOnTouchListener(hideBtnListener);
+        hideBtnWrapper.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                transaction = fragmentManager.beginTransaction();
+
+                Log.i(TAG, "로그 찍혔어욤");
+                transaction.replace(R.id.frameMain, mainSettingsFragment).addToBackStack(null).commitAllowingStateLoss();
+                hideBtn.setImageResource(R.drawable.back_icon);
+            }
+        });
     }
 
     View.OnClickListener navListener = new View.OnClickListener() {
@@ -93,12 +105,12 @@ public class MainActivity extends AppCompatActivity {
             {
                 case R.id.homeBtn:
                     navBar.setImageResource(R.drawable.home_navbar);
-                    hideBtn.setVisibility(View.GONE);
+                    hideBtn.setVisibility(View.INVISIBLE);
                     transaction.replace(R.id.frameMain, mainHomeFragment).commitAllowingStateLoss();
                     break;
                 case R.id.searchBtn:
                     navBar.setImageResource(R.drawable.search_navbar);
-                    hideBtn.setVisibility(View.GONE);
+                    hideBtn.setVisibility(View.INVISIBLE);
                     transaction.replace(R.id.frameMain, mainSearchFragment).commitAllowingStateLoss();
                     break;
                 case R.id.modelBtn:
@@ -107,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.cartBtn:
                     navBar.setImageResource(R.drawable.cart_navbar);
-                    hideBtn.setVisibility(View.GONE);
+                    hideBtn.setVisibility(View.INVISIBLE);
                     transaction.replace(R.id.frameMain, mainCartFragment).commitAllowingStateLoss();
                     break;
                 case R.id.myPageBtn:
@@ -115,33 +127,14 @@ public class MainActivity extends AppCompatActivity {
                     hideBtn.setVisibility(View.VISIBLE);
                     transaction.replace(R.id.frameMain, mainMypageFragment).addToBackStack(null).commitAllowingStateLoss();
                     break;
-                /*case R.id.hideBtn:
-                    if (hideBtn.getResources().getBoolean(R.drawable.option_icon)) {
+                /*case R.id.hideBtnWrapper:
+                        Log.i(TAG, "로그 찍혔어욤");
                         transaction.replace(R.id.frameMain, mainSettingsFragment).addToBackStack(null).commitAllowingStateLoss();
                         hideBtn.setImageResource(R.drawable.back_icon);
-                    } else {
-                        transaction.remove(mainSettingsFragment).commitAllowingStateLoss();
-                        fragmentManager.popBackStack();
-                        hideBtn.setImageResource(R.drawable.option_icon);
-                    }*/
+                        break;*/
             }
         }
     }; // 네비게이션 바 클릭 리스너
-
-    View.OnTouchListener hideBtnListener = new View.OnTouchListener() {
-
-        @Override
-        public boolean onTouch(View view, MotionEvent motionEvent) {
-
-            Log.i(TAG, "1");
-            if (motionEvent.getAction() == MotionEvent.ACTION_CANCEL) {
-                Log.i(TAG, "2");
-                transaction.replace(R.id.frameMain, mainSettingsFragment).addToBackStack(null).commitAllowingStateLoss();
-                hideBtn.setImageResource(R.drawable.back_icon);
-            }
-            return true;
-        }
-    }; // 설정버튼 클릭 이벤트 (미완)
 
     // 프래그먼트 내에서 다른 프래그먼트에 대한 작업
 
@@ -180,12 +173,6 @@ public class MainActivity extends AppCompatActivity {
         transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.frameMain, mainMyclosetFragment).commitAllowingStateLoss();
     } // 내 옷장 확인 버튼
-
-    public void changeToSettingsFragment() {
-        transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.frameMain, mainSettingsFragment).commitAllowingStateLoss();
-        hideBtn.setImageResource(R.drawable.back_icon);
-    } // 설정 버튼
 
     public void changeToChangePwFragment() {
         transaction = fragmentManager.beginTransaction();
