@@ -15,17 +15,17 @@ import retrofit2.http.POST;
 public interface WishlistService {
     // 장바구니 등록
     @POST("main/wishlist")
-    Call<WishAddDTO> postWishAddData(@Body WishAddDTO wishAddDTO);
+    Call<WishAddDTO> postWishData(@Body WishAddDTO wishAddDTO);
 
     // 장바구니 조회
     @GET("main/wishlist")
-    Call<WishlistDTO> getWishlistData();
+    Call<WishlistDTO> getWishData();
 
     // 장바구니 삭제
     @DELETE("main/wishlist")
-    Call<WishDeleteDTO> deleteWishDeleteData(@Body WishDeleteDTO wishDeleteDTO);
+    Call<WishDeleteDTO> deleteWishData(@Body WishDeleteDTO wishDeleteDTO);
 
     // 장바구니 수정
     @PATCH("main/wishlist")
-    Call<WishUpdateDTO> patchWishUpdateData(@Body WishUpdateDTO wishUpdateDTO);
+    Call<WishUpdateDTO> patchWishData(@Body WishUpdateDTO wishUpdateDTO);
 }

@@ -2,7 +2,6 @@ package com.example.fybproject.dto.myClosetDTO;
 
 public class ClosetDTO {
     private long id;
-    private long uid;
     private int pnotes;
     private String pname;
     private String pkind;
@@ -13,14 +12,6 @@ public class ClosetDTO {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public long getUid() {
-        return uid;
-    }
-
-    public void setUid(long uid) {
-        this.uid = uid;
     }
 
     public int getPnotes() {
@@ -50,7 +41,7 @@ public class ClosetDTO {
     @Override
     public String toString() {
         return "PostResult {" +
-                "uid = " + uid +
+                "uid = " + id +
                 ", pname = " + pname +
                 ", pnotes = " + pnotes +
                 ", pkind = " + pkind +

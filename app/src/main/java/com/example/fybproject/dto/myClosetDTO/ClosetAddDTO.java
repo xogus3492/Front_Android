@@ -1,26 +1,16 @@
 package com.example.fybproject.dto.myClosetDTO;
 
 public class ClosetAddDTO {
-    private int uid;
     private String pname;
     private String pnotes;
     private int pkind;
     private int status;
     private String statusMessage;
 
-    public ClosetAddDTO(int uid, String pname, String pnotes, int pkind) {
-        this.uid = uid;
+    public ClosetAddDTO(String pname, String pnotes, int pkind) {
         this.pname = pname;
         this.pnotes = pnotes;
         this.pkind = pkind;
-    }
-
-    public int getUid() {
-        return uid;
-    }
-
-    public void setUid(int uid) {
-        this.uid = uid;
     }
 
     public String getPname() {

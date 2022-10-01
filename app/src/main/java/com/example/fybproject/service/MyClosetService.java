@@ -9,26 +9,29 @@ import com.example.fybproject.dto.wishlistDTO.WishDeleteDTO;
 import com.example.fybproject.dto.wishlistDTO.WishUpdateDTO;
 import com.example.fybproject.dto.wishlistDTO.WishlistDTO;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 
 public interface MyClosetService {
     // 내 옷장 등록
-    @POST() // 미완성
-    Call<ClosetAddDTO> postClosetAddData(@Body ClosetAddDTO closetAddDTO);
+    @POST("main/closet")
+    Call<ClosetAddDTO> postClosetData(@Body ClosetAddDTO closetAddDTO);
 
-    // 내 옷장 조회
-    @GET("main/closet/read")
-    Call<ClosetDTO> getClosetData();
+    // 장바구니 조회
+    @GET("main/closet")
+    Call<List<ClosetDTO>> getClosetData();
 
-    // 내 옷장 삭제
-    @POST() // 미완성
-    Call<ClosetDeleteDTO> postClosetDeleteData(@Body ClosetDeleteDTO closetDeleteDTO);
+    // 장바구니 삭제
+    @DELETE("main/closet")
+    Call<ClosetDeleteDTO> deleteClosetData(@Body ClosetDeleteDTO closetDeleteDTO);
 
-    // 내 옷장 수정
-    @PATCH() //  미완성
-    Call<ClosetUpdateDTO> patchClosetUpdateData(@Body ClosetUpdateDTO closetUpdateDTO);
+    // 장바구니 수정
+    @PATCH("main/closet")
+    Call<ClosetUpdateDTO> patchClosetData(@Body ClosetUpdateDTO closetUpdateDTO);
 }
