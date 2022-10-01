@@ -4,8 +4,7 @@ public class SearchDTO {
     private String shop;
     private String surl;
 
-    public SearchDTO() {
-    }
+    public SearchDTO() { }
 
     public SearchDTO(String shop) {
         this.shop = shop;
