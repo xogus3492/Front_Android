@@ -7,13 +7,14 @@ import com.example.fybproject.dto.wishlistDTO.WishlistDTO;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 
 public interface WishlistService {
     // 장바구니 등록
-    @POST("main/wishlist/add")
+    @POST("main/wishlist")
     Call<WishAddDTO> postWishAddData(@Body WishAddDTO wishAddDTO);
 
     // 장바구니 조회
@@ -21,10 +22,10 @@ public interface WishlistService {
     Call<WishlistDTO> getWishlistData();
 
     // 장바구니 삭제
-    @POST("main/delete")
-    Call<WishDeleteDTO> postWishDeleteData(@Body WishDeleteDTO wishDeleteDTO);
+    @DELETE("main/wishlist")
+    Call<WishDeleteDTO> deleteWishDeleteData(@Body WishDeleteDTO wishDeleteDTO);
 
     // 장바구니 수정
-    @PATCH("main/wishlist/update")
+    @PATCH("main/wishlist")
     Call<WishUpdateDTO> patchWishUpdateData(@Body WishUpdateDTO wishUpdateDTO);
 }

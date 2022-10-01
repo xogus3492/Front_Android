@@ -5,7 +5,7 @@ public class WishUpdateDTO {
     private String notes;
     private String purl;
     private int price;
-    private String pimage; // 이미지 업로드 물어보기
+    private String pimage;
     private int status;
     private String statusMessage;
 
