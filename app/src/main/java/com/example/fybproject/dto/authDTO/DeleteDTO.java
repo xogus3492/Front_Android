@@ -2,7 +2,7 @@ package com.example.fybproject.dto.authDTO;
 
 public class DeleteDTO {
     private String pw;
-    private int status;
+    private String status;
     private String statusMessage;
 
     public DeleteDTO(String pw) {
@@ -17,11 +17,11 @@ public class DeleteDTO {
         this.pw = pw;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

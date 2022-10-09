@@ -3,8 +3,9 @@ package com.example.fybproject.dto.authDTO;
 public class LoginDTO {
     private String email;
     private String pw;
-    private int status;
+    private String status;
     private String statusMessage;
+    private String Authorization;
 
     public LoginDTO(String email, String pw) {
         this.email = email;
@@ -27,11 +28,11 @@ public class LoginDTO {
         this.pw = pw;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
@@ -41,6 +42,14 @@ public class LoginDTO {
 
     public void setStatusMessage(String statusMessage) {
         this.statusMessage = statusMessage;
+    }
+
+    public String getAuthorization() {
+        return Authorization;
+    }
+
+    public void setAuthorization(String authorization) {
+        Authorization = authorization;
     }
 
     @Override

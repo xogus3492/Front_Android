@@ -42,7 +42,7 @@
             android:text="계정이 없으십니까?   " />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/splashLoginBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="로그인"
