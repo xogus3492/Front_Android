@@ -24,7 +24,7 @@ public class SplashActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
                 startActivity(intent);
             }
-        });
+        }); // 회원가입 버튼
 
         loginoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,7 +32,7 @@ public class SplashActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), SignInActivity.class);
                 startActivity(intent);
             }
-        }); // 로그인 눌렀을 때
+        }); // 로그인 버튼
     }
 
     public void init() {

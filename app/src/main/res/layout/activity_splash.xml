@@ -39,7 +39,7 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="계정이 없으십니까?   " />
+            android:text="계정이 있으십니까?   " />
 
         <TextView
             android:id="@+id/splashLoginBtn"

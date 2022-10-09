@@ -47,7 +47,7 @@
 
             <ImageView
                 android:id="@+id/localLoginBtn"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:clickable="true"
@@ -55,7 +55,7 @@
 
             <ImageView
                 android:id="@+id/kakaoLoginBtn"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:clickable="true"
@@ -63,7 +63,7 @@
 
             <ImageView
                 android:id="@+id/googleLoginBtn"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="55dp"
