@@ -73,7 +73,7 @@ public class LocalSignInActivity extends AppCompatActivity {
                                         }
                                     } else {
                                         try {
-                                            Log.d(TAG, "KakaoLogin : 실패,\nresponseBody() : " + data + ",\nresponse.code(): " + response.code() + ",\nresponse.errorBody(): " + response.errorBody().string());
+                                            Log.d(TAG, "LocalLogin : 실패,\nresponseBody() : " + data + ",\nresponse.code(): " + response.code() + ",\nresponse.errorBody(): " + response.errorBody().string());
                                         } catch (IOException e) {
                                             e.printStackTrace();
                                         }
@@ -109,7 +109,8 @@ public class LocalSignInActivity extends AppCompatActivity {
         findPw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(getApplicationContext(), FindPwActivity.class);
+                startActivity(intent);
             }
         }); // 비밀번호 찾기
     }
@@ -120,7 +121,7 @@ public class LocalSignInActivity extends AppCompatActivity {
         inputPw = findViewById(R.id.inputPw);
         showPw = findViewById(R.id.showPw);
         hidePw = findViewById(R.id.hidePw);
-        findPw = findViewById(R.id.findPw);
+        findPw = findViewById(R.id.findPwText);
     }
 
     public void inputData() {
