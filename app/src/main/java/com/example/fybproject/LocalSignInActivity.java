@@ -4,12 +4,15 @@ import static android.content.ContentValues.TAG;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.fybproject.client.ServiceGenerator;
@@ -27,7 +30,8 @@ import retrofit2.Response;
 
 public class LocalSignInActivity extends AppCompatActivity {
 
-    ImageView loginBtn;
+    TextView findPw;
+    ImageView loginBtn, showPw, hidePw;
     EditText inputEmail, inputPw;
 
     String email, pw;
@@ -83,12 +87,40 @@ public class LocalSignInActivity extends AppCompatActivity {
                 }
             }
         }); // 로컬 로그인
+
+        hidePw.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                inputPw.setInputType(InputType.TYPE_CLASS_TEXT);
+                hidePw.setVisibility(View.GONE);
+                showPw.setVisibility(View.VISIBLE);
+            }
+        }); // 패스워드 보이게
+
+        showPw.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                inputPw.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                showPw.setVisibility(View.GONE);
+                hidePw.setVisibility(View.VISIBLE);
+            }
+        }); // 패스워드 안 보이게
+
+        findPw.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        }); // 비밀번호 찾기
     }
 
     public void init() {
         loginBtn = findViewById(R.id.loginBtn);
         inputEmail = findViewById(R.id.inputEmail);
         inputPw = findViewById(R.id.inputPw);
+        showPw = findViewById(R.id.showPw);
+        hidePw = findViewById(R.id.hidePw);
+        findPw = findViewById(R.id.findPw);
     }
 
     public void inputData() {

@@ -51,6 +51,8 @@ public class SignInActivity extends AppCompatActivity {
         kakaoLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                authService = ServiceGenerator.createService(AuthService.class);
+
                 if (authService != null) {
                     authService.getKakaoData()
                             .enqueue(new Callback<SocialDTO>() {
@@ -94,6 +96,8 @@ public class SignInActivity extends AppCompatActivity {
         googleLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                authService = ServiceGenerator.createService(AuthService.class);
+
                 if (authService != null) {
                     authService.getGoogleData()
                             .enqueue(new Callback<SocialDTO>() {

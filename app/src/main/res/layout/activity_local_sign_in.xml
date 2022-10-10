@@ -76,18 +76,33 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageView
-                    android:id="@+id/showPw"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:layout_marginEnd="4dp"
-                    android:clickable="true"
-                    app:layout_constraintBottom_toBottomOf="@+id/inputPw"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toStartOf="@+id/inputPw"
-                    app:layout_constraintTop_toTopOf="@+id/inputPw"
-                    app:srcCompat="@drawable/eye_open" />
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="@+id/inputPw"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toStartOf="@+id/inputPw"
+                        app:layout_constraintTop_toTopOf="@+id/inputPw">
+
+                        <ImageView
+                            android:id="@+id/hidePw"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_marginEnd="4dp"
+                            android:clickable="true"
+                            app:srcCompat="@drawable/eye_hide"/>
+
+                        <ImageView
+                            android:id="@+id/showPw"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_marginEnd="4dp"
+                            android:clickable="true"
+                            app:srcCompat="@drawable/eye_open"
+                            android:visibility="gone"/>
+
+                    </FrameLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
