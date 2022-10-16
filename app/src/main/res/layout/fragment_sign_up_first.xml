@@ -16,7 +16,7 @@
         android:textSize="12sp" />
 
     <EditText
-            android:id="@+id/editTextTextEmailAddress"
+            android:id="@+id/inputRegisterEmail"
             android:background="@drawable/text_view_form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
         android:layout_height="match_parent">
 
         <EditText
-            android:id="@+id/editTextTextPassword"
+            android:id="@+id/inputRegisterPw"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/text_view_form"
@@ -51,18 +51,33 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/imageView10"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:layout_marginEnd="4dp"
-            android:clickable="true"
-            app:layout_constraintBottom_toBottomOf="@+id/editTextTextPassword"
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/inputRegisterPw"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/editTextTextPassword"
-            app:layout_constraintTop_toTopOf="@+id/editTextTextPassword"
-            app:srcCompat="@drawable/eye_open" />
+            app:layout_constraintStart_toStartOf="@+id/inputRegisterPw"
+            app:layout_constraintTop_toTopOf="@+id/inputRegisterPw">
+
+            <ImageView
+                android:id="@+id/hideRegisterPw"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginEnd="4dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/eye_hide"/>
+
+            <ImageView
+                android:id="@+id/showRegisterPw"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginEnd="4dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/eye_open"
+                android:visibility="gone"/>
+
+        </FrameLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
@@ -78,7 +93,7 @@
         android:layout_height="match_parent">
 
         <EditText
-            android:id="@+id/editTextTextPassword1"
+            android:id="@+id/inputRegisterPwCheck"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/text_view_form"
@@ -91,18 +106,33 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/imageView9"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:layout_marginEnd="4dp"
-            android:clickable="true"
-            app:layout_constraintBottom_toBottomOf="@+id/editTextTextPassword1"
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/inputRegisterPwCheck"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/editTextTextPassword1"
-            app:layout_constraintTop_toTopOf="@+id/editTextTextPassword1"
-            app:srcCompat="@drawable/eye_open" />
+            app:layout_constraintStart_toStartOf="@+id/inputRegisterPwCheck"
+            app:layout_constraintTop_toTopOf="@+id/inputRegisterPwCheck">
+
+            <ImageView
+                android:id="@+id/hideRegisterPwCheck"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginEnd="4dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/eye_hide"/>
+
+            <ImageView
+                android:id="@+id/showRegisterPwCheck"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginEnd="4dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/eye_open"
+                android:visibility="gone"/>
+
+        </FrameLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
@@ -124,7 +154,7 @@
         android:textSize="12sp"/>
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/inputRegisterName"
         android:background="@drawable/text_view_form"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

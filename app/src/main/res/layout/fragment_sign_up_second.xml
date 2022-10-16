@@ -45,7 +45,7 @@
         android:textSize="12sp" />
 
     <EditText
-        android:id="@+id/editTextNumberSigned2"
+        android:id="@+id/inputRegisterAge"
         android:background="@drawable/text_view_form"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -68,7 +68,7 @@
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/editTextPhone"
+            android:id="@+id/inputPhoneForRegister"
             android:background="@drawable/text_view_form"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -79,7 +79,7 @@
             android:textSize="14sp" />
 
         <ImageView
-            android:id="@+id/imageView8"
+            android:id="@+id/receiveCodeBtnForRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -89,7 +89,7 @@
     </LinearLayout>
 
     <EditText
-        android:id="@+id/editTextNumberSigned"
+        android:id="@+id/inputCodeForRegister"
         android:background="@drawable/verification_code_form"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

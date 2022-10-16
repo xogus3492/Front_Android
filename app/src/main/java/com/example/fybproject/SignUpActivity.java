@@ -10,12 +10,15 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
+import android.widget.ImageView;
 
 import com.example.fybproject.pager.adapter.SignUpPagerAdapter;
 
 import me.relex.circleindicator.CircleIndicator3;
 
 public class SignUpActivity extends AppCompatActivity {
+
+    ImageView doSignupBtn;
 
     private ViewPager2 viewPager;
     private FragmentStateAdapter pagerAdapter;
@@ -26,19 +29,11 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-        // ViewPager2
-        viewPager = findViewById(R.id.viewPager);
-        // Adapter
-        pagerAdapter = new SignUpPagerAdapter(this, num_page);
-        viewPager.setAdapter(pagerAdapter);
-        // Indicator
-        indicator = findViewById(R.id.indicator);
-        indicator.setViewPager(viewPager);
-        indicator.createIndicators(num_page, 0);
-        //ViewPager Setting
-        viewPager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL); // 슬라이드 방향
-        viewPager.setCurrentItem(0); // 시작 지점
-        viewPager.setOffscreenPageLimit(2); // 최대 프래그먼트 수
+
+        init();
+        pagerConfig();
+
+
 
         viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
@@ -57,5 +52,23 @@ public class SignUpActivity extends AppCompatActivity {
         });
     }
 
+    public void init() {
+        doSignupBtn = findViewById(R.id.doSignupBtn);
+    }
 
+    public void pagerConfig() {
+        // ViewPager2
+        viewPager = findViewById(R.id.viewPager);
+        // Adapter
+        pagerAdapter = new SignUpPagerAdapter(this, num_page);
+        viewPager.setAdapter(pagerAdapter);
+        // Indicator
+        indicator = findViewById(R.id.indicator);
+        indicator.setViewPager(viewPager);
+        indicator.createIndicators(num_page, 0);
+        //ViewPager Setting
+        viewPager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL); // 슬라이드 방향
+        viewPager.setCurrentItem(0); // 시작 지점
+        viewPager.setOffscreenPageLimit(2); // 최대 프래그먼트 수
+    }
 }
