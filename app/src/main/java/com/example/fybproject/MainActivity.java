@@ -14,11 +14,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.MediaController;
+import android.widget.VideoView;
 
 import com.example.fybproject.main.fragment.MainCartFragment;
 import com.example.fybproject.main.fragment.MainCartUpdateFragment;
 import com.example.fybproject.main.fragment.MainChangePwFragment;
 import com.example.fybproject.main.fragment.MainHomeFragment;
+import com.example.fybproject.main.fragment.MainModelFragment;
 import com.example.fybproject.main.fragment.MainMyclosetFragment;
 import com.example.fybproject.main.fragment.MainMyclosetUpdateFragment;
 import com.example.fybproject.main.fragment.MainMypageFragment;
@@ -35,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
     MainHomeFragment mainHomeFragment;
     MainSearchFragment mainSearchFragment;
+    MainModelFragment mainModelFragment;
     MainCartFragment mainCartFragment;
     MainCartUpdateFragment mainCartUpdateFragment;
     MainMypageFragment mainMypageFragment;
@@ -60,9 +64,9 @@ public class MainActivity extends AppCompatActivity {
         mypageBtn = findViewById(R.id.myPageBtn);
         hideBtn = findViewById(R.id.hideBtn);
         hideBtnWrapper = findViewById(R.id.hideBtnWrapper);
-
         mainHomeFragment = new MainHomeFragment();
         mainSearchFragment = new MainSearchFragment();
+        mainModelFragment = new MainModelFragment();
         mainCartFragment = new MainCartFragment();
         mainCartUpdateFragment = new MainCartUpdateFragment();
         mainMypageFragment = new MainMypageFragment();
@@ -114,8 +118,9 @@ public class MainActivity extends AppCompatActivity {
                     transaction.replace(R.id.frameMain, mainSearchFragment).commitAllowingStateLoss();
                     break;
                 case R.id.modelBtn:
-                    //hideBtn.setVisibility(View.GONE);
-                    //navBar.setImageResource(R.drawable.home_navbar);
+                    navBar.setImageResource(R.drawable.model_navbar);
+                    hideBtn.setVisibility(View.INVISIBLE);
+                    transaction.replace(R.id.frameMain, mainModelFragment).commitAllowingStateLoss();
                     break;
                 case R.id.cartBtn:
                     navBar.setImageResource(R.drawable.cart_navbar);
