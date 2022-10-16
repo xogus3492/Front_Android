@@ -5,6 +5,7 @@ import com.example.fybproject.dto.shopDTO.AnalyzeDTO;
 import com.example.fybproject.dto.shopDTO.MainDTO;
 import com.example.fybproject.dto.shopDTO.SearchDTO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -19,7 +20,7 @@ public interface ShopService {
 
     // 검색 (load)
     @GET("main/search")
-    Call<SearchDTO> getSearchData();
+    Call<ArrayList<SearchDTO>> getSearchData();
 
     // 검색 (search)
     @POST("main/search")
