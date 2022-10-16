@@ -24,7 +24,7 @@ public interface ShopService {
 
     // 검색 (search)
     @POST("main/search")
-    Call<SearchDTO> postSearchData(@Body SearchDTO searchDTO);
+    Call<ArrayList<SearchDTO>> postSearchData(@Body SearchDTO searchDTO);
 
     // 쇼핑몰 이용 분석
     @POST("main")

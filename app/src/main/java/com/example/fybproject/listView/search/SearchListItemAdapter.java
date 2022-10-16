@@ -80,7 +80,12 @@ public class SearchListItemAdapter extends BaseAdapter {
 
         return view;
     }
+
     public void addItem(SearchListItem listItem) {
         items.add(listItem);
+    }
+
+    public void clearItem() {
+        items.clear();
     }
 }

@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -38,11 +40,16 @@ public class MainSearchFragment extends Fragment {
 
     View view;
 
+    EditText inputShop;
+    ImageView shopSearchBtn;
+
     ListView searchListView;
 
     SearchListItemAdapter adapter;
 
     private ShopService shopService;
+
+    String shop;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -52,8 +59,9 @@ public class MainSearchFragment extends Fragment {
 
         adapter = new SearchListItemAdapter();
 
-        SearchDTO searchDTO = new SearchDTO();
         shopService = ServiceGenerator.createService(ShopService.class);
+
+        adapter.clearItem();
 
         if (shopService != null) {
             shopService.getSearchData()
@@ -83,7 +91,6 @@ public class MainSearchFragment extends Fragment {
                                             adapter.addItem(new SearchListItem(name1, url1, name2, url2));
                                         }
                                     }
-
                                     index++;
                                 }
                             } else {
@@ -99,60 +106,77 @@ public class MainSearchFragment extends Fragment {
                             Log.d(TAG, "onFailure: " + t.toString());
                         }
                     });
-        }
+        } // 쇼핑몰 조회
 
-        /*loginBtn.setOnClickListener(new View.OnClickListener() {
+        shopSearchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 inputData();
-                LoginDTO loginDTO = new LoginDTO(email, pw);
-                authService = ServiceGenerator.createService(AuthService.class);
+                SearchDTO searchDTO = new SearchDTO(shop);
+                shopService = ServiceGenerator.createService(ShopService.class);
 
-                if (authService != null) {
-                    authService.postLoginData(loginDTO)
-                            .enqueue(new Callback<LoginDTO>() {
+                if (shopService != null) {
+                    shopService.postSearchData(searchDTO)
+                            .enqueue(new Callback<ArrayList<SearchDTO>>() {
                                 @Override
-                                public void onResponse(Call<LoginDTO> call, Response<LoginDTO> response) {
-                                    LoginDTO data = response.body();
-                                    Headers header = response.headers();
+                                public void onResponse(Call<ArrayList<SearchDTO>> call, Response<ArrayList<SearchDTO>> response) {
+                                    ArrayList<SearchDTO> data = response.body();
                                     if (response.isSuccessful() == true) {
-                                        Log.d(TAG, "LocalLogin : 성공,\nresponseBody : " + data + ",\njwtToken : " + header.get("Authorization"));
+                                        Log.d(TAG, "postSearchShop : 성공,\nresponseBody : " + data);
+                                        adapter.clearItem();
 
-                                        if (data.getStatus().equals("LOGIN_STATUS_TRUE")) {
-                                            JwtToken.setToken(header.get("Authorization"));
+                                        String name1 = null, url1 = null, name2 = null, url2 = null;
+                                        int index = 0;
+                                        for (SearchDTO real : data) {
 
-                                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                            startActivity(intent);
-                                        }
-                                        if (data.getStatus().equals("LOGIN_FALSE")) {
-                                            Toast.makeText(getApplicationContext(), "이메일 또는 비밀번호를 다시 확인해 주십시오", Toast.LENGTH_LONG).show();
+                                            if (data.size() % 2 == 1) {
+                                                name1 = real.getShop();
+                                                url1 = real.getSurl();
+                                                if(data.get(index + 1) == null) {
+                                                    adapter.addItem(new SearchListItem(name1, url1, null, null));
+                                                }
+                                            }
+                                            if (data.size() % 2 == 0) {
+                                                name2 = real.getShop();
+                                                url2 = real.getSurl();
+                                                if(data.get(index + 1) == null) {
+                                                    adapter.addItem(new SearchListItem(name1, url1, name2, url2));
+                                                }
+                                            }
+                                            index++;
                                         }
                                     } else {
                                         try {
-                                            Log.d(TAG, "LocalLogin : 실패,\nresponseBody() : " + data + ",\nresponse.code(): " + response.code() + ",\nresponse.errorBody(): " + response.errorBody().string());
+                                            Log.d(TAG, "postSearchShop : 실패,\nresponseBody() : " + data + ",\nresponse.code(): " + response.code() + ",\nresponse.errorBody(): " + response.errorBody().string());
                                         } catch (IOException e) {
                                             e.printStackTrace();
                                         }
                                     }
                                 }
                                 @Override
-                                public void onFailure(Call<LoginDTO> call, Throwable t) {
+                                public void onFailure(Call<ArrayList<SearchDTO>> call, Throwable t) {
                                     Log.d(TAG, "onFailure: " + t.toString());
                                 }
                             });
                 }
             }
-        }); // 로컬 로그인 */
+        }); // 쇼핑몰 검색
 
         return view;
     }
 
     public void init() {
         searchListView = view.findViewById(R.id.searchListView);
+        inputShop = view.findViewById(R.id.inputShop);
+        shopSearchBtn = view.findViewById(R.id.shopSearchBtn);
     }
 
-    /*public void inputData() {
-        email = inputEmail.getText().toString();
-        pw = inputPw.getText().toString();
-    }*/
+    public void inputData() {
+        if (inputShop.getText().toString() == null) {
+            Toast.makeText(view.getContext().getApplicationContext(), "검색할 쇼핑몰을 입력 해 주세요", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        shop = inputShop.getText().toString();
+    }
 }
