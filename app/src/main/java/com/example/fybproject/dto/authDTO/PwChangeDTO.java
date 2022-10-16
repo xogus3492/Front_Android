@@ -4,7 +4,7 @@ public class PwChangeDTO {
     private String email;
     private String pw;
     private String newPw;
-    private int status;
+    private String status;
     private String statusMessage;
 
     public PwChangeDTO(String email, String pw, String newPw) {
@@ -42,11 +42,11 @@ public class PwChangeDTO {
         this.newPw = newPw;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

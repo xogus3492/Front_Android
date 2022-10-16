@@ -34,7 +34,7 @@ public interface AuthService {
 
     // 비밀번호 잃어버렸을 때 변경
     @PUT("auth/password")
-    Call<PwChangeDTO> postLostPasswordData(@Body PwChangeDTO pwChangeDTO);
+    Call<PwChangeDTO> putLostPasswordData(@Body PwChangeDTO pwChangeDTO);
 
     // 회원탈퇴
     @POST("auth")
