@@ -3,6 +3,7 @@ package com.example.fybproject.dto.shopDTO;
 public class MainDTO {
     private String email;
     private String name;
+    private String profileImagePath;
     private char gender;
     private int height;
     private int weight;
