@@ -66,16 +66,15 @@ public class MainHomeFragment extends Fragment {
                             ArrayList<MainDTO> data = response.body();
                             Headers header = response.headers();
                             if (response.isSuccessful() == true) {
-                                Log.d(TAG, "getMainData : 성공,\nresponseBody : " + data + ",\njwtToken : " + header.get("Authorization"));
-                                JwtToken.setToken(header.get("Authorization"));
+                                Log.d(TAG, "getMainData : 성공,\nresponseBody : " + data);
+                                Log.d(TAG, "=====================================================================");
 
                                 int index = 0;
                                 for (MainDTO real : data) {
-                                    if(data.get(index + 1) == null) {
+                                    if(data.size() - 1 == index) {
                                         name = real.getName();
                                         age = real.getAge();
                                         gender = real.getGender();
-
                                         userName.setText(name);
                                         return;
                                     }

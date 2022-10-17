@@ -1,5 +1,9 @@
 package com.example.fybproject.interceeptor;
 
+import static android.service.controls.ControlsProviderService.TAG;
+
+import android.util.Log;
+
 import java.io.IOException;
 
 import okhttp3.Interceptor;
@@ -17,6 +21,8 @@ public class AuthenticationInterceptor implements Interceptor {
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request original = chain.request();
+
+        Log.i(TAG, "AuthenticationIntercepter.java : " + authToken);
 
         Request.Builder builder = original.newBuilder()
                 .addHeader("Authorization",authToken);

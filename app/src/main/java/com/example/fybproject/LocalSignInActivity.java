@@ -61,9 +61,10 @@ public class LocalSignInActivity extends AppCompatActivity {
                                     Headers header = response.headers();
                                     if (response.isSuccessful() == true) {
                                         Log.d(TAG, "LocalLogin : 성공,\nresponseBody : " + data + ",\njwtToken : " + header.get("Authorization"));
+                                        Log.d(TAG, "=====================================================================");
 
                                         if (data.getStatus().equals("LOGIN_STATUS_TRUE")) {
-                                            JwtToken.setToken(header.get("Authorization"));
+                                            JwtToken.setToken(header.get("Authorization").substring(7));
 
                                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                             startActivity(intent);
