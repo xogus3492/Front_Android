@@ -1,15 +1,24 @@
 package com.example.fybproject.listView.home;
 
 public class RecommendShopListItem {
-    private String name;
+    private String rank;
+    private String shop;
     private String url;
 
-    public String getName() {
-        return name;
+    public String getRank() {
+        return rank;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setRank(String rank) {
+        this.rank = rank;
+    }
+
+    public String getShop() {
+        return shop;
+    }
+
+    public void setShop(String shop) {
+        this.shop = shop;
     }
 
     public String getUrl() {
@@ -20,8 +29,9 @@ public class RecommendShopListItem {
         this.url = url;
     }
 
-    public RecommendShopListItem(String name, String url) {
-        this.name = name;
+    public RecommendShopListItem(String rank, String shop, String url) {
+        this.rank = rank;
+        this.shop = shop;
         this.url = url;
     }
 }

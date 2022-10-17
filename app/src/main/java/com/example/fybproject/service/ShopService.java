@@ -21,11 +21,11 @@ public interface ShopService {
     Call<ArrayList<MainDTO>> getMainData();
 
     // 검색 (load)
-    @GET("main/search")
+    @GET("main/shop")
     Call<ArrayList<SearchDTO>> getSearchData();
 
     // 검색 (search)
-    @POST("main/search")
+    @POST("main/shop")
     Call<ArrayList<SearchDTO>> postSearchData(@Body SearchDTO searchDTO);
 
     // 쇼핑몰 이용 분석

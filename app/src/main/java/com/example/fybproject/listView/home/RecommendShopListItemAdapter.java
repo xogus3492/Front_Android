@@ -1,76 +1,67 @@
 package com.example.fybproject.listView.home;
 
-import android.content.Context;
+import static android.service.controls.ControlsProviderService.TAG;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.fybproject.MainActivity;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.fybproject.R;
 
 import java.util.ArrayList;
 
-public class RecommendShopListItemAdapter extends BaseAdapter {
-    ArrayList<RecommendShopListItem> items = new ArrayList<RecommendShopListItem>();
-    Context context;
+public class RecommendShopListItemAdapter extends RecyclerView.Adapter<RecommendShopListItemAdapter.ItemViewHolder> {
 
-    MainActivity mainActivity;
+    private ArrayList<RecommendShopListItem> listData;
 
+    @NonNull
     @Override
-    public int getCount() {
-        return items.size();
+    public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recommenlist_item, parent, false);
+        return new ItemViewHolder(view);
     }
 
     @Override
-    public Object getItem(int i) {
-        return items.get(i);
+    public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
+        holder.onBind(listData.get(position));
     }
 
     @Override
-    public long getItemId(int i) {
-        return i;
+    public int getItemCount() {
+        if (listData != null) {
+            return listData.size();
+        }
+        return 0;
     }
 
-    @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        context = viewGroup.getContext();
-        RecommendShopListItem listItem = items.get(i);
+    public void setRankList(ArrayList<RecommendShopListItem> list){
+        this.listData = list;
+        notifyDataSetChanged();
+    }
 
-        if(view == null) {
-            LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.recommenlist_item, viewGroup, false);
+    class ItemViewHolder extends RecyclerView.ViewHolder {
+
+        TextView rank;
+        TextView shop;
+        ImageView img;
+
+        public ItemViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            rank = itemView.findViewById(R.id.rank);
+            shop = itemView.findViewById(R.id.recommendKrName);
+            img = itemView.findViewById(R.id.recommenImg);
         }
 
-        TextView rank = view.findViewById(R.id.rank);
-        ImageView img = view.findViewById(R.id.recommenImg);
-        TextView krName = view.findViewById(R.id.recommendKrName);
-        LinearLayout recommendItem = view.findViewById(R.id.recommendItem);
-        //TextView EngName = view.findViewById(R.id.recommendEngName);
-
-        rank.setText(i + 1);
-        krName.setText(listItem.getName());
-
-        recommendItem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mainActivity = new MainActivity();
-                mainActivity.visitUrl(listItem.getUrl());
-            }
-        }); // 아이템 클릭시 경로 이동
-
-
-        return view;
-    }
-
-    public void addItem(RecommendShopListItem listItem) {
-        items.add(listItem);
-    }
-
-    public void clearItem() {
-        items.clear();
+        void onBind(RecommendShopListItem data) {
+            rank.setText(data.getRank());
+            shop.setText(data.getShop());
+        }
     }
 }

@@ -56,6 +56,15 @@ public class SignUpActivity extends AppCompatActivity {
         doSignupBtn = findViewById(R.id.doSignupBtn);
     }
 
+    public void inputData() {
+        /*age = Integer.parseInt(edit_age.getText().toString());
+
+        if(male_btn.isChecked())
+            gender = male_btn.getText().toString();
+        else if(female_btn.isChecked())
+            gender = male_btn.getText().toString();*/
+    }
+
     public void pagerConfig() {
         // ViewPager2
         viewPager = findViewById(R.id.viewPager);

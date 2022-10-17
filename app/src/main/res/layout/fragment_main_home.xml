@@ -39,15 +39,17 @@
 
     </LinearLayout>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recommendRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginHorizontal="10dp" >
 
-        <ListView
-            android:id="@+id/recommendShop"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+
 
     </ScrollView>
 
