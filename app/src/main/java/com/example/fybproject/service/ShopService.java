@@ -16,7 +16,7 @@ import retrofit2.http.POST;
 public interface ShopService {
     // 메인
     @GET("main")
-    Call<List<MainDTO>> getMainData();
+    Call<ArrayList<MainDTO>> getMainData();
 
     // 검색 (load)
     @GET("main/search")

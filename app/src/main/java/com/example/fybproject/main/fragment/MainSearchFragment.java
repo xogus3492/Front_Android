@@ -44,7 +44,6 @@ public class MainSearchFragment extends Fragment {
     ImageView shopSearchBtn;
 
     ListView searchListView;
-
     SearchListItemAdapter adapter;
 
     private ShopService shopService;
