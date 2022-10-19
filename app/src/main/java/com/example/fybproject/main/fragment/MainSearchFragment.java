@@ -17,6 +17,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,6 +25,7 @@ import com.example.fybproject.MainActivity;
 import com.example.fybproject.R;
 import com.example.fybproject.client.ServiceGenerator;
 import com.example.fybproject.dto.authDTO.LoginDTO;
+import com.example.fybproject.dto.shopDTO.MainDTO;
 import com.example.fybproject.dto.shopDTO.SearchDTO;
 import com.example.fybproject.interceeptor.JwtToken;
 import com.example.fybproject.listView.home.RecommendShopListItem;
@@ -52,7 +54,7 @@ public class MainSearchFragment extends Fragment {
     private ArrayList<SearchListItem> arr;
     private Context mContext;
 
-    String shop, name1, name2 = null, surl1, surl2 = null;
+    String shop;
 
     private ShopService shopService;
 
@@ -71,8 +73,7 @@ public class MainSearchFragment extends Fragment {
         adapter = new SearchListItemAdapter();
 
         recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
-        recyclerView.setLayoutManager(new LinearLayoutManager(mContext, RecyclerView.VERTICAL, false));
+        recyclerView.setLayoutManager(new GridLayoutManager(mContext, 2));
 
         shopService = ServiceGenerator.createService(ShopService.class);
 
@@ -84,28 +85,25 @@ public class MainSearchFragment extends Fragment {
                             ArrayList<SearchDTO> data = response.body();
                             if (response.isSuccessful() == true) {
                                 Log.d(TAG, "getSearchShop : 성공,\nresponseBody : " + data);
+                                Log.d(TAG, "=====================================================================");
 
                                 int index = 0;
+                                String shop, surl;
                                 arr = new ArrayList<>();
                                 for (SearchDTO real : data) {
-                                    if (index % 2 == 0) {
-                                        name1 = real.getShop();
-                                        surl1 = real.getSurl();
-                                        if(data.size() - 1 == index) {
-                                            arr.add(new SearchListItem(name1, surl1, null, null));
-                                            adapter.setList(arr);
-                                            break;
-                                        }
+                                    Log.d(TAG, "real: " + real.toString());
+
+                                    shop = real.getShop();
+                                    surl = real.getSurl();
+                                    Log.d(TAG, "shop" + index + ": " + shop + "\nsurl" + index + ": " + surl);
+                                    arr.add(new SearchListItem(shop, surl));
+                                    // for문에서 빠져 나가면 add한 내용이 없어지는 듯?
+
+                                    if(data.size() - 1 == index) {
+                                        adapter.setList(arr);
+                                        break;
                                     }
-                                    if (index % 2 == 1) {
-                                        name2 = real.getShop();
-                                        surl2 = real.getSurl();
-                                        arr.add(new SearchListItem(name1, surl1, name2, surl2));
-                                        if(data.size() - 1 == index) {
-                                            adapter.setList(arr);
-                                            break;
-                                        }
-                                    }
+
                                     index++;
                                 }
                             } else {

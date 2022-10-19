@@ -1,8 +1,15 @@
 package com.example.fybproject.listView.search;
 
+import static android.service.controls.ControlsProviderService.TAG;
+
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -21,7 +28,7 @@ public class SearchListItemAdapter extends RecyclerView.Adapter<SearchListItemAd
     @NonNull
     @Override
     public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recommenlist_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.searchlist_item, parent, false);
         return new ItemViewHolder(view);
     }
 
@@ -44,36 +51,31 @@ public class SearchListItemAdapter extends RecyclerView.Adapter<SearchListItemAd
     }
 
     class ItemViewHolder extends RecyclerView.ViewHolder {
-
-        TextView shop1, shop2;
-        LinearLayout layout, firstItem, secondItem;
+        TextView shop;
+        ImageView img;
+        LinearLayout searchItem;
 
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            shop1 = itemView.findViewById(R.id.shopName1);
-            shop2 = itemView.findViewById(R.id.shopName2);
-            layout = itemView.findViewById(R.id.recommendItem);
-            firstItem = itemView.findViewById(R.id.firstItem);
-            secondItem = itemView.findViewById(R.id.secondItem);
+            shop = itemView.findViewById(R.id.searchShopName);
+            img = itemView.findViewById(R.id.searchShopImg);
+            searchItem = itemView.findViewById(R.id.searchItem);
         }
 
         void onBind(SearchListItem data) {
-            shop1.setText(data.getName1());
-            shop2.setText(data.getName2());
+            Log.d(TAG, "data.getShop() : " + data.getShop());
+            shop.setText(data.getShop());
 
-            if(shop2 == null) secondItem.setVisibility(View.GONE);
-
-            firstItem.setOnClickListener(new View.OnClickListener() {
+            searchItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    String url = "https://" + data.getSurl();
+                    Context context = view.getContext();
 
-                }
-            });
-            secondItem.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
+                    Log.d(TAG, "쇼핑몰 주소 : " + url);
+                    Intent intentUrl = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                    context.startActivity(intentUrl);
                 }
             });
         }

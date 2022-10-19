@@ -114,11 +114,11 @@ public class MainActivity extends AppCompatActivity {
                     hideBtn.setVisibility(View.INVISIBLE);
                     transaction.replace(R.id.frameMain, mainHomeFragment).commitAllowingStateLoss();
                     break;
-                /*case R.id.searchBtn:
+                case R.id.searchBtn:
                     navBar.setImageResource(R.drawable.search_navbar);
                     hideBtn.setVisibility(View.INVISIBLE);
                     transaction.replace(R.id.frameMain, mainSearchFragment).commitAllowingStateLoss();
-                    break;*/
+                    break;
                 case R.id.modelBtn:
                     navBar.setImageResource(R.drawable.model_navbar);
                     hideBtn.setVisibility(View.INVISIBLE);
