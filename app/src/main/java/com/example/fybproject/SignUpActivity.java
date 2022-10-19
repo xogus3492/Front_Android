@@ -9,6 +9,7 @@ import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -23,7 +24,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     private ViewPager2 viewPager;
     private FragmentStateAdapter pagerAdapter;
-    private int num_page = 2;
+    private int num_page = 3;
     private CircleIndicator3 indicator;
 
     @Override
@@ -56,6 +57,14 @@ public class SignUpActivity extends AppCompatActivity {
 
             }
         });
+
+        doSignupBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), SignUpVerificationActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void init() {
@@ -75,6 +84,6 @@ public class SignUpActivity extends AppCompatActivity {
         //ViewPager Setting
         viewPager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL); // 슬라이드 방향
         viewPager.setCurrentItem(0); // 시작 지점
-        viewPager.setOffscreenPageLimit(2); // 최대 프래그먼트 수
+        viewPager.setOffscreenPageLimit(3); // 최대 프래그먼트 수
     }
 }

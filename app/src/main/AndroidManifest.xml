@@ -26,6 +26,10 @@
             android:exported="true" >
         </activity>
         <activity
+            android:name=".SignUpVerificationActivity"
+            android:exported="true" >
+        </activity>
+        <activity
             android:name=".FindPwActivity"
             android:exported="true" >
         </activity>

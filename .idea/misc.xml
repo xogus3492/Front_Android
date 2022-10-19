@@ -25,6 +25,7 @@
         <entry key="..\:/Users/wkdxo/AndroidStudioProjects/Front_Android/app/src/main/res/layout/activity_sign.xml" value="0.264" />
         <entry key="..\:/Users/wkdxo/AndroidStudioProjects/Front_Android/app/src/main/res/layout/activity_sign_in.xml" value="0.2" />
         <entry key="..\:/Users/wkdxo/AndroidStudioProjects/Front_Android/app/src/main/res/layout/activity_sign_up.xml" value="0.2" />
+        <entry key="..\:/Users/wkdxo/AndroidStudioProjects/Front_Android/app/src/main/res/layout/activity_sign_up_verification.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/wkdxo/AndroidStudioProjects/Front_Android/app/src/main/res/layout/activity_social_sign_up.xml" value="0.264" />
         <entry key="..\:/Users/wkdxo/AndroidStudioProjects/Front_Android/app/src/main/res/layout/activity_splash.xml" value="0.264" />
         <entry key="..\:/Users/wkdxo/AndroidStudioProjects/Front_Android/app/src/main/res/layout/fragment__cart.xml" value="0.264" />
@@ -40,8 +41,9 @@
         <entry key="..\:/Users/wkdxo/AndroidStudioProjects/Front_Android/app/src/main/res/layout/fragment_mypage_mycloset.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/wkdxo/AndroidStudioProjects/Front_Android/app/src/main/res/layout/fragment_mypage_mycloset_update.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/wkdxo/AndroidStudioProjects/Front_Android/app/src/main/res/layout/fragment_mypage_settings.xml" value="0.4" />
-        <entry key="..\:/Users/wkdxo/AndroidStudioProjects/Front_Android/app/src/main/res/layout/fragment_sign_up_first.xml" value="0.264" />
+        <entry key="..\:/Users/wkdxo/AndroidStudioProjects/Front_Android/app/src/main/res/layout/fragment_sign_up_first.xml" value="0.4" />
         <entry key="..\:/Users/wkdxo/AndroidStudioProjects/Front_Android/app/src/main/res/layout/fragment_sign_up_second.xml" value="0.4" />
+        <entry key="..\:/Users/wkdxo/AndroidStudioProjects/Front_Android/app/src/main/res/layout/fragment_sign_up_third.xml" value="0.4" />
         <entry key="..\:/Users/wkdxo/AndroidStudioProjects/Front_Android/app/src/main/res/layout/fragment_user_withdrawal.xml" value="0.4" />
         <entry key="..\:/Users/wkdxo/AndroidStudioProjects/Front_Android/app/src/main/res/layout/recommenlist_item.xml" value="0.4" />
         <entry key="..\:/Users/wkdxo/AndroidStudioProjects/Front_Android/app/src/main/res/layout/searchlist_item.xml" value="0.21557971014492755" />

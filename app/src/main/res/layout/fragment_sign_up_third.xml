@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="20dp"
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="체형"
+        android:textSize="12sp" />
+
+    <RadioGroup
+        android:id="@+id/fromRG"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/upperBodyBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:text="상체 비만"
+            android:textSize="10sp"/>
+
+        <RadioButton
+            android:id="@+id/lowerBodyBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:text="하체 비만"
+            android:textSize="10sp"/>
+
+        <RadioButton
+            android:id="@+id/nomalBodyBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="정상 체형"
+            android:textSize="10sp"/>
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="어깨 너비"
+        android:textSize="12sp" />
+
+    <RadioGroup
+        android:id="@+id/sholderRG"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/sholderHighBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:text="상"
+            android:textSize="10sp"/>
+
+        <RadioButton
+            android:id="@+id/sholderMiddleBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:text="중"
+            android:textSize="10sp"/>
+
+        <RadioButton
+            android:id="@+id/sholderLowBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="하"
+            android:textSize="10sp"/>
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="골반"
+        android:textSize="12sp" />
+
+    <RadioGroup
+        android:id="@+id/pelvisRG"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/pelvisHighBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:text="중상"
+            android:textSize="10sp"/>
+
+        <RadioButton
+            android:id="@+id/pelvisLowBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="중하"
+            android:textSize="10sp"/>
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="다리"
+        android:textSize="12sp" />
+
+    <RadioGroup
+        android:id="@+id/legRG"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/legHighBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:text="중상"
+            android:textSize="10sp"/>
+
+        <RadioButton
+            android:id="@+id/legLowBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="중하"
+            android:textSize="10sp"/>
+    </RadioGroup>
+
+</LinearLayout>

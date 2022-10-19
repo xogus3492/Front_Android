@@ -9,6 +9,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.fybproject.pager.fragment.SignUpFirstFragment;
 import com.example.fybproject.pager.fragment.SignUpSecondFragment;
+import com.example.fybproject.pager.fragment.SignUpThirdFragment;
 
 public class SignUpPagerAdapter extends FragmentStateAdapter {
     public int mCount;
@@ -25,12 +26,13 @@ public class SignUpPagerAdapter extends FragmentStateAdapter {
         int index = getRealPosition(position);
 
         if(index == 0) return new SignUpFirstFragment();
-        else return new SignUpSecondFragment();
+        else if (index == 1) return new SignUpSecondFragment();
+        else return new SignUpThirdFragment();
     }
 
     @Override
     public int getItemCount() {
-        return 2; // 화면이 2000개
+        return 3; // 화면 수
     }
 
     public int getRealPosition(int position) {
