@@ -180,9 +180,4 @@ public class MainActivity extends AppCompatActivity {
         transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.frameMain, mainChangePwFragment).commitAllowingStateLoss();
     } // 비밀번호 변경 버튼
-
-    public void visitUrl(String url) {
-        Intent intentUrl = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-        startActivity(intentUrl);
-    } // 샵 url방문
 }

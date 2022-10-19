@@ -67,15 +67,13 @@ public class SearchListItemAdapter extends RecyclerView.Adapter<SearchListItemAd
             firstItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    MainActivity mainActivity = new MainActivity();
-                    mainActivity.visitUrl(data.getUrl1());
+
                 }
             });
             secondItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    MainActivity mainActivity = new MainActivity();
-                    mainActivity.visitUrl(data.getUrl2());
+
                 }
             });
         }

@@ -2,6 +2,9 @@ package com.example.fybproject.listView.home;
 
 import static android.service.controls.ControlsProviderService.TAG;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fybproject.MainActivity;
@@ -68,8 +72,12 @@ public class RecommendShopListItemAdapter extends RecyclerView.Adapter<Recommend
             layout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    MainActivity mainActivity = new MainActivity();
-                    mainActivity.visitUrl(data.getUrl());
+                    String url = "https://" + data.getUrl();
+                    Context context = view.getContext();
+
+                    Log.d(TAG, "쇼핑몰 주소 : " + url);
+                    Intent intentUrl = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                    context.startActivity(intentUrl);
                 }
             });
         }

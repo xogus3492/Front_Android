@@ -3,6 +3,7 @@
     android:id="@+id/recommendItem"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/recommend_shop_bg"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -12,30 +13,21 @@
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:textColor="@color/black"
+        android:layout_marginRight="70dp"
         android:text="1" />
 
     <ImageView
         android:id="@+id/recommenImg"
+        android:background="@drawable/bonobono"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:layout_weight="1"
-        tools:srcCompat="@tools:sample/avatars" />
+        android:layout_marginRight="100dp"/>
 
     <TextView
         android:id="@+id/recommendKrName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:textStyle="bold"
         android:textColor="@color/black"
         android:text="비디알" />
-
-    <!--<TextView
-        android:id="@+id/recommendEngName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:text="VDR" /> -->
 </LinearLayout>
