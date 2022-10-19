@@ -2,6 +2,7 @@ package com.example.fybproject.main.fragment;
 
 import static android.content.ContentValues.TAG;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +17,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fybproject.MainActivity;
 import com.example.fybproject.R;
@@ -23,6 +26,8 @@ import com.example.fybproject.client.ServiceGenerator;
 import com.example.fybproject.dto.authDTO.LoginDTO;
 import com.example.fybproject.dto.shopDTO.SearchDTO;
 import com.example.fybproject.interceeptor.JwtToken;
+import com.example.fybproject.listView.home.RecommendShopListItem;
+import com.example.fybproject.listView.home.RecommendShopListItemAdapter;
 import com.example.fybproject.listView.search.SearchListItem;
 import com.example.fybproject.listView.search.SearchListItemAdapter;
 import com.example.fybproject.service.AuthService;
@@ -37,18 +42,25 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainSearchFragment extends Fragment {
-
     View view;
 
     EditText inputShop;
     ImageView shopSearchBtn;
 
-    ListView searchListView;
-    SearchListItemAdapter adapter;
+    private RecyclerView recyclerView;
+    private SearchListItemAdapter adapter;
+    private ArrayList<SearchListItem> arr;
+    private Context mContext;
+
+    String shop, name1, name2 = null, surl1, surl2 = null;
 
     private ShopService shopService;
 
-    String shop;
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mContext = context;
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -58,9 +70,11 @@ public class MainSearchFragment extends Fragment {
 
         adapter = new SearchListItemAdapter();
 
-        shopService = ServiceGenerator.createService(ShopService.class);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+        recyclerView.setLayoutManager(new LinearLayoutManager(mContext, RecyclerView.VERTICAL, false));
 
-        adapter.clearItem();
+        shopService = ServiceGenerator.createService(ShopService.class);
 
         if (shopService != null) {
             shopService.getSearchData()
@@ -71,23 +85,25 @@ public class MainSearchFragment extends Fragment {
                             if (response.isSuccessful() == true) {
                                 Log.d(TAG, "getSearchShop : 성공,\nresponseBody : " + data);
 
-
-                                String name1 = null, url1 = null, name2 = null, url2 = null;
                                 int index = 0;
+                                arr = new ArrayList<>();
                                 for (SearchDTO real : data) {
-
-                                    if (data.size() % 2 == 1) {
+                                    if (index % 2 == 0) {
                                         name1 = real.getShop();
-                                        url1 = real.getSurl();
-                                        if(data.get(index + 1) == null) {
-                                            adapter.addItem(new SearchListItem(name1, url1, null, null));
+                                        surl1 = real.getSurl();
+                                        if(data.size() - 1 == index) {
+                                            arr.add(new SearchListItem(name1, surl1, null, null));
+                                            adapter.setList(arr);
+                                            break;
                                         }
                                     }
-                                    if (data.size() % 2 == 0) {
+                                    if (index % 2 == 1) {
                                         name2 = real.getShop();
-                                        url2 = real.getSurl();
-                                        if(data.get(index + 1) == null) {
-                                            adapter.addItem(new SearchListItem(name1, url1, name2, url2));
+                                        surl2 = real.getSurl();
+                                        arr.add(new SearchListItem(name1, surl1, name2, surl2));
+                                        if(data.size() - 1 == index) {
+                                            adapter.setList(arr);
+                                            break;
                                         }
                                     }
                                     index++;
@@ -107,7 +123,7 @@ public class MainSearchFragment extends Fragment {
                     });
         } // 쇼핑몰 조회
 
-        shopSearchBtn.setOnClickListener(new View.OnClickListener() {
+        /*shopSearchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 inputData();
@@ -122,7 +138,6 @@ public class MainSearchFragment extends Fragment {
                                     ArrayList<SearchDTO> data = response.body();
                                     if (response.isSuccessful() == true) {
                                         Log.d(TAG, "postSearchShop : 성공,\nresponseBody : " + data);
-                                        adapter.clearItem();
 
                                         String name1 = null, url1 = null, name2 = null, url2 = null;
                                         int index = 0;
@@ -159,13 +174,13 @@ public class MainSearchFragment extends Fragment {
                             });
                 }
             }
-        }); // 쇼핑몰 검색
+        }); // 쇼핑몰 검색*/
 
         return view;
     }
 
     public void init() {
-        searchListView = view.findViewById(R.id.searchListView);
+        recyclerView = view.findViewById(R.id.searchRecyclerView);
         inputShop = view.findViewById(R.id.inputShop);
         shopSearchBtn = view.findViewById(R.id.shopSearchBtn);
     }

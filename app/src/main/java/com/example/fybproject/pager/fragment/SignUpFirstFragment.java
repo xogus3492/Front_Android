@@ -25,6 +25,8 @@ public class SignUpFirstFragment extends Fragment {
 
     RadioButton maleBtn, femailBtn;
 
+    String email, pw, pwCheck, name, gender;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view =  (ViewGroup) inflater.inflate(R.layout.fragment_sign_up_first, container, false);
@@ -49,6 +51,14 @@ public class SignUpFirstFragment extends Fragment {
     }
 
     public void inputFirstPageData() {
+        email = inputRegisterEmail.getText().toString();
+        pw = inputRegisterPw.getText().toString();
+        pwCheck = inputRegisterPwCheck.getText().toString();
+        name = inputRegisterName.getText().toString();
 
+        if(maleBtn.isChecked())
+            gender = maleBtn.getText().toString();
+        else if(femailBtn.isChecked())
+            gender = femailBtn.getText().toString();
     }
 }

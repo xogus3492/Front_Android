@@ -7,17 +7,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fybproject.MainActivity;
 import com.example.fybproject.R;
 
 import java.util.ArrayList;
 
 public class RecommendShopListItemAdapter extends RecyclerView.Adapter<RecommendShopListItemAdapter.ItemViewHolder> {
-
     private ArrayList<RecommendShopListItem> listData;
 
     @NonNull
@@ -40,16 +41,16 @@ public class RecommendShopListItemAdapter extends RecyclerView.Adapter<Recommend
         return 0;
     }
 
-    public void setRankList(ArrayList<RecommendShopListItem> list){
+    public void setList(ArrayList<RecommendShopListItem> list){
         this.listData = list;
         notifyDataSetChanged();
     }
 
     class ItemViewHolder extends RecyclerView.ViewHolder {
 
-        TextView rank;
-        TextView shop;
+        TextView rank, shop;
         ImageView img;
+        LinearLayout layout;
 
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -57,11 +58,20 @@ public class RecommendShopListItemAdapter extends RecyclerView.Adapter<Recommend
             rank = itemView.findViewById(R.id.rank);
             shop = itemView.findViewById(R.id.recommendKrName);
             img = itemView.findViewById(R.id.recommenImg);
+            layout = itemView.findViewById(R.id.recommendItem);
         }
 
         void onBind(RecommendShopListItem data) {
             rank.setText(data.getRank());
             shop.setText(data.getShop());
+
+            layout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    MainActivity mainActivity = new MainActivity();
+                    mainActivity.visitUrl(data.getUrl());
+                }
+            });
         }
     }
 }

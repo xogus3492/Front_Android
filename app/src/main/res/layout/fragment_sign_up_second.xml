@@ -15,11 +15,15 @@
         android:text="키"
         android:textSize="12sp" />
 
-    <androidx.appcompat.widget.AppCompatSpinner
-        android:id="@+id/heightSpinner"
+    <EditText
+        android:id="@+id/inputRegisterHeight"
+        android:background="@drawable/text_view_form"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:spinnerMode="dropdown"/>
+        android:textSize="14sp"
+        android:padding="5dp"
+        android:ems="10"
+        android:inputType="numberSigned" />
 
     <TextView
         android:id="@+id/textView6"
@@ -29,12 +33,15 @@
         android:text="몸무게"
         android:textSize="12sp" />
 
-    <androidx.appcompat.widget.AppCompatSpinner
-        android:id="@+id/weightSpinner"
+    <EditText
+        android:id="@+id/inputRegisterWeight"
+        android:background="@drawable/text_view_form"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:spinnerMode="dropdown"/>
-    <!-- entries 속성은 실행오류나서 사용 안함 -->
+        android:textSize="14sp"
+        android:padding="5dp"
+        android:ems="10"
+        android:inputType="numberSigned" />
 
     <TextView
         android:id="@+id/textView7"

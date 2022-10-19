@@ -10,6 +10,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.example.fybproject.pager.adapter.SignUpPagerAdapter;
@@ -33,8 +34,6 @@ public class SignUpActivity extends AppCompatActivity {
         init();
         pagerConfig();
 
-
-
         viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -49,20 +48,18 @@ public class SignUpActivity extends AppCompatActivity {
                 super.onPageSelected(position);
                 indicator.animatePageSelected(position % num_page);
             }
+        }); // 뷰 페이저 이벤트
+
+        doSignupBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
         });
     }
 
     public void init() {
         doSignupBtn = findViewById(R.id.doSignupBtn);
-    }
-
-    public void inputData() {
-        /*age = Integer.parseInt(edit_age.getText().toString());
-
-        if(male_btn.isChecked())
-            gender = male_btn.getText().toString();
-        else if(female_btn.isChecked())
-            gender = male_btn.getText().toString();*/
     }
 
     public void pagerConfig() {

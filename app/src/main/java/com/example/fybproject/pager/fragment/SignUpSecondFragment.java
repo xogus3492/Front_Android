@@ -1,27 +1,24 @@
 package com.example.fybproject.pager.fragment;
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Spinner;
 
 import androidx.fragment.app.Fragment;
 
 import com.example.fybproject.R;
 
 public class SignUpSecondFragment extends Fragment {
-
     View view;
 
-    EditText inputRegisterAge, inputPhoneForRegister, inputCodeForRegister;
-
-    Spinner heightSpinner, weightSpinner;
-
+    EditText inputRegisterAge, inputPhoneForRegister, inputCodeForRegister,
+            inputRegisterHeight, inputRegisterWeight;
     ImageView receiveCodeBtnForRegister;
+
+    int age, height, weight;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -36,12 +33,14 @@ public class SignUpSecondFragment extends Fragment {
         inputRegisterAge = view.findViewById(R.id.inputRegisterAge);
         inputPhoneForRegister = view.findViewById(R.id.inputPhoneForRegister);
         inputCodeForRegister = view.findViewById(R.id.inputCodeForRegister);
-        heightSpinner = view.findViewById(R.id.heightSpinner);
-        weightSpinner = view.findViewById(R.id.weightSpinner);
+        inputRegisterHeight = view.findViewById(R.id.inputRegisterHeight);
+        inputRegisterWeight = view.findViewById(R.id.inputRegisterWeight);
         receiveCodeBtnForRegister = view.findViewById(R.id.receiveCodeBtn);
     }
 
     public void inputSecondPageData() {
-
+        age = Integer.parseInt(inputRegisterAge.getText().toString());
+        height = Integer.parseInt(inputRegisterHeight.getText().toString());
+        weight = Integer.parseInt(inputRegisterWeight.getText().toString());
     }
 }

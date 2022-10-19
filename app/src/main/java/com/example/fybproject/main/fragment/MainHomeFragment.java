@@ -93,14 +93,14 @@ public class MainHomeFragment extends Fragment {
                                         age = real.getAge();
                                         gender = real.getGender();
                                         userName.setText(name);
-                                        rAdapter.setRankList(arr);
+                                        rAdapter.setList(arr);
                                         break;
                                     }
 
                                     shop = real.getShop();
                                     surl = real.getSurl();
                                     Log.d(TAG, "shop" + index + ": " + shop + "\nsurl" + index + ": " + surl);
-                                    arr.add(new RecommendShopListItem(String.valueOf(1), shop, surl));
+                                    arr.add(new RecommendShopListItem(String.valueOf(index + 1), shop, surl));
                                     // for문에서 빠져 나가면 add한 내용이 없어지는 듯?
 
                                     index++;

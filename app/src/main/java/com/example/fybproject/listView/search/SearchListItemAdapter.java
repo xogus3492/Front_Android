@@ -1,91 +1,83 @@
 package com.example.fybproject.listView.search;
 
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fybproject.MainActivity;
 import com.example.fybproject.R;
 
 import java.util.ArrayList;
 
-public class SearchListItemAdapter extends BaseAdapter {
-    ArrayList<SearchListItem> items = new ArrayList<SearchListItem>();
-    Context context;
+public class SearchListItemAdapter extends RecyclerView.Adapter<SearchListItemAdapter.ItemViewHolder> {
+    private ArrayList<SearchListItem> listData;
 
-    MainActivity mainActivity;
+    @NonNull
+    @Override
+    public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recommenlist_item, parent, false);
+        return new ItemViewHolder(view);
+    }
 
     @Override
-    public int getCount() {
-        return items.size();
-    } // 리스트 크기 반환
+    public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
+        holder.onBind(listData.get(position));
+    }
 
     @Override
-    public Object getItem(int i) {
-        return items.get(i);
-    } // 해당 위치에 있는 아이템 반환
+    public int getItemCount() {
+        if (listData != null) {
+            return listData.size();
+        }
+        return 0;
+    }
 
-    @Override
-    public long getItemId(int i) {
-        return i;
-    } // 해당 하이템의 위치 반환
+    public void setList(ArrayList<SearchListItem> list){
+        this.listData = list;
+        notifyDataSetChanged();
+    }
 
-    @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        context = viewGroup.getContext();
-        SearchListItem listItem = items.get(i);
+    class ItemViewHolder extends RecyclerView.ViewHolder {
 
-        if(view == null) {
-            LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.searchlist_item, viewGroup, false);
+        TextView shop1, shop2;
+        LinearLayout layout, firstItem, secondItem;
+
+        public ItemViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            shop1 = itemView.findViewById(R.id.shopName1);
+            shop2 = itemView.findViewById(R.id.shopName2);
+            layout = itemView.findViewById(R.id.recommendItem);
+            firstItem = itemView.findViewById(R.id.firstItem);
+            secondItem = itemView.findViewById(R.id.secondItem);
         }
 
-        LinearLayout secondItem = view.findViewById(R.id.secondItem);
+        void onBind(SearchListItem data) {
+            shop1.setText(data.getName1());
+            shop2.setText(data.getName2());
 
-        TextView name1 = view.findViewById(R.id.shopName1);
-        TextView name2 = view.findViewById(R.id.shopName2);
+            if(shop2 == null) secondItem.setVisibility(View.GONE);
 
-        ImageView img1 = view.findViewById(R.id.firstImg);
-        ImageView img2 = view.findViewById(R.id.secondImg);
-
-        if(listItem.getName2() == null && listItem.getUrl2() == null) {
-            secondItem.setVisibility(View.INVISIBLE);
-        } // 두번째 아이템 없을 때
-
-        name1.setText(listItem.getName1());
-        name2.setText(listItem.getName2());
-
-        img1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mainActivity = new MainActivity();
-                mainActivity.visitUrl(listItem.getUrl1());
-            }
-        }); // 첫번째 이미지
-
-        img2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mainActivity = new MainActivity();
-                mainActivity.visitUrl(listItem.getUrl2());
-            }
-        }); // 두번째 이미지
-
-        return view;
-    }
-
-    public void addItem(SearchListItem listItem) {
-        items.add(listItem);
-    }
-
-    public void clearItem() {
-        items.clear();
+            firstItem.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    MainActivity mainActivity = new MainActivity();
+                    mainActivity.visitUrl(data.getUrl1());
+                }
+            });
+            secondItem.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    MainActivity mainActivity = new MainActivity();
+                    mainActivity.visitUrl(data.getUrl2());
+                }
+            });
+        }
     }
 }

@@ -114,17 +114,17 @@ public class MainActivity extends AppCompatActivity {
                     hideBtn.setVisibility(View.INVISIBLE);
                     transaction.replace(R.id.frameMain, mainHomeFragment).commitAllowingStateLoss();
                     break;
-                case R.id.searchBtn:
+                /*case R.id.searchBtn:
                     navBar.setImageResource(R.drawable.search_navbar);
                     hideBtn.setVisibility(View.INVISIBLE);
                     transaction.replace(R.id.frameMain, mainSearchFragment).commitAllowingStateLoss();
-                    break;
+                    break;*/
                 case R.id.modelBtn:
                     navBar.setImageResource(R.drawable.model_navbar);
                     hideBtn.setVisibility(View.INVISIBLE);
                     transaction.replace(R.id.frameMain, mainModelFragment).commitAllowingStateLoss();
                     break;
-                case R.id.cartBtn:
+                /*case R.id.cartBtn:
                     navBar.setImageResource(R.drawable.cart_navbar);
                     hideBtn.setVisibility(View.INVISIBLE);
                     transaction.replace(R.id.frameMain, mainCartFragment).commitAllowingStateLoss();
@@ -133,12 +133,7 @@ public class MainActivity extends AppCompatActivity {
                     navBar.setImageResource(R.drawable.mypage_navbar);
                     hideBtn.setVisibility(View.VISIBLE);
                     transaction.replace(R.id.frameMain, mainMypageFragment).addToBackStack(null).commitAllowingStateLoss();
-                    break;
-                /*case R.id.hideBtnWrapper:
-                        Log.i(TAG, "로그 찍혔어욤");
-                        transaction.replace(R.id.frameMain, mainSettingsFragment).addToBackStack(null).commitAllowingStateLoss();
-                        hideBtn.setImageResource(R.drawable.back_icon);
-                        break;*/
+                    break*/
             }
         }
     }; // 네비게이션 바 클릭 리스너
@@ -189,5 +184,5 @@ public class MainActivity extends AppCompatActivity {
     public void visitUrl(String url) {
         Intent intentUrl = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
         startActivity(intentUrl);
-    } // 샵 검색 url방문
+    } // 샵 url방문
 }
