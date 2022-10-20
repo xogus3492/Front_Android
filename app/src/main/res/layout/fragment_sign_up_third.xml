@@ -15,7 +15,7 @@
         android:textSize="12sp" />
 
     <RadioGroup
-        android:id="@+id/fromRG"
+        android:id="@+id/formRG"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
@@ -87,7 +87,7 @@
         android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="골반"
+        android:text="골반 너비"
         android:textSize="12sp" />
 
     <RadioGroup
@@ -117,7 +117,7 @@
         android:id="@+id/textView6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="다리"
+        android:text="다리 두께"
         android:textSize="12sp" />
 
     <RadioGroup

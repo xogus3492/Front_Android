@@ -1,9 +1,16 @@
 package com.example.fybproject.pager.fragment;
 
+import static android.service.controls.ControlsProviderService.TAG;
+
+import android.content.Context;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -11,6 +18,7 @@ import android.widget.RadioGroup;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.fybproject.DataMediator;
 import com.example.fybproject.R;
 
 public class SignUpFirstFragment extends Fragment {
@@ -21,17 +29,65 @@ public class SignUpFirstFragment extends Fragment {
 
     ImageView hideRegisterPw, showRegisterPw, hideRegisterPwCheck, showRegisterPwCheck;
 
-    RadioGroup genderRG;
-
-    RadioButton maleBtn, femailBtn;
-
-    String email, pw, pwCheck, name, gender;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view =  (ViewGroup) inflater.inflate(R.layout.fragment_sign_up_first, container, false);
 
         init();
+
+        inputRegisterEmail.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                Log.d(TAG, "email : " + s);
+                DataMediator.setEmail(s.toString());
+            }
+        }); // user email
+
+        inputRegisterPw.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                Log.d(TAG, "pw : " + s);
+                DataMediator.setPw(s.toString());
+            }
+        }); // user password
+
+        inputRegisterName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                Log.d(TAG, "name : " + s);
+                DataMediator.setName(s.toString());
+            }
+        }); // user name
 
         return view;
     }
@@ -45,20 +101,5 @@ public class SignUpFirstFragment extends Fragment {
         showRegisterPw = view.findViewById(R.id.showRegisterPw);
         hideRegisterPwCheck = view.findViewById(R.id.hideRegisterPwCheck);
         showRegisterPwCheck = view.findViewById(R.id.showRegisterPwCheck);
-        genderRG = view.findViewById(R.id.genderRG);
-        maleBtn = view.findViewById(R.id.maleBtn);
-        femailBtn = view.findViewById(R.id.femaleBtn);
-    }
-
-    public void inputFirstPageData() {
-        email = inputRegisterEmail.getText().toString();
-        pw = inputRegisterPw.getText().toString();
-        pwCheck = inputRegisterPwCheck.getText().toString();
-        name = inputRegisterName.getText().toString();
-
-        if(maleBtn.isChecked())
-            gender = maleBtn.getText().toString();
-        else if(femailBtn.isChecked())
-            gender = femailBtn.getText().toString();
     }
 }

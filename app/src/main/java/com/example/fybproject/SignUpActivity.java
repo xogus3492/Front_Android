@@ -1,5 +1,7 @@
 package com.example.fybproject;
 
+import static android.service.controls.ControlsProviderService.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -9,18 +11,27 @@ import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Layout;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.example.fybproject.pager.adapter.SignUpPagerAdapter;
+import com.example.fybproject.pager.fragment.SignUpFirstFragment;
+import com.example.fybproject.pager.fragment.SignUpSecondFragment;
+import com.example.fybproject.pager.fragment.SignUpThirdFragment;
 
 import me.relex.circleindicator.CircleIndicator3;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    ImageView doSignupBtn;
+    ImageView verificationBtn;
 
     private ViewPager2 viewPager;
     private FragmentStateAdapter pagerAdapter;
@@ -51,24 +62,28 @@ public class SignUpActivity extends AppCompatActivity {
             }
         }); // 뷰 페이저 이벤트
 
-        doSignupBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-
-        doSignupBtn.setOnClickListener(new View.OnClickListener() {
+        verificationBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), SignUpVerificationActivity.class);
+                intent.putExtra("email", DataMediator.getEmail());
+                intent.putExtra("pw", DataMediator.getPw());
+                intent.putExtra("name", DataMediator.getName());
+                intent.putExtra("gender", DataMediator.getGender());
+                intent.putExtra("age", DataMediator.getAge());
+                intent.putExtra("height", DataMediator.getHeight());
+                intent.putExtra("weight", DataMediator.getWeight());
+                intent.putExtra("form", DataMediator.getForm());
+                intent.putExtra("sholder", DataMediator.getSholder());
+                intent.putExtra("pelvis", DataMediator.getPelvis());
+                intent.putExtra("leg", DataMediator.getLeg());
                 startActivity(intent);
             }
-        });
+        }); // 전화번호 인증 버튼
     }
 
     public void init() {
-        doSignupBtn = findViewById(R.id.doSignupBtn);
+        verificationBtn = findViewById(R.id.verificationBtn);
     }
 
     public void pagerConfig() {
