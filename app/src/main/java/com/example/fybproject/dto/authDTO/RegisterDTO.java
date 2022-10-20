@@ -8,10 +8,14 @@ public class RegisterDTO {
     private int height;
     private int weight;
     private int age;
-    private int status;
+    private String form;
+    private String sholder;
+    private String pelvis;
+    private String leg;
+    private String status;
     private String statusMessage;
 
-    public RegisterDTO(String email, String pw, String name, String gender, int height, int weight, int age) {
+    public RegisterDTO(String email, String pw, String name, String gender, int height, int weight, int age, String form, String sholder, String  pelvis, String leg) {
         this.email = email;
         this.pw = pw;
         this.name = name;
@@ -19,6 +23,10 @@ public class RegisterDTO {
         this.height = height;
         this.weight = weight;
         this.age = age;
+        this.form = form;
+        this.sholder = sholder;
+        this.pelvis = pelvis;
+        this.leg = leg;
     }
 
     public String getName() {
@@ -77,11 +85,43 @@ public class RegisterDTO {
         this.age = age;
     }
 
-    public int getStatus() {
+    public String getForm() {
+        return form;
+    }
+
+    public void setForm(String form) {
+        this.form = form;
+    }
+
+    public String getSholder() {
+        return sholder;
+    }
+
+    public void setSholder(String sholder) {
+        this.sholder = sholder;
+    }
+
+    public String getPelvis() {
+        return pelvis;
+    }
+
+    public void setPelvis(String pelvis) {
+        this.pelvis = pelvis;
+    }
+
+    public String getLeg() {
+        return leg;
+    }
+
+    public void setLeg(String leg) {
+        this.leg = leg;
+    }
+
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
