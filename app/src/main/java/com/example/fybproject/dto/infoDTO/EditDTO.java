@@ -7,7 +7,7 @@ public class EditDTO {
     private int age;
     private int weight;
     private int height;
-    private int status;
+    private String status;
     private String statusMessage;
 
     public EditDTO(String email, String name, String gender, int age, int weight, int height) {
@@ -67,11 +67,11 @@ public class EditDTO {
         this.height = height;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

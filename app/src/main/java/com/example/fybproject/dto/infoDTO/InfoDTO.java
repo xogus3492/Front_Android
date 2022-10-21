@@ -7,6 +7,7 @@ public class InfoDTO {
     private int age;
     private int weight;
     private int height;
+    private String profileImagePath;
 
     public String getEmail() {
         return email;
@@ -56,6 +57,14 @@ public class InfoDTO {
         this.height = height;
     }
 
+    public String getProfileImagePath() {
+        return profileImagePath;
+    }
+
+    public void setProfileImagePath(String profileImagePath) {
+        this.profileImagePath = profileImagePath;
+    }
+
     @Override
     public String toString() {
         return "PostResult {" +
@@ -65,6 +74,7 @@ public class InfoDTO {
                 ", age = " + age +
                 ", weight = " + weight +
                 ", height = " + height +
+                ", profileImagePath = " + profileImagePath +
                 '}';
     }
 }

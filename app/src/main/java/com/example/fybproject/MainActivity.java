@@ -128,12 +128,12 @@ public class MainActivity extends AppCompatActivity {
                     navBar.setImageResource(R.drawable.cart_navbar);
                     hideBtn.setVisibility(View.INVISIBLE);
                     transaction.replace(R.id.frameMain, mainCartFragment).commitAllowingStateLoss();
-                    break;
+                    break;*/
                 case R.id.myPageBtn:
                     navBar.setImageResource(R.drawable.mypage_navbar);
                     hideBtn.setVisibility(View.VISIBLE);
                     transaction.replace(R.id.frameMain, mainMypageFragment).addToBackStack(null).commitAllowingStateLoss();
-                    break*/
+                    break;
             }
         }
     }; // 네비게이션 바 클릭 리스너
