@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.example.fybproject.mediator.registerDataMediator;
+import com.example.fybproject.mediator.RegisterDataMediator;
 import com.example.fybproject.pager.adapter.SignUpPagerAdapter;
 
 import me.relex.circleindicator.CircleIndicator3;
@@ -51,17 +51,17 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), SignUpVerificationActivity.class);
-                intent.putExtra("email", registerDataMediator.getEmail());
-                intent.putExtra("pw", registerDataMediator.getPw());
-                intent.putExtra("name", registerDataMediator.getName());
-                intent.putExtra("gender", registerDataMediator.getGender());
-                intent.putExtra("age", registerDataMediator.getAge());
-                intent.putExtra("height", registerDataMediator.getHeight());
-                intent.putExtra("weight", registerDataMediator.getWeight());
-                intent.putExtra("form", registerDataMediator.getForm());
-                intent.putExtra("sholder", registerDataMediator.getSholder());
-                intent.putExtra("pelvis", registerDataMediator.getPelvis());
-                intent.putExtra("leg", registerDataMediator.getLeg());
+                intent.putExtra("email", RegisterDataMediator.getEmail());
+                intent.putExtra("pw", RegisterDataMediator.getPw());
+                intent.putExtra("name", RegisterDataMediator.getName());
+                intent.putExtra("gender", RegisterDataMediator.getGender());
+                intent.putExtra("age", RegisterDataMediator.getAge());
+                intent.putExtra("height", RegisterDataMediator.getHeight());
+                intent.putExtra("weight", RegisterDataMediator.getWeight());
+                intent.putExtra("form", RegisterDataMediator.getForm());
+                intent.putExtra("sholder", RegisterDataMediator.getSholder());
+                intent.putExtra("pelvis", RegisterDataMediator.getPelvis());
+                intent.putExtra("leg", RegisterDataMediator.getLeg());
                 startActivity(intent);
             }
         }); // 전화번호 인증 버튼

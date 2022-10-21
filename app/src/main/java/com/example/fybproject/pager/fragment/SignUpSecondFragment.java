@@ -14,7 +14,7 @@ import android.widget.RadioGroup;
 
 import androidx.fragment.app.Fragment;
 
-import com.example.fybproject.mediator.registerDataMediator;
+import com.example.fybproject.mediator.RegisterDataMediator;
 import com.example.fybproject.R;
 
 public class SignUpSecondFragment extends Fragment {
@@ -43,7 +43,7 @@ public class SignUpSecondFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
                 Log.d(TAG, "age : " + s);
-                registerDataMediator.setAge(Integer.parseInt(s.toString()));
+                RegisterDataMediator.setAge(Integer.parseInt(s.toString()));
             }
         }); // user age
 
@@ -61,7 +61,7 @@ public class SignUpSecondFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
                 Log.d(TAG, "height : " + s);
-                registerDataMediator.setHeight(Integer.parseInt(s.toString()));
+                RegisterDataMediator.setHeight(Integer.parseInt(s.toString()));
             }
         }); //user height
 
@@ -79,7 +79,7 @@ public class SignUpSecondFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
                 Log.d(TAG, "weight : " + s);
-                registerDataMediator.setWeight(Integer.parseInt(s.toString()));
+                RegisterDataMediator.setWeight(Integer.parseInt(s.toString()));
             }
         }); // user weight
 
@@ -89,11 +89,11 @@ public class SignUpSecondFragment extends Fragment {
                 switch (checkedId) {
                     case R.id.maleBtn:
                         Log.d(TAG, "gender : 남자");
-                        registerDataMediator.setGender("M");
+                        RegisterDataMediator.setGender("M");
                         break;
                     case R.id.femaleBtn:
                         Log.d(TAG, "gender : 여자");
-                        registerDataMediator.setGender("W");
+                        RegisterDataMediator.setGender("W");
                         break;
                 }
             }

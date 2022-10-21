@@ -14,6 +14,8 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface ShopService {
     // 메인
@@ -33,14 +35,14 @@ public interface ShopService {
     Call<AnalyzeDTO> postAnalyzeData(@Body AnalyzeDTO analyzeDTO);
 
     // 쇼핑몰 최다 조회수
-    @GET("main")
+    @GET("main/rank/all")
     Call<ArrayList<FilterDTO>> getMostViews();
 
     // 쇼핑몰 나이대별 조회 수
-    @POST("main")
-    Call<ArrayList<FilterDTO>> postViewByAge(@Body FilterDTO filterDTO);
+    @GET("main/rank/age")
+    Call<ArrayList<FilterDTO>> getViewByAge(@Query("value") int value);
 
     // 쇼핑몰 성별 조회 수
-    @POST("main")
-    Call<ArrayList<FilterDTO>> postViewByGender(@Body FilterDTO filterDTO);
+    @GET("main/rank/gender")
+    Call<ArrayList<FilterDTO>> getViewByGender(@Query("value") char value);
 }

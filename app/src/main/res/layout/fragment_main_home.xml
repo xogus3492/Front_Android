@@ -55,7 +55,7 @@
         android:textSize="10sp"/>
 
     <RadioGroup
-        android:id="@+id/genderRG"
+        android:id="@+id/filterRG"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -67,8 +67,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
-            android:text="조회 수"
             android:checked="true"
+            android:text="조회 수"
             android:textSize="10sp"/>
 
         <RadioButton
@@ -88,9 +88,9 @@
     </RadioGroup>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/FilterRecyclerView"
+        android:id="@+id/filterRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="210dp"
         android:layout_marginHorizontal="20dp"/>
 
 </LinearLayout>

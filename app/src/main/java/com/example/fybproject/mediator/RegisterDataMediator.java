@@ -1,6 +1,6 @@
 package com.example.fybproject.mediator;
 
-public class registerDataMediator {
+public class RegisterDataMediator {
     private static String email;
     private static String pw;
     private static String name;
@@ -18,7 +18,7 @@ public class registerDataMediator {
     }
 
     public static void setEmail(String email) {
-        registerDataMediator.email = email;
+        RegisterDataMediator.email = email;
     }
 
     public static String getPw() {
@@ -26,7 +26,7 @@ public class registerDataMediator {
     }
 
     public static void setPw(String pw) {
-        registerDataMediator.pw = pw;
+        RegisterDataMediator.pw = pw;
     }
 
     public static String getName() {
@@ -34,7 +34,7 @@ public class registerDataMediator {
     }
 
     public static void setName(String name) {
-        registerDataMediator.name = name;
+        RegisterDataMediator.name = name;
     }
 
     public static int getAge() {
@@ -42,7 +42,7 @@ public class registerDataMediator {
     }
 
     public static void setAge(int age) {
-        registerDataMediator.age = age;
+        RegisterDataMediator.age = age;
     }
 
     public static int getHeight() {
@@ -50,7 +50,7 @@ public class registerDataMediator {
     }
 
     public static void setHeight(int height) {
-        registerDataMediator.height = height;
+        RegisterDataMediator.height = height;
     }
 
     public static int getWeight() {
@@ -58,7 +58,7 @@ public class registerDataMediator {
     }
 
     public static void setWeight(int weight) {
-        registerDataMediator.weight = weight;
+        RegisterDataMediator.weight = weight;
     }
 
     public static String getGender() {
@@ -66,7 +66,7 @@ public class registerDataMediator {
     }
 
     public static void setGender(String gender) {
-        registerDataMediator.gender = gender;
+        RegisterDataMediator.gender = gender;
     }
 
     public static String getForm() {
@@ -74,7 +74,7 @@ public class registerDataMediator {
     }
 
     public static void setForm(String form) {
-        registerDataMediator.form = form;
+        RegisterDataMediator.form = form;
     }
 
     public static String getSholder() {
@@ -82,7 +82,7 @@ public class registerDataMediator {
     }
 
     public static void setSholder(String sholder) {
-        registerDataMediator.sholder = sholder;
+        RegisterDataMediator.sholder = sholder;
     }
 
     public static String getPelvis() {
@@ -90,7 +90,7 @@ public class registerDataMediator {
     }
 
     public static void setPelvis(String pelvis) {
-        registerDataMediator.pelvis = pelvis;
+        RegisterDataMediator.pelvis = pelvis;
     }
 
     public static String getLeg() {
@@ -98,6 +98,6 @@ public class registerDataMediator {
     }
 
     public static void setLeg(String leg) {
-        registerDataMediator.leg = leg;
+        RegisterDataMediator.leg = leg;
     }
 }

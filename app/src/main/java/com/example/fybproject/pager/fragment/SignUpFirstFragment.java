@@ -14,7 +14,7 @@ import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
 
-import com.example.fybproject.mediator.registerDataMediator;
+import com.example.fybproject.mediator.RegisterDataMediator;
 import com.example.fybproject.R;
 
 public class SignUpFirstFragment extends Fragment {
@@ -45,7 +45,7 @@ public class SignUpFirstFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
                 Log.d(TAG, "email : " + s);
-                registerDataMediator.setEmail(s.toString());
+                RegisterDataMediator.setEmail(s.toString());
             }
         }); // user email
 
@@ -63,7 +63,7 @@ public class SignUpFirstFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
                 Log.d(TAG, "pw : " + s);
-                registerDataMediator.setPw(s.toString());
+                RegisterDataMediator.setPw(s.toString());
             }
         }); // user password
 
@@ -81,7 +81,7 @@ public class SignUpFirstFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
                 Log.d(TAG, "name : " + s);
-                registerDataMediator.setName(s.toString());
+                RegisterDataMediator.setName(s.toString());
             }
         }); // user name
 
