@@ -7,14 +7,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import androidx.fragment.app.Fragment;
 
-import com.example.fybproject.DataMediator;
+import com.example.fybproject.mediator.registerDataMediator;
 import com.example.fybproject.R;
 
 public class SignUpThirdFragment extends Fragment {
@@ -42,43 +39,43 @@ public class SignUpThirdFragment extends Fragment {
             switch (checkedId) {
                 case R.id.upperBodyBtn:
                     Log.d(TAG, "form : 상체 비만");
-                    DataMediator.setGender("1");
+                    registerDataMediator.setGender("1");
                     break;
                 case R.id.lowerBodyBtn:
                     Log.d(TAG, "form : 하체 비만");
-                    DataMediator.setGender("2");
+                    registerDataMediator.setGender("2");
                     break;
                 case R.id.nomalBodyBtn:
                     Log.d(TAG, "form : 정상 체형");
-                    DataMediator.setGender("3");
+                    registerDataMediator.setGender("3");
                     break;
                 case R.id.sholderHighBtn:
                     Log.d(TAG, "sholder : 상");
-                    DataMediator.setGender("1");
+                    registerDataMediator.setGender("1");
                     break;
                 case R.id.sholderMiddleBtn:
                     Log.d(TAG, "sholder : 중");
-                    DataMediator.setGender("2");
+                    registerDataMediator.setGender("2");
                     break;
                 case R.id.sholderLowBtn:
                     Log.d(TAG, "sholder : 하");
-                    DataMediator.setGender("3");
+                    registerDataMediator.setGender("3");
                     break;
                 case R.id.pelvisHighBtn:
                     Log.d(TAG, "pelvis : 중상");
-                    DataMediator.setGender("1");
+                    registerDataMediator.setGender("1");
                     break;
                 case R.id.pelvisLowBtn:
                     Log.d(TAG, "pelvis : 중하");
-                    DataMediator.setGender("2");
+                    registerDataMediator.setGender("2");
                     break;
                 case R.id.legHighBtn:
                     Log.d(TAG, "leg : 중상");
-                    DataMediator.setGender("1");
+                    registerDataMediator.setGender("1");
                     break;
                 case R.id.legLowBtn:
                     Log.d(TAG, "leg : 중하");
-                    DataMediator.setGender("2");
+                    registerDataMediator.setGender("2");
                     break;
             }
         }

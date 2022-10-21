@@ -2,7 +2,6 @@ package com.example.fybproject.pager.fragment;
 
 import static android.service.controls.ControlsProviderService.TAG;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -10,15 +9,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import androidx.fragment.app.Fragment;
 
-import com.example.fybproject.DataMediator;
+import com.example.fybproject.mediator.registerDataMediator;
 import com.example.fybproject.R;
 
 public class SignUpSecondFragment extends Fragment {
@@ -47,7 +43,7 @@ public class SignUpSecondFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
                 Log.d(TAG, "age : " + s);
-                DataMediator.setAge(Integer.parseInt(s.toString()));
+                registerDataMediator.setAge(Integer.parseInt(s.toString()));
             }
         }); // user age
 
@@ -65,7 +61,7 @@ public class SignUpSecondFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
                 Log.d(TAG, "height : " + s);
-                DataMediator.setHeight(Integer.parseInt(s.toString()));
+                registerDataMediator.setHeight(Integer.parseInt(s.toString()));
             }
         }); //user height
 
@@ -83,7 +79,7 @@ public class SignUpSecondFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
                 Log.d(TAG, "weight : " + s);
-                DataMediator.setWeight(Integer.parseInt(s.toString()));
+                registerDataMediator.setWeight(Integer.parseInt(s.toString()));
             }
         }); // user weight
 
@@ -93,11 +89,11 @@ public class SignUpSecondFragment extends Fragment {
                 switch (checkedId) {
                     case R.id.maleBtn:
                         Log.d(TAG, "gender : 남자");
-                        DataMediator.setGender("M");
+                        registerDataMediator.setGender("M");
                         break;
                     case R.id.femaleBtn:
                         Log.d(TAG, "gender : 여자");
-                        DataMediator.setGender("W");
+                        registerDataMediator.setGender("W");
                         break;
                 }
             }

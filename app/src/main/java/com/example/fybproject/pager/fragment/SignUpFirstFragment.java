@@ -2,7 +2,6 @@ package com.example.fybproject.pager.fragment;
 
 import static android.service.controls.ControlsProviderService.TAG;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -10,15 +9,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 
 import androidx.fragment.app.Fragment;
 
-import com.example.fybproject.DataMediator;
+import com.example.fybproject.mediator.registerDataMediator;
 import com.example.fybproject.R;
 
 public class SignUpFirstFragment extends Fragment {
@@ -49,7 +45,7 @@ public class SignUpFirstFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
                 Log.d(TAG, "email : " + s);
-                DataMediator.setEmail(s.toString());
+                registerDataMediator.setEmail(s.toString());
             }
         }); // user email
 
@@ -67,7 +63,7 @@ public class SignUpFirstFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
                 Log.d(TAG, "pw : " + s);
-                DataMediator.setPw(s.toString());
+                registerDataMediator.setPw(s.toString());
             }
         }); // user password
 
@@ -85,7 +81,7 @@ public class SignUpFirstFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
                 Log.d(TAG, "name : " + s);
-                DataMediator.setName(s.toString());
+                registerDataMediator.setName(s.toString());
             }
         }); // user name
 

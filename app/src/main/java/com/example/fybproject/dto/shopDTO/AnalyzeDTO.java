@@ -6,7 +6,7 @@ public class AnalyzeDTO {
     private int age;
     private String surl;
     private String redirect_url;
-    private int status;
+    private String status;
 
     public AnalyzeDTO(long sid, char gender, int age, String surl) {
         this.sid = sid;
@@ -55,11 +55,11 @@ public class AnalyzeDTO {
         this.redirect_url = redirect_url;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

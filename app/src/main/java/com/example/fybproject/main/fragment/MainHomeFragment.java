@@ -24,6 +24,7 @@ import com.example.fybproject.listView.home.RecommendShopListItem;
 import com.example.fybproject.listView.home.RecommendShopListItemAdapter;
 import com.example.fybproject.listView.search.SearchListItem;
 import com.example.fybproject.listView.search.SearchListItemAdapter;
+import com.example.fybproject.mediator.MainUserDataMediator;
 import com.example.fybproject.service.ShopService;
 
 import java.io.IOException;
@@ -47,8 +48,6 @@ public class MainHomeFragment extends Fragment {
 
     String shop, surl;
     String name;
-    char gender;
-    int age;
 
     private ShopService shopService;
 
@@ -90,9 +89,9 @@ public class MainHomeFragment extends Fragment {
 
                                     if(data.size() - 1 == index) {
                                         name = real.getName();
-                                        age = real.getAge();
-                                        gender = real.getGender();
                                         userName.setText(name);
+                                        MainUserDataMediator.setAge(real.getAge());
+                                        MainUserDataMediator.setGender(real.getGender());
                                         rAdapter.setList(arr);
                                         break;
                                     }
