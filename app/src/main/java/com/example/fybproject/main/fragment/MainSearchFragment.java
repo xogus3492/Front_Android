@@ -121,7 +121,7 @@ public class MainSearchFragment extends Fragment {
                     });
         } // 쇼핑몰 조회
 
-        /*shopSearchBtn.setOnClickListener(new View.OnClickListener() {
+        shopSearchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 inputData();
@@ -135,31 +135,31 @@ public class MainSearchFragment extends Fragment {
                                 public void onResponse(Call<ArrayList<SearchDTO>> call, Response<ArrayList<SearchDTO>> response) {
                                     ArrayList<SearchDTO> data = response.body();
                                     if (response.isSuccessful() == true) {
-                                        Log.d(TAG, "postSearchShop : 성공,\nresponseBody : " + data);
+                                        Log.d(TAG, "getSearchShop : 성공,\nresponseBody : " + data);
+                                        Log.d(TAG, "=====================================================================");
 
-                                        String name1 = null, url1 = null, name2 = null, url2 = null;
                                         int index = 0;
+                                        String shop, surl;
+                                        arr = new ArrayList<>();
                                         for (SearchDTO real : data) {
+                                            Log.d(TAG, "real: " + real.toString());
 
-                                            if (data.size() % 2 == 1) {
-                                                name1 = real.getShop();
-                                                url1 = real.getSurl();
-                                                if(data.get(index + 1) == null) {
-                                                    adapter.addItem(new SearchListItem(name1, url1, null, null));
-                                                }
+                                            shop = real.getShop();
+                                            surl = real.getSurl();
+                                            Log.d(TAG, "shop" + index + ": " + shop + "\nsurl" + index + ": " + surl);
+                                            arr.add(new SearchListItem(shop, surl));
+                                            // for문에서 빠져 나가면 add한 내용이 없어지는 듯?
+
+                                            if(data.size() - 1 == index) {
+                                                adapter.setList(arr);
+                                                break;
                                             }
-                                            if (data.size() % 2 == 0) {
-                                                name2 = real.getShop();
-                                                url2 = real.getSurl();
-                                                if(data.get(index + 1) == null) {
-                                                    adapter.addItem(new SearchListItem(name1, url1, name2, url2));
-                                                }
-                                            }
+
                                             index++;
                                         }
                                     } else {
                                         try {
-                                            Log.d(TAG, "postSearchShop : 실패,\nresponseBody() : " + data + ",\nresponse.code(): " + response.code() + ",\nresponse.errorBody(): " + response.errorBody().string());
+                                            Log.d(TAG, "getSearchShop : 실패,\nresponseBody() : " + data + ",\nresponse.code(): " + response.code() + ",\nresponse.errorBody(): " + response.errorBody().string());
                                         } catch (IOException e) {
                                             e.printStackTrace();
                                         }
@@ -172,7 +172,7 @@ public class MainSearchFragment extends Fragment {
                             });
                 }
             }
-        }); // 쇼핑몰 검색*/
+        }); // 쇼핑몰 검색
 
         return view;
     }
