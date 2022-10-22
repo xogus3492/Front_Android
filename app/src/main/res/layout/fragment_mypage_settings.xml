@@ -157,7 +157,7 @@
         android:text="개인정보 보호약관" />
 
     <TextView
-        android:id="@+id/changePwText"
+        android:id="@+id/changePwBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -167,7 +167,7 @@
         android:text="비밀번호 변경" />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/logoutBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -177,7 +177,7 @@
         android:text="로그아웃" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/withdrawalBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"

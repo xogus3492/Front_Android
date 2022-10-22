@@ -12,6 +12,7 @@ import com.example.fybproject.dto.authDTO.SocialDTO;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
@@ -41,8 +42,8 @@ public interface AuthService {
     Call<DeleteDTO> postDeleteData(@Body DeleteDTO deleteDTO);
 
     // 로그아웃
-    @POST("auth/log")
-    Call<LogoutDTO> postLogoutData(@Body LogoutDTO logoutDTO);
+    @DELETE("auth/logout")
+    Call<LogoutDTO> deleteLogoutData();
 
     // 휴대폰 인증
     @POST("auth/check")

@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <LinearLayout
+        <FrameLayout
             android:id="@+id/hideBtnWrapper"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -19,12 +19,27 @@
             android:layout_marginTop="15dp">
 
             <ImageView
-                android:id="@+id/hideBtn"
+                android:id="@+id/optionBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="invisible"
-                app:srcCompat="@drawable/option_icon" />
-        </LinearLayout>
+                android:background="@drawable/option_icon"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/backBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/back_icon"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/backBtn2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/back_icon"
+                android:visibility="invisible" />
+
+        </FrameLayout>
 
         <ImageView
             android:id="@+id/imageView11"

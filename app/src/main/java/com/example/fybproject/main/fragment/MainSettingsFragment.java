@@ -1,12 +1,17 @@
 package com.example.fybproject.main.fragment;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,14 +19,30 @@ import androidx.fragment.app.Fragment;
 
 import com.example.fybproject.MainActivity;
 import com.example.fybproject.R;
+import com.example.fybproject.SplashActivity;
+import com.example.fybproject.client.ServiceGenerator;
+import com.example.fybproject.dto.authDTO.LoginDTO;
+import com.example.fybproject.dto.authDTO.LogoutDTO;
+import com.example.fybproject.dto.infoDTO.InfoDTO;
+import com.example.fybproject.interceeptor.JwtToken;
+import com.example.fybproject.service.AuthService;
+import com.example.fybproject.service.InfoService;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainSettingsFragment extends Fragment {
+    View view;
 
-    ImageView hideBtn;
-
-    TextView changePwText;
+    TextView changePwBtn, logoutBtn, withdrawalBtn;
 
     MainActivity mainactivity;
+
+    private AuthService authService;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -42,17 +63,63 @@ public class MainSettingsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view =  inflater.inflate(R.layout.fragment_mypage_settings, container, false);
+        view =  inflater.inflate(R.layout.fragment_mypage_settings, container, false);
 
-        changePwText = view.findViewById(R.id.changePwText);
+        init();
 
-        changePwText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mainactivity.changeToChangePwFragment();
-            }
-        });
+        changePwBtn.setOnClickListener(listener);
+        logoutBtn.setOnClickListener(listener);
+        withdrawalBtn.setOnClickListener(listener);
 
         return view;
+    }
+
+    View.OnClickListener listener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            switch (view.getId()) {
+                case R.id.changePwBtn:
+                    mainactivity.changeToChangePwFragment();
+                    break;
+                case R.id.withdrawalBtn:
+                    mainactivity.changeToWithdrawalFragment();
+                    break;
+                case R.id.logoutBtn:
+                    authService = ServiceGenerator.createService(AuthService.class, JwtToken.getToken());
+
+                    if (authService != null) {
+                        authService.deleteLogoutData()
+                                .enqueue(new Callback<LogoutDTO>() {
+                                    @Override
+                                    public void onResponse(Call<LogoutDTO> call, Response<LogoutDTO> response) {
+                                        LogoutDTO data = response.body();
+                                        if (response.isSuccessful() == true) {
+                                            Log.d(TAG, "logout : 성공,\nresponseBody : " + data);
+                                            Log.d(TAG, "=====================================================================");
+                                            Toast.makeText(view.getContext().getApplicationContext(), "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show();
+                                            mainactivity.goSplashBylogout();
+                                        } else {
+                                            try {
+                                                Log.d(TAG, "getInfoData : 실패,\nresponseBody() : " + data + ",\nresponse.code(): " + response.code() + ",\nresponse.errorBody(): " + response.errorBody().string());
+                                            } catch (IOException e) {
+                                                e.printStackTrace();
+                                            }
+                                        }
+                                    }
+                                    @Override
+                                    public void onFailure(Call<LogoutDTO> call, Throwable t) {
+                                        Log.d(TAG, "onFailure: " + t.toString());
+                                    }
+                                });
+                    } // 마이페이지 조회
+                    break;
+            }
+        }
+    };
+
+    public void init() {
+        changePwBtn = view.findViewById(R.id.changePwBtn);
+        logoutBtn = view.findViewById(R.id.logoutBtn);
+        withdrawalBtn = view.findViewById(R.id.withdrawalBtn);
     }
 }

@@ -48,7 +48,7 @@
                 android:text="        이메일" />
 
             <EditText
-                android:id="@+id/textView23"
+                android:id="@+id/emailForChangePw"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -56,7 +56,7 @@
                 android:background="@drawable/text_view_form"
                 android:inputType="textEmailAddress"
                 android:padding="5dp"
-                android:text="이메일"
+                android:text=""
                 android:textSize="12sp" />
         </LinearLayout>
 
@@ -81,30 +81,46 @@
                 android:layout_marginLeft="8dp">
 
                 <EditText
-                    android:id="@+id/textView1"
+                    android:id="@+id/pwForChangePw"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/text_view_form"
                     android:inputType="textPassword"
                     android:padding="5dp"
-                    android:text="비밀번호"
+                    android:text=""
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageView
-                    android:id="@+id/imageView11"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:clickable="true"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView1"
-                    app:layout_constraintEnd_toEndOf="@+id/textView1"
-                    app:layout_constraintHorizontal_bias="0.985"
-                    app:layout_constraintStart_toStartOf="@+id/textView1"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/eye_open" />
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="@+id/pwForChangePw"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="@+id/pwForChangePw"
+                    app:layout_constraintTop_toTopOf="@+id/pwForChangePw">
+
+                    <ImageView
+                        android:id="@+id/hideChangePw"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_marginEnd="4dp"
+                        android:clickable="true"
+                        app:srcCompat="@drawable/eye_hide"/>
+
+                    <ImageView
+                        android:id="@+id/showChangePw"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_marginEnd="4dp"
+                        android:clickable="true"
+                        app:srcCompat="@drawable/eye_open"
+                        android:visibility="gone"/>
+
+                </FrameLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
@@ -129,13 +145,13 @@
                 android:layout_marginLeft="10dp">
 
                 <EditText
-                    android:id="@+id/textView3"
+                    android:id="@+id/newPwForChangePw"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/text_view_form"
                     android:inputType="textPassword"
                     android:padding="5dp"
-                    android:text="새 비밀번호"
+                    android:text=""
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -144,23 +160,93 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="1.0" />
 
-                <ImageView
-                    android:id="@+id/imageView10"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:clickable="true"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@+id/textView3"
-                    app:layout_constraintHorizontal_bias="0.985"
-                    app:layout_constraintStart_toStartOf="@+id/textView3"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/eye_open" />
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="@+id/newPwForChangePw"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="@+id/newPwForChangePw"
+                    app:layout_constraintTop_toTopOf="@+id/newPwForChangePw">
+
+                    <ImageView
+                        android:id="@+id/hideChangeNewPw"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_marginEnd="4dp"
+                        android:clickable="true"
+                        app:srcCompat="@drawable/eye_hide"/>
+
+                    <ImageView
+                        android:id="@+id/showChangeNewPw"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_marginEnd="4dp"
+                        android:clickable="true"
+                        app:srcCompat="@drawable/eye_open"
+                        android:visibility="gone"/>
+
+                </FrameLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:text="     휴대전화" />
+
+            <EditText
+                android:id="@+id/phoneForChangePw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/text_view_form"
+                android:inputType="phone"
+                android:padding="5dp"
+                android:text=""
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/codeForChangePw"
+                android:background="@drawable/verification_code_form"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:hint="인증번호를 입력하세요"
+                android:layout_weight="5"
+                android:textSize="13sp"
+                android:ems="10"
+                android:inputType="numberSigned" />
+
+            <ImageView
+                android:id="@+id/receiveCodeForChangePw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/verification_code_btn" />
+
         </LinearLayout>
 
             <TextView
-                android:id="@+id/registerBtn"
+                android:id="@+id/ChangePwOkBtn"
                 android:background="@drawable/btn_form"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -173,5 +259,7 @@
                 android:clickable="true"/>
 
     </LinearLayout>
+
+
 
 </LinearLayout>

@@ -30,13 +30,13 @@ import com.example.fybproject.main.fragment.MainMypageFragment;
 import com.example.fybproject.main.fragment.MainMypageUpdateFragment;
 import com.example.fybproject.main.fragment.MainSearchFragment;
 import com.example.fybproject.main.fragment.MainSettingsFragment;
+import com.example.fybproject.main.fragment.MainWithdrawalFragment;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageView navBar, hideBtn;
+    ImageView navBar, optionBtn, backBtn, backBtn2;
     Button homeBtn, searchBtn, modelBtn, cartBtn, mypageBtn;
-    LinearLayout hideBtnWrapper;
 
     MainHomeFragment mainHomeFragment;
     MainSearchFragment mainSearchFragment;
@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
     MainMyclosetUpdateFragment mainMyclosetUpdateFragment;
     MainSettingsFragment mainSettingsFragment;
     MainChangePwFragment mainChangePwFragment;
+    MainWithdrawalFragment mainWithdrawalFragment;
 
     FragmentManager fragmentManager;
     FragmentTransaction transaction;
@@ -58,25 +59,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        navBar = findViewById(R.id.mainNavBar);
-        homeBtn = findViewById(R.id.homeBtn);
-        searchBtn = findViewById(R.id.searchBtn);
-        modelBtn = findViewById(R.id.modelBtn);
-        cartBtn = findViewById(R.id.cartBtn);
-        mypageBtn = findViewById(R.id.myPageBtn);
-        hideBtn = findViewById(R.id.hideBtn);
-        hideBtnWrapper = findViewById(R.id.hideBtnWrapper);
-        mainHomeFragment = new MainHomeFragment();
-        mainSearchFragment = new MainSearchFragment();
-        mainModelFragment = new MainModelFragment();
-        mainCartFragment = new MainCartFragment();
-        mainCartUpdateFragment = new MainCartUpdateFragment();
-        mainMypageFragment = new MainMypageFragment();
-        mainMypageUpdateFragment = new MainMypageUpdateFragment();
-        mainMyclosetFragment = new MainMyclosetFragment();
-        mainMyclosetUpdateFragment = new MainMyclosetUpdateFragment();
-        mainSettingsFragment = new MainSettingsFragment();
-        mainChangePwFragment = new MainChangePwFragment();
+        init();
 
         fragmentManager = getSupportFragmentManager();
         transaction = fragmentManager.beginTransaction();
@@ -89,16 +72,10 @@ public class MainActivity extends AppCompatActivity {
         cartBtn.setOnClickListener(navListener);
         mypageBtn.setOnClickListener(navListener);
 
-        hideBtnWrapper.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                transaction = fragmentManager.beginTransaction();
-
-                Log.i(TAG, "로그 찍혔어욤");
-                transaction.replace(R.id.frameMain, mainSettingsFragment).addToBackStack(null).commitAllowingStateLoss();
-                hideBtn.setImageResource(R.drawable.back_icon);
-            }
-        });
+        optionBtn.setOnClickListener(navListener);
+        backBtn.setOnClickListener(navListener);
+        backBtn2.setOnClickListener(navListener);
+        // 설정 버튼
     }
 
     View.OnClickListener navListener = new View.OnClickListener() {
@@ -111,32 +88,72 @@ public class MainActivity extends AppCompatActivity {
             {
                 case R.id.homeBtn:
                     navBar.setImageResource(R.drawable.home_navbar);
-                    hideBtn.setVisibility(View.INVISIBLE);
+                    optionBtn.setVisibility(View.INVISIBLE);
                     transaction.replace(R.id.frameMain, mainHomeFragment).commitAllowingStateLoss();
                     break;
                 case R.id.searchBtn:
                     navBar.setImageResource(R.drawable.search_navbar);
-                    hideBtn.setVisibility(View.INVISIBLE);
+                    optionBtn.setVisibility(View.INVISIBLE);
                     transaction.replace(R.id.frameMain, mainSearchFragment).commitAllowingStateLoss();
                     break;
                 case R.id.modelBtn:
                     navBar.setImageResource(R.drawable.model_navbar);
-                    hideBtn.setVisibility(View.INVISIBLE);
+                    optionBtn.setVisibility(View.INVISIBLE);
                     transaction.replace(R.id.frameMain, mainModelFragment).commitAllowingStateLoss();
                     break;
                 /*case R.id.cartBtn:
                     navBar.setImageResource(R.drawable.cart_navbar);
-                    hideBtn.setVisibility(View.INVISIBLE);
+                    optionBtn.setVisibility(View.INVISIBLE);
                     transaction.replace(R.id.frameMain, mainCartFragment).commitAllowingStateLoss();
                     break;*/
                 case R.id.myPageBtn:
                     navBar.setImageResource(R.drawable.mypage_navbar);
-                    hideBtn.setVisibility(View.VISIBLE);
+                    optionBtn.setVisibility(View.VISIBLE);
                     transaction.replace(R.id.frameMain, mainMypageFragment).addToBackStack(null).commitAllowingStateLoss();
+                    break;
+                case R.id.optionBtn:
+                    optionBtn.setVisibility(View.INVISIBLE);
+                    backBtn.setVisibility(View.VISIBLE);
+                    transaction.replace(R.id.frameMain, mainSettingsFragment).addToBackStack(null).commitAllowingStateLoss();
+                    break;
+                case R.id.backBtn:
+                    optionBtn.setVisibility(View.VISIBLE);
+                    backBtn.setVisibility(View.INVISIBLE);
+                    transaction.replace(R.id.frameMain, mainMypageFragment).addToBackStack(null).commitAllowingStateLoss();
+                    break;
+                case R.id.backBtn2:
+                    backBtn.setVisibility(View.VISIBLE);
+                    backBtn2.setVisibility(View.INVISIBLE);
+                    transaction.replace(R.id.frameMain, mainSettingsFragment).addToBackStack(null).commitAllowingStateLoss();
                     break;
             }
         }
     }; // 네비게이션 바 클릭 리스너
+
+    public void init() {
+        navBar = findViewById(R.id.mainNavBar);
+        homeBtn = findViewById(R.id.homeBtn);
+        searchBtn = findViewById(R.id.searchBtn);
+        modelBtn = findViewById(R.id.modelBtn);
+        cartBtn = findViewById(R.id.cartBtn);
+        mypageBtn = findViewById(R.id.myPageBtn);
+        optionBtn = findViewById(R.id.optionBtn);
+        backBtn = findViewById(R.id.backBtn);
+        backBtn2 = findViewById(R.id.backBtn2);
+
+        mainHomeFragment = new MainHomeFragment();
+        mainSearchFragment = new MainSearchFragment();
+        mainModelFragment = new MainModelFragment();
+        mainCartFragment = new MainCartFragment();
+        mainCartUpdateFragment = new MainCartUpdateFragment();
+        mainMypageFragment = new MainMypageFragment();
+        mainMypageUpdateFragment = new MainMypageUpdateFragment();
+        mainMyclosetFragment = new MainMyclosetFragment();
+        mainMyclosetUpdateFragment = new MainMyclosetUpdateFragment();
+        mainSettingsFragment = new MainSettingsFragment();
+        mainChangePwFragment = new MainChangePwFragment();
+        mainWithdrawalFragment = new MainWithdrawalFragment();
+    }
 
     // 프래그먼트 내에서 다른 프래그먼트에 대한 작업
 
@@ -179,5 +196,20 @@ public class MainActivity extends AppCompatActivity {
     public void changeToChangePwFragment() {
         transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.frameMain, mainChangePwFragment).commitAllowingStateLoss();
+        backBtn2.setVisibility(View.VISIBLE);
+        backBtn.setVisibility(View.INVISIBLE);
     } // 비밀번호 변경 버튼
+
+    public void changeToWithdrawalFragment() {
+        transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.frameMain, mainWithdrawalFragment).commitAllowingStateLoss();
+        backBtn2.setVisibility(View.VISIBLE);
+        backBtn.setVisibility(View.INVISIBLE);
+    } // 회원 탈퇴 버튼
+
+    public void goSplashBylogout() {
+        Intent intent = new Intent(this, SplashActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
+    } // 로그아웃 스플래시 화면 이동
 }
