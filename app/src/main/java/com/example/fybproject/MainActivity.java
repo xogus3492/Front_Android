@@ -88,26 +88,36 @@ public class MainActivity extends AppCompatActivity {
             {
                 case R.id.homeBtn:
                     navBar.setImageResource(R.drawable.home_navbar);
+                    backBtn2.setVisibility(View.INVISIBLE);
+                    backBtn.setVisibility(View.INVISIBLE);
                     optionBtn.setVisibility(View.INVISIBLE);
                     transaction.replace(R.id.frameMain, mainHomeFragment).commitAllowingStateLoss();
                     break;
                 case R.id.searchBtn:
                     navBar.setImageResource(R.drawable.search_navbar);
+                    backBtn2.setVisibility(View.INVISIBLE);
+                    backBtn.setVisibility(View.INVISIBLE);
                     optionBtn.setVisibility(View.INVISIBLE);
                     transaction.replace(R.id.frameMain, mainSearchFragment).commitAllowingStateLoss();
                     break;
                 case R.id.modelBtn:
                     navBar.setImageResource(R.drawable.model_navbar);
+                    backBtn2.setVisibility(View.INVISIBLE);
+                    backBtn.setVisibility(View.INVISIBLE);
                     optionBtn.setVisibility(View.INVISIBLE);
                     transaction.replace(R.id.frameMain, mainModelFragment).commitAllowingStateLoss();
                     break;
-                /*case R.id.cartBtn:
+                case R.id.cartBtn:
                     navBar.setImageResource(R.drawable.cart_navbar);
+                    backBtn2.setVisibility(View.INVISIBLE);
+                    backBtn.setVisibility(View.INVISIBLE);
                     optionBtn.setVisibility(View.INVISIBLE);
                     transaction.replace(R.id.frameMain, mainCartFragment).commitAllowingStateLoss();
-                    break;*/
+                    break;
                 case R.id.myPageBtn:
                     navBar.setImageResource(R.drawable.mypage_navbar);
+                    backBtn2.setVisibility(View.INVISIBLE);
+                    backBtn.setVisibility(View.INVISIBLE);
                     optionBtn.setVisibility(View.VISIBLE);
                     transaction.replace(R.id.frameMain, mainMypageFragment).addToBackStack(null).commitAllowingStateLoss();
                     break;
@@ -212,4 +222,9 @@ public class MainActivity extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
     } // 로그아웃 스플래시 화면 이동
+
+    public void moveToSettingsFragment() {
+        getSupportFragmentManager().beginTransaction().remove(mainChangePwFragment).commitAllowingStateLoss();
+        getSupportFragmentManager().popBackStack();
+    }
 }

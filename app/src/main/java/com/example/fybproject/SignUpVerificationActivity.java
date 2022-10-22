@@ -82,7 +82,7 @@ public class SignUpVerificationActivity extends AppCompatActivity {
                             });
                 }
             }
-        });
+        }); // 인증번호 받기
 
         doSignupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
