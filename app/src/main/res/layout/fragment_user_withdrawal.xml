@@ -48,35 +48,60 @@
                 android:text="     비밀번호"
                 android:textSize="13sp" />
 
-            <FrameLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp">
+                android:layout_marginLeft="10dp">
 
                 <EditText
-                    android:id="@+id/textView1"
+                    android:id="@+id/inputPwforWithdrawal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/text_view_form"
                     android:inputType="textPassword"
                     android:padding="5dp"
-                    android:text="비밀번호"
-                    android:textSize="12sp" />
+                    android:text=""
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0" />
 
-                <!--<ImageView
-                    android:id="@+id/imageView11"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:layout_gravity="right||center_vertical"
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginEnd="4dp"
-                    android:clickable="true"
-                    app:srcCompat="@drawable/eye_open" /> -->
-            </FrameLayout>
+                    app:layout_constraintBottom_toBottomOf="@+id/inputPwforWithdrawal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="@+id/inputPwforWithdrawal"
+                    app:layout_constraintTop_toTopOf="@+id/inputPwforWithdrawal">
+
+                    <ImageView
+                        android:id="@+id/hideWithdrawalPw"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:clickable="true"
+                        app:srcCompat="@drawable/eye_hide" />
+
+                    <ImageView
+                        android:id="@+id/showWithdrawalPw"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:clickable="true"
+                        app:srcCompat="@drawable/eye_open"
+                        android:visibility="gone"/>
+
+                </FrameLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
 
         <TextView
-            android:id="@+id/registerBtn"
+            android:id="@+id/doWithdrawalBtn"
             android:background="@drawable/btn_form"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -217,11 +217,11 @@ public class MainActivity extends AppCompatActivity {
         backBtn.setVisibility(View.INVISIBLE);
     } // 회원 탈퇴 버튼
 
-    public void goSplashBylogout() {
+    public void goSplash() {
         Intent intent = new Intent(this, SplashActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
-    } // 로그아웃 스플래시 화면 이동
+    } // 스플래시 화면 이동
 
     public void moveToSettingsFragment() {
         getSupportFragmentManager().beginTransaction().remove(mainChangePwFragment).commitAllowingStateLoss();

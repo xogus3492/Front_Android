@@ -14,6 +14,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.HTTP;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -38,8 +39,8 @@ public interface AuthService {
     Call<PwChangeDTO> putLostPasswordData(@Body PwChangeDTO pwChangeDTO);
 
     // 회원탈퇴
-    @POST("auth")
-    Call<DeleteDTO> postDeleteData(@Body DeleteDTO deleteDTO);
+    @HTTP(method = "DELETE", path = "auth/", hasBody = true)
+    Call<DeleteDTO> deleteUserData(@Body DeleteDTO deleteDTO);
 
     // 로그아웃
     @DELETE("auth/logout")

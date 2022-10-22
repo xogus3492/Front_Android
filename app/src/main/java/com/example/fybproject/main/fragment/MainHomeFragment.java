@@ -93,7 +93,7 @@ public class MainHomeFragment extends Fragment {
                                     public void onResponse(Call<ArrayList<FilterDTO>> call, Response<ArrayList<FilterDTO>> response) {
                                         ArrayList<FilterDTO> data = response.body();
                                         if (response.isSuccessful() == true) {
-                                            Log.d(TAG, "getMainData : 성공,\nresponseBody : " + data);
+                                            Log.d(TAG, "getMostViews : 성공,\nresponseBody : " + data);
                                             Log.d(TAG, "=====================================================================");
 
                                             int index = 0;
@@ -117,7 +117,7 @@ public class MainHomeFragment extends Fragment {
                                             }
                                         } else {
                                             try {
-                                                Log.d(TAG, "getMainData : 실패,\nresponseBody() : " + data + ",\nresponse.code(): " + response.code() + ",\nresponse.errorBody(): " + response.errorBody().string());
+                                                Log.d(TAG, "getMostViews : 실패,\nresponseBody() : " + data + ",\nresponse.code(): " + response.code() + ",\nresponse.errorBody(): " + response.errorBody().string());
                                             } catch (IOException e) {
                                                 e.printStackTrace();
                                             }
@@ -139,7 +139,7 @@ public class MainHomeFragment extends Fragment {
                                     public void onResponse(Call<ArrayList<FilterDTO>> call, Response<ArrayList<FilterDTO>> response) {
                                         ArrayList<FilterDTO> data = response.body();
                                         if (response.isSuccessful() == true) {
-                                            Log.d(TAG, "getMainData : 성공,\nresponseBody : " + data);
+                                            Log.d(TAG, "getViewByAge : 성공,\nresponseBody : " + data);
                                             Log.d(TAG, "=====================================================================");
 
                                             int index = 0;
@@ -163,7 +163,7 @@ public class MainHomeFragment extends Fragment {
                                             }
                                         } else {
                                             try {
-                                                Log.d(TAG, "getMainData : 실패,\nresponseBody() : " + data + ",\nresponse.code(): " + response.code() + ",\nresponse.errorBody(): " + response.errorBody().string());
+                                                Log.d(TAG, "getViewByAge : 실패,\nresponseBody() : " + data + ",\nresponse.code(): " + response.code() + ",\nresponse.errorBody(): " + response.errorBody().string());
                                             } catch (IOException e) {
                                                 e.printStackTrace();
                                             }
@@ -185,7 +185,7 @@ public class MainHomeFragment extends Fragment {
                                     public void onResponse(Call<ArrayList<FilterDTO>> call, Response<ArrayList<FilterDTO>> response) {
                                         ArrayList<FilterDTO> data = response.body();
                                         if (response.isSuccessful() == true) {
-                                            Log.d(TAG, "getMainData : 성공,\nresponseBody : " + data);
+                                            Log.d(TAG, "getViewByAge : 성공,\nresponseBody : " + data);
                                             Log.d(TAG, "=====================================================================");
 
                                             int index = 0;
@@ -209,7 +209,7 @@ public class MainHomeFragment extends Fragment {
                                             }
                                         } else {
                                             try {
-                                                Log.d(TAG, "getMainData : 실패,\nresponseBody() : " + data + ",\nresponse.code(): " + response.code() + ",\nresponse.errorBody(): " + response.errorBody().string());
+                                                Log.d(TAG, "getViewByAge : 실패,\nresponseBody() : " + data + ",\nresponse.code(): " + response.code() + ",\nresponse.errorBody(): " + response.errorBody().string());
                                             } catch (IOException e) {
                                                 e.printStackTrace();
                                             }
