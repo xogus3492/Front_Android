@@ -80,28 +80,28 @@ public class MainActivity extends AppCompatActivity {
                     backBtn2.setVisibility(View.INVISIBLE);
                     backBtn.setVisibility(View.INVISIBLE);
                     optionBtn.setVisibility(View.INVISIBLE);
-                    transaction.replace(R.id.frameMain, mainHomeFragment).commitAllowingStateLoss();
+                    transaction.replace(R.id.frameMain, mainHomeFragment).addToBackStack(null).commitAllowingStateLoss();
                     break;
                 case R.id.searchBtn:
                     navBar.setImageResource(R.drawable.search_navbar);
                     backBtn2.setVisibility(View.INVISIBLE);
                     backBtn.setVisibility(View.INVISIBLE);
                     optionBtn.setVisibility(View.INVISIBLE);
-                    transaction.replace(R.id.frameMain, mainSearchFragment).commitAllowingStateLoss();
+                    transaction.replace(R.id.frameMain, mainSearchFragment).addToBackStack(null).commitAllowingStateLoss();
                     break;
                 case R.id.modelBtn:
                     navBar.setImageResource(R.drawable.model_navbar);
                     backBtn2.setVisibility(View.INVISIBLE);
                     backBtn.setVisibility(View.INVISIBLE);
                     optionBtn.setVisibility(View.INVISIBLE);
-                    transaction.replace(R.id.frameMain, mainModelFragment).commitAllowingStateLoss();
+                    transaction.replace(R.id.frameMain, mainModelFragment).addToBackStack(null).commitAllowingStateLoss();
                     break;
                 case R.id.cartBtn:
                     navBar.setImageResource(R.drawable.cart_navbar);
                     backBtn2.setVisibility(View.INVISIBLE);
                     backBtn.setVisibility(View.INVISIBLE);
                     optionBtn.setVisibility(View.INVISIBLE);
-                    transaction.replace(R.id.frameMain, mainCartFragment).commitAllowingStateLoss();
+                    transaction.replace(R.id.frameMain, mainCartFragment).addToBackStack(null).commitAllowingStateLoss();
                     break;
                 case R.id.myPageBtn:
                     navBar.setImageResource(R.drawable.mypage_navbar);
@@ -209,5 +209,10 @@ public class MainActivity extends AppCompatActivity {
     public void moveToSettingsFragment() {
         getSupportFragmentManager().beginTransaction().remove(mainChangePwFragment).commitAllowingStateLoss();
         getSupportFragmentManager().popBackStack();
+    } // 비밀번호 변경 완료 시
+
+    public void loadWishlist() {
+        transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.frameMain, mainCartFragment).addToBackStack(null).commitAllowingStateLoss();
     }
 }

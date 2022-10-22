@@ -42,6 +42,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
+            android:windowSoftInputMode="adjustNothing"
             android:exported="true" >
         </activity>
         <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID"

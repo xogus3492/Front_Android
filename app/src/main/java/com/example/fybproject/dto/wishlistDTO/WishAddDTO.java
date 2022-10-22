@@ -1,27 +1,26 @@
 package com.example.fybproject.dto.wishlistDTO;
 
 public class WishAddDTO {
-    private int pname;
+    private String pname;
     private String notes;
     private String purl;
     private int price;
-    private String pimage; // 이미지 업로드 물어보기
-    private int status;
+    //private String pimage;
+    private String status;
     private String statusMessage;
 
-    public WishAddDTO(int pname, String notes, String purl, int price, String pimage) {
+    public WishAddDTO(String pname, String notes, int price, String purl) {
         this.pname = pname;
         this.notes = notes;
         this.purl = purl;
         this.price = price;
-        this.pimage = pimage;
     }
 
-    public int getPname() {
+    public String getPname() {
         return pname;
     }
 
-    public void setPname(int pname) {
+    public void setPname(String pname) {
         this.pname = pname;
     }
 
@@ -49,19 +48,11 @@ public class WishAddDTO {
         this.price = price;
     }
 
-    public String getPimage() {
-        return pimage;
-    }
-
-    public void setPimage(String pimage) {
-        this.pimage = pimage;
-    }
-
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
