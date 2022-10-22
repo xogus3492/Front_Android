@@ -18,8 +18,7 @@ import com.example.fybproject.MainActivity;
 import com.example.fybproject.R;
 
 public class MainCartFragment extends Fragment {
-
-    TextView updateBtn;
+    View view;
 
     MainActivity mainactivity;
 
@@ -42,16 +41,7 @@ public class MainCartFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view =  inflater.inflate(R.layout.fragment_main_cart, container, false);
-
-        updateBtn = view.findViewById(R.id.updateBtn);
-
-        updateBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mainactivity.changeToCartUpdateFragment();
-            }
-        });
+        view =  inflater.inflate(R.layout.fragment_main_cart, container, false);
 
         return view;
     }
