@@ -13,20 +13,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fybproject.MainActivity;
 import com.example.fybproject.R;
 import com.example.fybproject.client.ServiceGenerator;
 import com.example.fybproject.dto.infoDTO.InfoDTO;
-import com.example.fybproject.dto.shopDTO.MainDTO;
 import com.example.fybproject.interceeptor.JwtToken;
-import com.example.fybproject.listView.home.RecommendShopListItem;
-import com.example.fybproject.listView.home.RecommendShopListItemAdapter;
-import com.example.fybproject.mediator.MainUserDataMediator;
 import com.example.fybproject.service.InfoService;
-import com.example.fybproject.service.ShopService;
 
 import java.io.IOException;
 import java.util.ArrayList;

@@ -5,6 +5,8 @@ import com.example.fybproject.dto.wishlistDTO.WishDeleteDTO;
 import com.example.fybproject.dto.wishlistDTO.WishUpdateDTO;
 import com.example.fybproject.dto.wishlistDTO.WishlistDTO;
 
+import java.util.ArrayList;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -19,7 +21,7 @@ public interface WishlistService {
 
     // 장바구니 조회
     @GET("main/wishlist")
-    Call<WishlistDTO> getWishData();
+    Call<ArrayList<WishlistDTO>> getWishData();
 
     // 장바구니 삭제
     @DELETE("main/wishlist")

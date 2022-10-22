@@ -1,31 +1,70 @@
 package com.example.fybproject.main.fragment;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fybproject.MainActivity;
 import com.example.fybproject.R;
+import com.example.fybproject.client.ServiceGenerator;
+import com.example.fybproject.dto.shopDTO.MainDTO;
+import com.example.fybproject.dto.wishlistDTO.WishlistDTO;
+import com.example.fybproject.interceeptor.JwtToken;
+import com.example.fybproject.listView.cart.CartListItem;
+import com.example.fybproject.listView.cart.CartListItemAdapter;
+import com.example.fybproject.listView.home.RecommendShopListItem;
+import com.example.fybproject.listView.home.RecommendShopListItemAdapter;
+import com.example.fybproject.mediator.MainUserDataMediator;
+import com.example.fybproject.service.ShopService;
+import com.example.fybproject.service.WishlistService;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainCartFragment extends Fragment {
     View view;
 
+    TextView addBtn, addCancelBtn;
+    LinearLayout defaultBtnGroup, addItemBtnGroup, selectItemBtnGroup
+            , addItem;
+    EditText cartItemName,cartItemNote, cartItemPrice, cartItemUrl;
+
+    private RecyclerView cartRecyclerView;
+    private CartListItemAdapter adapter;
+    private ArrayList<CartListItem> arr;
+    private Context context;
+
     MainActivity mainactivity;
+
+    Long pid;
+    int price;
+    String pname, notes, pUrl;
+
+    private WishlistService wishlistService;
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         mainactivity = (MainActivity)getActivity();
+        this.context = context;
     } // 메인액티비티 객체 가져오기
 
     @Override
@@ -43,6 +82,103 @@ public class MainCartFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view =  inflater.inflate(R.layout.fragment_main_cart, container, false);
 
+        init();
+        loadCartList();
+
+        addBtn.setOnClickListener(listener);
+
+        addCancelBtn.setOnClickListener(listener);
+
         return view;
+    }
+
+    View.OnClickListener listener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            switch (view.getId()) {
+                case R.id.addBtn:
+                    addItem.setVisibility(View.VISIBLE);
+                    defaultBtnGroup.setVisibility(View.GONE);
+                    addItemBtnGroup.setVisibility(View.VISIBLE);
+                    break;
+                case R.id.addCancelBtn:
+                    cartItemName.setText(null);
+                    cartItemNote.setText(null);
+                    cartItemPrice.setText(null);
+                    cartItemUrl.setText(null);
+                    addItem.setVisibility(View.GONE);
+                    defaultBtnGroup.setVisibility(View.VISIBLE);
+                    addItemBtnGroup.setVisibility(View.GONE);
+                    break;
+            }
+        }
+    };
+
+    public void loadCartList() {
+        adapter = new CartListItemAdapter();
+
+        cartRecyclerView.setAdapter(adapter);
+        cartRecyclerView.setLayoutManager(new LinearLayoutManager(context, RecyclerView.VERTICAL, false));
+
+        wishlistService = ServiceGenerator.createService(WishlistService.class, JwtToken.getToken());
+
+        if (wishlistService != null) {
+            wishlistService.getWishData()
+                    .enqueue(new Callback<ArrayList<WishlistDTO>>() {
+                        @Override
+                        public void onResponse(Call<ArrayList<WishlistDTO>> call, Response<ArrayList<WishlistDTO>> response) {
+                            ArrayList<WishlistDTO> data = response.body();
+                            if (response.isSuccessful() == true) {
+                                Log.d(TAG, "getWishData : 성공,\nresponseBody : " + data);
+                                Log.d(TAG, "=====================================================================");
+
+                                int index = 0;
+                                arr = new ArrayList<>();
+                                for (WishlistDTO real : data) {
+                                    Log.d(TAG, "real: " + real.toString());
+
+                                    pid = real.getPid();
+                                    pname = real.getPname();
+                                    notes = real.getNotes();
+                                    price = real.getPrice();
+                                    pUrl = real.getPurl();
+                                    Log.d(TAG, "pid[" + index + "]: " + pid + ", pname[" + index + "]: " + pname + ", notes[" + index
+                                            + "]: " + notes + ", price[" + index + "]: " + price + ", pUrl[" + index + "]: " + pUrl);
+                                    arr.add(new CartListItem(pid, pname, notes, price, pUrl));
+                                    // for문에서 빠져 나가면 add한 내용이 없어지는 듯?
+
+                                    if(data.size() - 1 == index)
+                                        adapter.setList(arr);
+
+                                    index++;
+                                }
+                            } else {
+                                try {
+                                    Log.d(TAG, "getWisgData : 실패,\nresponseBody() : " + data + ",\nresponse.code(): " + response.code() + ",\nresponse.errorBody(): " + response.errorBody().string());
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+                        @Override
+                        public void onFailure(Call<ArrayList<WishlistDTO>> call, Throwable t) {
+                            Log.d(TAG, "onFailure: " + t.toString());
+                        }
+                    });
+        } // 쇼핑몰 조회
+    }
+
+    public void init() {
+        addBtn = view.findViewById(R.id.addBtn);
+        defaultBtnGroup = view.findViewById(R.id.defaultBtnGroup);
+        addItem = view.findViewById(R.id.addItem);
+        addItemBtnGroup = view.findViewById(R.id.addItemBtnGroup);
+        selectItemBtnGroup = view.findViewById(R.id.selectItemBtnGroup);
+        addCancelBtn = view.findViewById(R.id.addCancelBtn);
+        cartItemName = view.findViewById(R.id.addCartItemName);
+        cartItemNote = view.findViewById(R.id.addCartItemNote);
+        cartItemPrice = view.findViewById(R.id.addCartItemPrice);
+        cartItemUrl = view.findViewById(R.id.addCartItemUrl);
+        cartRecyclerView = view.findViewById(R.id.cartRecyclerView);
     }
 }

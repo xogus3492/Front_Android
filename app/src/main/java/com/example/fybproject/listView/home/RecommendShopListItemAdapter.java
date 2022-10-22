@@ -2,8 +2,6 @@ package com.example.fybproject.listView.home;
 
 import static android.service.controls.ControlsProviderService.TAG;
 
-import static com.example.fybproject.mediator.MainUserDataMediator.getGender;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -15,26 +13,20 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.fybproject.MainActivity;
 import com.example.fybproject.R;
 import com.example.fybproject.client.ServiceGenerator;
-import com.example.fybproject.dto.authDTO.LoginDTO;
 import com.example.fybproject.dto.shopDTO.AnalyzeDTO;
 import com.example.fybproject.interceeptor.JwtToken;
 import com.example.fybproject.mediator.MainUserDataMediator;
-import com.example.fybproject.service.AuthService;
 import com.example.fybproject.service.ShopService;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-import okhttp3.Headers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

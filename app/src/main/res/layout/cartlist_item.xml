@@ -5,12 +5,13 @@
     android:layout_height="wrap_content">
 
     <LinearLayout
+        android:id="@+id/cartItem"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/cart_list_bg">
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/cartItemImage"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginRight="10dp"

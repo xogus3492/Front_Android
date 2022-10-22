@@ -1,18 +1,18 @@
 package com.example.fybproject.dto.wishlistDTO;
 
 public class WishlistDTO {
-    private int pname;
+    private String pname;
     private String purl;
-    private long p_id;
+    private long pid;
     private String notes;
     private int price;
-    private String pimage; // 이미지 업로드 물어보기
+    private String pimage;
 
-    public int getPname() {
+    public String getPname() {
         return pname;
     }
 
-    public void setPname(int pname) {
+    public void setPname(String pname) {
         this.pname = pname;
     }
 
@@ -24,12 +24,12 @@ public class WishlistDTO {
         this.purl = purl;
     }
 
-    public long getP_id() {
-        return p_id;
+    public long getPid() {
+        return pid;
     }
 
-    public void setP_id(long p_id) {
-        this.p_id = p_id;
+    public void setPid(long pid) {
+        this.pid = pid;
     }
 
     public String getNotes() {
@@ -61,7 +61,7 @@ public class WishlistDTO {
         return "PostResult {" +
                 "pname = " + pname +
                 ", purl = " + purl +
-                ", p_id = " + p_id +
+                ", pid = " + pid +
                 ", notes = " + notes +
                 ", price = " + price +
                 ", pimage = " + pimage +

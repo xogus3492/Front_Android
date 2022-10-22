@@ -3,7 +3,6 @@ package com.example.fybproject.main.fragment;
 import static android.content.ContentValues.TAG;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,35 +10,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.fybproject.MainActivity;
 import com.example.fybproject.R;
 import com.example.fybproject.client.ServiceGenerator;
-import com.example.fybproject.dto.authDTO.LoginDTO;
-import com.example.fybproject.dto.shopDTO.MainDTO;
 import com.example.fybproject.dto.shopDTO.SearchDTO;
-import com.example.fybproject.interceeptor.JwtToken;
-import com.example.fybproject.listView.home.RecommendShopListItem;
-import com.example.fybproject.listView.home.RecommendShopListItemAdapter;
 import com.example.fybproject.listView.search.SearchListItem;
 import com.example.fybproject.listView.search.SearchListItemAdapter;
-import com.example.fybproject.service.AuthService;
 import com.example.fybproject.service.ShopService;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-import okhttp3.Headers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

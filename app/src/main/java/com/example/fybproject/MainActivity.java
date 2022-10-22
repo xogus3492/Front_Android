@@ -1,26 +1,17 @@
 package com.example.fybproject;
 
-import static android.service.controls.ControlsProviderService.TAG;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.MediaController;
-import android.widget.VideoView;
 
 import com.example.fybproject.main.fragment.MainCartFragment;
-import com.example.fybproject.main.fragment.MainCartUpdateFragment;
 import com.example.fybproject.main.fragment.MainChangePwFragment;
 import com.example.fybproject.main.fragment.MainHomeFragment;
 import com.example.fybproject.main.fragment.MainModelFragment;
@@ -31,7 +22,6 @@ import com.example.fybproject.main.fragment.MainMypageUpdateFragment;
 import com.example.fybproject.main.fragment.MainSearchFragment;
 import com.example.fybproject.main.fragment.MainSettingsFragment;
 import com.example.fybproject.main.fragment.MainWithdrawalFragment;
-import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -42,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
     MainSearchFragment mainSearchFragment;
     MainModelFragment mainModelFragment;
     MainCartFragment mainCartFragment;
-    MainCartUpdateFragment mainCartUpdateFragment;
     MainMypageFragment mainMypageFragment;
     MainMypageUpdateFragment mainMypageUpdateFragment;
     MainMyclosetFragment mainMyclosetFragment;
@@ -155,7 +144,6 @@ public class MainActivity extends AppCompatActivity {
         mainSearchFragment = new MainSearchFragment();
         mainModelFragment = new MainModelFragment();
         mainCartFragment = new MainCartFragment();
-        mainCartUpdateFragment = new MainCartUpdateFragment();
         mainMypageFragment = new MainMypageFragment();
         mainMypageUpdateFragment = new MainMypageUpdateFragment();
         mainMyclosetFragment = new MainMyclosetFragment();
@@ -166,11 +154,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // 프래그먼트 내에서 다른 프래그먼트에 대한 작업
-
-    public void changeToCartUpdateFragment() {
-        transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.frameMain, mainCartUpdateFragment).commitAllowingStateLoss();
-    } // 장바구니 수정 버튼
 
     public void changeToCartFragment() {
         transaction = fragmentManager.beginTransaction();
