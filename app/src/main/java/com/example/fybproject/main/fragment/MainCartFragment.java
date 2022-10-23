@@ -93,8 +93,6 @@ public class MainCartFragment extends Fragment {
         addSetBtn.setOnClickListener(listener);
         addCancelBtn.setOnClickListener(listener);
 
-        cartRecyclerView.setOnClickListener(listener);
-
         return view;
     }
 

@@ -26,8 +26,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cartRecyclerView"
         android:layout_width="960px"
-        android:layout_height="900px"
-        android:layout_marginTop="0dp"/>
+        android:layout_height="900px"/>
     <!-- 190 -->
 
     <!--<LinearLayout
@@ -63,7 +62,7 @@
         android:id="@+id/addItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/cart_list_bg"
+        android:background="@drawable/list_bg"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="20dp"
         android:visibility="gone">

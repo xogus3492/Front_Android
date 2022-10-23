@@ -1,16 +1,25 @@
 package com.example.fybproject.dto.myClosetDTO;
 
 public class ClosetAddDTO {
+    private int id;
     private String pname;
     private String pnotes;
-    private int pkind;
-    private int status;
+    private String pkind;
+    private String  status;
     private String statusMessage;
 
-    public ClosetAddDTO(String pname, String pnotes, int pkind) {
+    public ClosetAddDTO(String pname, String pnotes, String pkind) {
         this.pname = pname;
         this.pnotes = pnotes;
         this.pkind = pkind;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getPname() {
@@ -29,19 +38,19 @@ public class ClosetAddDTO {
         this.pnotes = pnotes;
     }
 
-    public int getPkind() {
+    public String getPkind() {
         return pkind;
     }
 
-    public void setPkind(int pkind) {
+    public void setPkind(String pkind) {
         this.pkind = pkind;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
@@ -56,7 +65,8 @@ public class ClosetAddDTO {
     @Override
     public String toString() {
         return "PostResult {" +
-                "status = " + status +
+                "id = " + id +
+                ", status = " + status +
                 ", statusMessage = " + statusMessage +
                 '}';
     }

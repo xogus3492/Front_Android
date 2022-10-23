@@ -2,7 +2,7 @@ package com.example.fybproject.dto.myClosetDTO;
 
 public class ClosetDeleteDTO {
     private long id;
-    private int status;
+    private String status;
     private String statusMessage;
 
     public ClosetDeleteDTO(long id) {
@@ -17,11 +17,11 @@ public class ClosetDeleteDTO {
         this.id = id;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

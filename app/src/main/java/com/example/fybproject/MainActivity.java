@@ -16,7 +16,6 @@ import com.example.fybproject.main.fragment.MainChangePwFragment;
 import com.example.fybproject.main.fragment.MainHomeFragment;
 import com.example.fybproject.main.fragment.MainModelFragment;
 import com.example.fybproject.main.fragment.MainMyclosetFragment;
-import com.example.fybproject.main.fragment.MainMyclosetUpdateFragment;
 import com.example.fybproject.main.fragment.MainMypageFragment;
 import com.example.fybproject.main.fragment.MainMypageUpdateFragment;
 import com.example.fybproject.main.fragment.MainSearchFragment;
@@ -35,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
     MainMypageFragment mainMypageFragment;
     MainMypageUpdateFragment mainMypageUpdateFragment;
     MainMyclosetFragment mainMyclosetFragment;
-    MainMyclosetUpdateFragment mainMyclosetUpdateFragment;
     MainSettingsFragment mainSettingsFragment;
     MainChangePwFragment mainChangePwFragment;
     MainWithdrawalFragment mainWithdrawalFragment;
@@ -147,7 +145,6 @@ public class MainActivity extends AppCompatActivity {
         mainMypageFragment = new MainMypageFragment();
         mainMypageUpdateFragment = new MainMypageUpdateFragment();
         mainMyclosetFragment = new MainMyclosetFragment();
-        mainMyclosetUpdateFragment = new MainMyclosetUpdateFragment();
         mainSettingsFragment = new MainSettingsFragment();
         mainChangePwFragment = new MainChangePwFragment();
         mainWithdrawalFragment = new MainWithdrawalFragment();
@@ -155,36 +152,20 @@ public class MainActivity extends AppCompatActivity {
 
     // 프래그먼트 내에서 다른 프래그먼트에 대한 작업
 
-    public void changeToCartFragment() {
-        transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.frameMain, mainCartFragment).commitAllowingStateLoss();
-    } // 장바구니 확인 버튼
-
     public void changeToMypageUpdateFragment() {
         transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.frameMain, mainMypageUpdateFragment).addToBackStack(null).commitAllowingStateLoss();
     } // 프로필 수정 버튼
 
-    public void changeToMypageFragment() {
+    public void changeToMyClosetFragment() {
         transaction = fragmentManager.beginTransaction();
-        transaction.remove(mainMypageUpdateFragment).commitAllowingStateLoss();  // !!
-        transaction.replace(R.id.frameMain, mainMypageFragment).commitAllowingStateLoss();
-    } // 프로필 변경 버튼
+        transaction.replace(R.id.frameMain, mainMyclosetFragment).addToBackStack(null).commitAllowingStateLoss();
+    } // 내 옷장 버튼
 
     public void porofileUpdateCancel() {
         getSupportFragmentManager().beginTransaction().remove(mainMypageUpdateFragment).commitAllowingStateLoss();
         getSupportFragmentManager().popBackStack();
     } // 프로필 취소 버튼
-
-    public void changeToMyclosetUpdateFragment() {
-        transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.frameMain, mainMyclosetUpdateFragment).commitAllowingStateLoss();
-    } // 내 옷장 수정 버튼
-
-    public void changeToMyclosetFragment() {
-        transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.frameMain, mainMyclosetFragment).commitAllowingStateLoss();
-    } // 내 옷장 확인 버튼
 
     public void changeToChangePwFragment() {
         transaction = fragmentManager.beginTransaction();
@@ -210,9 +191,4 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().remove(mainChangePwFragment).commitAllowingStateLoss();
         getSupportFragmentManager().popBackStack();
     } // 비밀번호 변경 완료 시
-
-    public void loadWishlist() {
-        transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.frameMain, mainCartFragment).addToBackStack(null).commitAllowingStateLoss();
-    }
 }

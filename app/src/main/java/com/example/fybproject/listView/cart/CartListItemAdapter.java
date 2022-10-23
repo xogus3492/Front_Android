@@ -22,15 +22,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fybproject.R;
 import com.example.fybproject.client.ServiceGenerator;
-import com.example.fybproject.dto.shopDTO.AnalyzeDTO;
 import com.example.fybproject.dto.wishlistDTO.WishDeleteDTO;
 import com.example.fybproject.dto.wishlistDTO.WishUpdateDTO;
 import com.example.fybproject.dto.wishlistDTO.WishlistDTO;
 import com.example.fybproject.interceeptor.JwtToken;
-import com.example.fybproject.main.fragment.MainCartFragment;
 import com.example.fybproject.mediator.CartMediator;
-import com.example.fybproject.mediator.MainUserDataMediator;
-import com.example.fybproject.service.ShopService;
 import com.example.fybproject.service.WishlistService;
 
 import java.io.IOException;
@@ -158,6 +154,7 @@ public class CartListItemAdapter extends RecyclerView.Adapter<CartListItemAdapte
                     }
                 }
             }); // 장바구니 수정
+
             deleteItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -192,6 +189,17 @@ public class CartListItemAdapter extends RecyclerView.Adapter<CartListItemAdapte
                     }
                 }
             }); // 장바구니 삭제
+
+            goUrl.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String url = data.getpUrl();
+                    Context context = view.getContext();
+                    Log.d(ControlsProviderService.TAG, "쇼핑몰 주소 : " + url);
+                    Intent intentUrl = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                    context.startActivity(intentUrl);
+                }
+            }); // 쇼핑몰 이동
         }
 
         View.OnClickListener listener = new View.OnClickListener() {
@@ -202,6 +210,9 @@ public class CartListItemAdapter extends RecyclerView.Adapter<CartListItemAdapte
                 name.setFocusableInTouchMode(true);
                 note.setFocusableInTouchMode(true);
                 price.setFocusableInTouchMode(true);
+                name.setCursorVisible(true);
+                note.setCursorVisible(true);
+                price.setCursorVisible(true);
 
                 url.setVisibility(View.VISIBLE);
                 selectItemCancel.setVisibility(View.VISIBLE);
@@ -212,11 +223,14 @@ public class CartListItemAdapter extends RecyclerView.Adapter<CartListItemAdapte
         View.OnClickListener selectedListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                layout.setBackground(view.getResources().getDrawable(R.drawable.cart_list_bg));
+                layout.setBackground(view.getResources().getDrawable(R.drawable.list_bg));
 
                 name.setFocusableInTouchMode(false);
                 note.setFocusableInTouchMode(false);
                 price.setFocusableInTouchMode(false);
+                name.setCursorVisible(false);
+                note.setCursorVisible(false);
+                price.setCursorVisible(false);
 
                 url.setVisibility(View.GONE);
                 selectItemCancel.setVisibility(View.GONE);

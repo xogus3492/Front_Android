@@ -31,7 +31,7 @@ import retrofit2.Response;
 public class MainMypageFragment extends Fragment {
     View view;
 
-    TextView updateBtn
+    TextView updateBtn, myClosetBtn
             , nameView, genderView, ageView, heightView, weightView;
 
     MainActivity mainactivity;
@@ -70,11 +70,19 @@ public class MainMypageFragment extends Fragment {
             }
         }); // 수정 버튼
 
+        myClosetBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mainactivity.changeToMyClosetFragment();
+            }
+        });
+
         return view;
     }
 
     public void init() {
         updateBtn = view.findViewById(R.id.profileUpdateBtn);
+        myClosetBtn = view.findViewById(R.id.myClosetBtn);
         nameView = view.findViewById(R.id.mypageName);
         genderView = view.findViewById(R.id.mypageGender);
         ageView = view.findViewById(R.id.mypageAge);

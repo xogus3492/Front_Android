@@ -5,10 +5,10 @@ public class ClosetUpdateDTO {
     private String pname;
     private String pkind;
     private String pnotes;
-    private int status;
+    private String status;
     private String statusMessage;
 
-    public ClosetUpdateDTO(long id, String pname, String pkind, String pnotes) {
+    public ClosetUpdateDTO(long id, String pname, String pnotes, String pkind) {
         this.id = id;
         this.pname = pname;
         this.pkind = pkind;
@@ -47,11 +47,11 @@ public class ClosetUpdateDTO {
         this.pnotes = pnotes;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
