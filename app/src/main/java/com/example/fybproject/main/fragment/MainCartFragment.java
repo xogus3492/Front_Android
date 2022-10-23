@@ -30,6 +30,7 @@ import com.example.fybproject.dto.wishlistDTO.WishlistDTO;
 import com.example.fybproject.interceeptor.JwtToken;
 import com.example.fybproject.listView.cart.CartListItem;
 import com.example.fybproject.listView.cart.CartListItemAdapter;
+import com.example.fybproject.mediator.CartMediator;
 import com.example.fybproject.service.WishlistService;
 
 import java.io.IOException;
@@ -42,7 +43,8 @@ import retrofit2.Response;
 public class MainCartFragment extends Fragment {
     View view;
 
-    TextView addBtn, addCancelBtn, addSetBtn;
+    TextView addBtn, addCancelBtn, addSetBtn
+            , totalPrice;
     LinearLayout defaultBtnGroup, addItemBtnGroup
             , addItem, cartItem;
     EditText cartItemName,cartItemNote, cartItemPrice, cartItemUrl;
@@ -203,6 +205,8 @@ public class MainCartFragment extends Fragment {
                                         index++;
                                     }
 
+                                    //totalPrice.setText(String.valueOf(CartMediator.getPrice()));
+
                                     release();
                                 } else {
                                     try {
@@ -234,6 +238,7 @@ public class MainCartFragment extends Fragment {
         cartItemUrl = view.findViewById(R.id.addCartItemUrl);
         cartRecyclerView = view.findViewById(R.id.cartRecyclerView);
         cartItem = view.findViewById(R.id.cartItem);
+        //totalPrice = view.findViewById(R.id.totalPrice);
     }
 
     public void inputAddData() {

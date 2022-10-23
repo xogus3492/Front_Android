@@ -1,27 +1,36 @@
 package com.example.fybproject.dto.wishlistDTO;
 
 public class WishUpdateDTO {
-    private int pname;
+    private long pid;
+    private String pname;
     private String notes;
     private String purl;
     private int price;
-    private String pimage;
-    private int status;
+    //private String pimage;
+    private String status;
     private String statusMessage;
 
-    public WishUpdateDTO(int pname, String notes, String purl, int price, String pimage) {
+    public WishUpdateDTO(long pid, String pname, String notes, String purl, int price) {
+        this.pid = pid;
         this.pname = pname;
         this.notes = notes;
         this.purl = purl;
         this.price = price;
-        this.pimage = pimage;
     }
 
-    public int getPname() {
+    public long getPid() {
+        return pid;
+    }
+
+    public void setPid(long pid) {
+        this.pid = pid;
+    }
+
+    public String getPname() {
         return pname;
     }
 
-    public void setPname(int pname) {
+    public void setPname(String pname) {
         this.pname = pname;
     }
 
@@ -49,19 +58,11 @@ public class WishUpdateDTO {
         this.price = price;
     }
 
-    public String getPimage() {
-        return pimage;
-    }
-
-    public void setPimage(String pimage) {
-        this.pimage = pimage;
-    }
-
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

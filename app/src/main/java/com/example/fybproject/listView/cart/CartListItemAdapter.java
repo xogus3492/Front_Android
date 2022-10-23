@@ -28,6 +28,7 @@ import com.example.fybproject.dto.wishlistDTO.WishUpdateDTO;
 import com.example.fybproject.dto.wishlistDTO.WishlistDTO;
 import com.example.fybproject.interceeptor.JwtToken;
 import com.example.fybproject.main.fragment.MainCartFragment;
+import com.example.fybproject.mediator.CartMediator;
 import com.example.fybproject.mediator.MainUserDataMediator;
 import com.example.fybproject.service.ShopService;
 import com.example.fybproject.service.WishlistService;
@@ -81,7 +82,7 @@ public class CartListItemAdapter extends RecyclerView.Adapter<CartListItemAdapte
     }
 
     class ItemViewHolder extends RecyclerView.ViewHolder {
-        EditText name, note, price;
+        EditText name, note, price, url;
         ImageView img, selectItemCancel;
         TextView updateItem, deleteItem, goUrl;
         LinearLayout layout, selectAction;
@@ -92,6 +93,7 @@ public class CartListItemAdapter extends RecyclerView.Adapter<CartListItemAdapte
             name = itemView.findViewById(R.id.cartItemName);
             note = itemView.findViewById(R.id.cartItemNote);
             price = itemView.findViewById(R.id.cartItemPrice);
+            url = itemView.findViewById(R.id.cartItemUrl);
             img = itemView.findViewById(R.id.cartItemImage);
             layout = itemView.findViewById(R.id.cartItem);
 
@@ -103,9 +105,12 @@ public class CartListItemAdapter extends RecyclerView.Adapter<CartListItemAdapte
         }
 
         void onBind(CartListItem data) {
+            CartMediator.setPrice(data.getPrice());
+
             name.setText(data.getPname());
             note.setText(data.getNotes());
             price.setText(String.valueOf(data.getPrice()));
+            url.setText(data.getpUrl());
 
             name.setFocusableInTouchMode(false);
             note.setFocusableInTouchMode(false);
@@ -121,15 +126,16 @@ public class CartListItemAdapter extends RecyclerView.Adapter<CartListItemAdapte
             updateItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    WishUpdateDTO wishUpdateDTO = new WishUpdateDTO(data.getPid());
+                    Log.d(TAG, "수정 내용 : " + data.getPid() + name.getText().toString() + note.getText().toString() + url.getText().toString() + Integer.parseInt(price.getText().toString()));
+                    WishUpdateDTO wishUpdateDTO = new WishUpdateDTO(data.getPid(), name.getText().toString(), note.getText().toString(), url.getText().toString(), Integer.parseInt(price.getText().toString()));
                     wishlistService = ServiceGenerator.createService(WishlistService.class, JwtToken.getToken());
 
                     if (wishlistService != null) {
-                        wishlistService.deleteWishData(wishDeleteDTO)
-                                .enqueue(new Callback<WishDeleteDTO>() {
+                        wishlistService.patchWishData(wishUpdateDTO)
+                                .enqueue(new Callback<WishUpdateDTO>() {
                                     @Override
-                                    public void onResponse(Call<WishDeleteDTO> call, Response<WishDeleteDTO> response) {
-                                        WishDeleteDTO data = response.body();
+                                    public void onResponse(Call<WishUpdateDTO> call, Response<WishUpdateDTO> response) {
+                                        WishUpdateDTO data = response.body();
                                         if (response.isSuccessful() == true) {
                                             Log.d(ContentValues.TAG, "cartItemUpdate : 성공,\nresponseBody : " + data);
                                             Log.d(ContentValues.TAG, "=====================================================================");
@@ -145,13 +151,13 @@ public class CartListItemAdapter extends RecyclerView.Adapter<CartListItemAdapte
                                     }
 
                                     @Override
-                                    public void onFailure(Call<WishDeleteDTO> call, Throwable t) {
+                                    public void onFailure(Call<WishUpdateDTO> call, Throwable t) {
                                         Log.d(ContentValues.TAG, "onFailure: " + t.toString());
                                     }
                                 });
                     }
                 }
-            });
+            }); // 장바구니 수정
             deleteItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -197,6 +203,7 @@ public class CartListItemAdapter extends RecyclerView.Adapter<CartListItemAdapte
                 note.setFocusableInTouchMode(true);
                 price.setFocusableInTouchMode(true);
 
+                url.setVisibility(View.VISIBLE);
                 selectItemCancel.setVisibility(View.VISIBLE);
                 selectAction.setVisibility(View.VISIBLE);
             }
@@ -211,6 +218,7 @@ public class CartListItemAdapter extends RecyclerView.Adapter<CartListItemAdapte
                 note.setFocusableInTouchMode(false);
                 price.setFocusableInTouchMode(false);
 
+                url.setVisibility(View.GONE);
                 selectItemCancel.setVisibility(View.GONE);
                 selectAction.setVisibility(View.GONE);
             }
