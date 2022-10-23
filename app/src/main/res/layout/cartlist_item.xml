@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cartItem"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/cartItem"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/cart_list_bg">
@@ -15,7 +16,7 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginRight="10dp"
-            android:layout_marginBottom="3dp"
+            android:layout_marginVertical="3dp"
             app:srcCompat="@drawable/bonobono" />
 
         <LinearLayout
@@ -24,15 +25,29 @@
             android:gravity="center_vertical"
             android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/cartItemName"
-                android:background="@null"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:textSize="15sp"
-                android:inputType="textPersonName"
-                android:text="보노보노" />
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/cartItemName"
+                    android:background="@null"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:textSize="15sp"
+                    android:inputType="textPersonName"
+                    android:text="보노보노" />
+
+                <ImageView
+                    android:id="@+id/selectItemCancel"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="right"
+                    android:visibility="gone"
+                    app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+
+            </FrameLayout>
 
             <EditText
                 android:id="@+id/cartItemNote"
@@ -59,6 +74,44 @@
                 android:text="1,000" />
        </LinearLayout>
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/selectAction"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/changeCartItem"
+            android:background="@drawable/listitem_btn_form"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingVertical="10dp"
+            android:gravity="center"
+            android:text="변경" />
+
+        <TextView
+            android:id="@+id/deleteCartItem"
+            android:background="@drawable/listitem_btn_form"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingVertical="10dp"
+            android:layout_marginHorizontal="10dp"
+            android:gravity="center"
+            android:text="제거" />
+
+        <TextView
+            android:id="@+id/goCartItemUrl"
+            android:background="@drawable/listitem_btn_form"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingVertical="10dp"
+            android:gravity="center"
+            android:text="사이트 이동" />
     </LinearLayout>
 
 </LinearLayout>

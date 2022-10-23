@@ -1,11 +1,6 @@
 package com.example.fybproject.listView.cart;
 
-import static android.service.controls.ControlsProviderService.TAG;
-
 import android.content.ContentValues;
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,27 +13,19 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fybproject.R;
-import com.example.fybproject.client.ServiceGenerator;
-import com.example.fybproject.dto.shopDTO.AnalyzeDTO;
-import com.example.fybproject.interceeptor.JwtToken;
-import com.example.fybproject.listView.home.RecommendShopListItem;
-import com.example.fybproject.mediator.MainUserDataMediator;
-import com.example.fybproject.service.ShopService;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 public class CartListItemAdapter extends RecyclerView.Adapter<CartListItemAdapter.ItemViewHolder> {
+    View view;
+
     private ArrayList<CartListItem> listData;
 
     @NonNull
     @Override
     public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cartlist_item, parent, false);
+        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cartlist_item, parent, false);
+
         return new ItemViewHolder(view);
     }
 
@@ -61,10 +48,9 @@ public class CartListItemAdapter extends RecyclerView.Adapter<CartListItemAdapte
     }
 
     class ItemViewHolder extends RecyclerView.ViewHolder {
-
         EditText name, note, price;
-        ImageView img;
-        LinearLayout layout;
+        ImageView img, selectItemCancel;
+        LinearLayout layout, selectAction;
 
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -74,6 +60,9 @@ public class CartListItemAdapter extends RecyclerView.Adapter<CartListItemAdapte
             price = itemView.findViewById(R.id.cartItemPrice);
             img = itemView.findViewById(R.id.cartItemImage);
             layout = itemView.findViewById(R.id.cartItem);
+
+            selectAction = view.findViewById(R.id.selectAction);
+            selectItemCancel = view.findViewById(R.id.selectItemCancel);
         }
 
         void onBind(CartListItem data) {
@@ -81,16 +70,80 @@ public class CartListItemAdapter extends RecyclerView.Adapter<CartListItemAdapte
             note.setText(data.getNotes());
             price.setText(String.valueOf(data.getPrice()));
 
-            name.setFocusable(false);
-            note.setFocusable(false);
-            price.setFocusable(false);
+            name.setFocusableInTouchMode(false);
+            note.setFocusableInTouchMode(false);
+            price.setFocusableInTouchMode(false);
 
-            layout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+            layout.setOnClickListener(listener);
+            name.setOnClickListener(listener);
+            note.setOnClickListener(listener);
+            price.setOnClickListener(listener);
 
-                }
-            });
+            selectItemCancel.setOnClickListener(selectedListener);
         }
+
+        View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d(ContentValues.TAG, "아이템 클릭됨");
+
+                name.setFocusableInTouchMode(true);
+                note.setFocusableInTouchMode(true);
+                price.setFocusableInTouchMode(true);
+
+                selectItemCancel.setVisibility(View.VISIBLE);
+                selectAction.setVisibility(View.VISIBLE);
+            }
+        };
+
+        View.OnClickListener selectedListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d(ContentValues.TAG, "선택된 아이템 버튼이 클릭됨");
+
+                switch (view.getId()) {
+                    case R.id.selectItemCancel:
+                        layout.setBackground(view.getResources().getDrawable(R.drawable.cart_list_bg));
+
+                        name.setFocusableInTouchMode(false);
+                        note.setFocusableInTouchMode(false);
+                        price.setFocusableInTouchMode(false);
+
+                        selectItemCancel.setVisibility(View.GONE);
+                        selectAction.setVisibility(View.GONE);
+                        break;
+                    /*case R.id.changeCartItem:
+                        layout.setBackground(view.getResources().getDrawable(R.drawable.cart_list_bg));
+
+                        name.setFocusableInTouchMode(false);
+                        note.setFocusableInTouchMode(false);
+                        price.setFocusableInTouchMode(false);
+
+                        selectItemCancel.setVisibility(View.GONE);
+                        selectAction.setVisibility(View.GONE);
+                        break;
+                    case R.id.deleteCartItem:
+                        layout.setBackground(view.getResources().getDrawable(R.drawable.cart_list_bg));
+
+                        name.setFocusableInTouchMode(false);
+                        note.setFocusableInTouchMode(false);
+                        price.setFocusableInTouchMode(false);
+
+                        selectItemCancel.setVisibility(View.GONE);
+                        selectAction.setVisibility(View.GONE);
+                        break;
+                    case R.id.goCartItemUrl:
+                        layout.setBackground(view.getResources().getDrawable(R.drawable.cart_list_bg));
+
+                        name.setFocusableInTouchMode(false);
+                        note.setFocusableInTouchMode(false);
+                        price.setFocusableInTouchMode(false);
+
+                        selectItemCancel.setVisibility(View.GONE);
+                        selectAction.setVisibility(View.GONE);
+                        break;*/
+                }
+            }
+        };
     }
 }

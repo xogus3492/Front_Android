@@ -3,9 +3,10 @@ package com.example.fybproject.main.fragment;
 import static android.content.ContentValues.TAG;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.service.controls.ControlsProviderService;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,16 +25,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.fybproject.MainActivity;
 import com.example.fybproject.R;
 import com.example.fybproject.client.ServiceGenerator;
-import com.example.fybproject.dto.shopDTO.MainDTO;
 import com.example.fybproject.dto.wishlistDTO.WishAddDTO;
 import com.example.fybproject.dto.wishlistDTO.WishlistDTO;
 import com.example.fybproject.interceeptor.JwtToken;
 import com.example.fybproject.listView.cart.CartListItem;
 import com.example.fybproject.listView.cart.CartListItemAdapter;
-import com.example.fybproject.listView.home.RecommendShopListItem;
-import com.example.fybproject.listView.home.RecommendShopListItemAdapter;
-import com.example.fybproject.mediator.MainUserDataMediator;
-import com.example.fybproject.service.ShopService;
 import com.example.fybproject.service.WishlistService;
 
 import java.io.IOException;
@@ -47,8 +43,8 @@ public class MainCartFragment extends Fragment {
     View view;
 
     TextView addBtn, addCancelBtn, addSetBtn;
-    LinearLayout defaultBtnGroup, addItemBtnGroup, selectItemBtnGroup
-            , addItem;
+    LinearLayout defaultBtnGroup, addItemBtnGroup
+            , addItem, cartItem;
     EditText cartItemName,cartItemNote, cartItemPrice, cartItemUrl;
 
     private RecyclerView cartRecyclerView;
@@ -95,12 +91,17 @@ public class MainCartFragment extends Fragment {
         addSetBtn.setOnClickListener(listener);
         addCancelBtn.setOnClickListener(listener);
 
+        cartRecyclerView.setOnClickListener(listener);
+
         return view;
     }
 
     View.OnClickListener listener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+            long pid;
+            String purl;
+
             switch (view.getId()) {
                 case R.id.addBtn:
                     cartItemName.setText(null);
@@ -114,10 +115,6 @@ public class MainCartFragment extends Fragment {
                     addItemBtnGroup.setVisibility(View.VISIBLE);
                     break;
                 case R.id.addCancelBtn:
-                    cartItemName.setText(null);
-                    cartItemNote.setText(null);
-                    cartItemPrice.setText(null);
-                    cartItemUrl.setText(null);
                     py = 900;
                     cartRecyclerView.setLayoutParams(new LinearLayout.LayoutParams(px, py));
                     addItem.setVisibility(View.GONE);
@@ -147,11 +144,6 @@ public class MainCartFragment extends Fragment {
 
                                             loadCartList();
                                             release();
-
-                                            cartItemName.setText(null);
-                                            cartItemNote.setText(null);
-                                            cartItemPrice.setText(null);
-                                            cartItemUrl.setText(null);
                                         } else {
                                             try {
                                                 Log.d(TAG, "addWishList : 실패,\nresponseBody() : " + data + ",\nresponse.code(): " + response.code() + ",\nresponse.errorBody(): " + response.errorBody().string());
@@ -166,9 +158,8 @@ public class MainCartFragment extends Fragment {
                                         Log.d(TAG, "onFailure: " + t.toString());
                                     }
                                 });
-
-                        break;
                     }
+                    break;
             }
         }
     };
@@ -231,19 +222,18 @@ public class MainCartFragment extends Fragment {
         }
 
     public void init() {
-            addBtn = view.findViewById(R.id.addBtn);
-            defaultBtnGroup = view.findViewById(R.id.defaultBtnGroup);
-            addItem = view.findViewById(R.id.addItem);
-            addItemBtnGroup = view.findViewById(R.id.addItemBtnGroup);
-            selectItemBtnGroup = view.findViewById(R.id.selectItemBtnGroup);
-            addSetBtn = view.findViewById(R.id.addSetBtn);
-            addCancelBtn = view.findViewById(R.id.addCancelBtn);
-            cartItemName = view.findViewById(R.id.addCartItemName);
-            cartItemNote = view.findViewById(R.id.addCartItemNote);
-            cartItemPrice = view.findViewById(R.id.addCartItemPrice);
-            cartItemUrl = view.findViewById(R.id.addCartItemUrl);
-            cartRecyclerView = view.findViewById(R.id.cartRecyclerView);
-        }
+        addBtn = view.findViewById(R.id.addBtn);
+        defaultBtnGroup = view.findViewById(R.id.defaultBtnGroup);
+        addItem = view.findViewById(R.id.addItem);
+        addSetBtn = view.findViewById(R.id.addSetBtn);
+        addCancelBtn = view.findViewById(R.id.addCancelBtn);
+        cartItemName = view.findViewById(R.id.addCartItemName);
+        cartItemNote = view.findViewById(R.id.addCartItemNote);
+        cartItemPrice = view.findViewById(R.id.addCartItemPrice);
+        cartItemUrl = view.findViewById(R.id.addCartItemUrl);
+        cartRecyclerView = view.findViewById(R.id.cartRecyclerView);
+        cartItem = view.findViewById(R.id.cartItem);
+    }
 
     public void inputAddData() {
         try {
