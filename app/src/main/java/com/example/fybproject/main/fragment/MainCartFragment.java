@@ -59,7 +59,7 @@ public class MainCartFragment extends Fragment {
     MainActivity mainactivity;
 
     long pid;
-    int price;
+    int price, px, py;
     String pname, notes, pUrl;
 
     private WishlistService wishlistService;
@@ -86,6 +86,8 @@ public class MainCartFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view =  inflater.inflate(R.layout.fragment_main_cart, container, false);
 
+        px = 960;
+
         init();
         loadCartList();
 
@@ -93,30 +95,8 @@ public class MainCartFragment extends Fragment {
         addSetBtn.setOnClickListener(listener);
         addCancelBtn.setOnClickListener(listener);
 
-        cartItemName.addTextChangedListener(textWatcher);
-        cartItemUrl.addTextChangedListener(textWatcher);
-        cartItemNote.addTextChangedListener(textWatcher);
-        cartItemPrice.addTextChangedListener(textWatcher);
-
         return view;
     }
-
-    TextWatcher textWatcher = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-        }
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-            Log.d(TAG, "" + s);
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-
-        }
-    };
 
     View.OnClickListener listener = new View.OnClickListener() {
         @Override
@@ -127,6 +107,8 @@ public class MainCartFragment extends Fragment {
                     cartItemNote.setText(null);
                     cartItemPrice.setText(null);
                     cartItemUrl.setText(null);
+                    py = 570;
+                    cartRecyclerView.setLayoutParams(new LinearLayout.LayoutParams(px, py));
                     addItem.setVisibility(View.VISIBLE);
                     defaultBtnGroup.setVisibility(View.GONE);
                     addItemBtnGroup.setVisibility(View.VISIBLE);
@@ -136,11 +118,15 @@ public class MainCartFragment extends Fragment {
                     cartItemNote.setText(null);
                     cartItemPrice.setText(null);
                     cartItemUrl.setText(null);
+                    py = 900;
+                    cartRecyclerView.setLayoutParams(new LinearLayout.LayoutParams(px, py));
                     addItem.setVisibility(View.GONE);
                     defaultBtnGroup.setVisibility(View.VISIBLE);
                     addItemBtnGroup.setVisibility(View.GONE);
                     break;
                 case R.id.addSetBtn:
+                    py = 900;
+                    cartRecyclerView.setLayoutParams(new LinearLayout.LayoutParams(px, py));
                     addItem.setVisibility(View.GONE);
                     defaultBtnGroup.setVisibility(View.VISIBLE);
                     addItemBtnGroup.setVisibility(View.GONE);
