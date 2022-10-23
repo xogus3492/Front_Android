@@ -11,6 +11,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.HTTP;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 
@@ -24,7 +25,7 @@ public interface WishlistService {
     Call<ArrayList<WishlistDTO>> getWishData();
 
     // 장바구니 삭제
-    @DELETE("main/wishlist")
+    @HTTP(method = "DELETE", path = "main/wishlist", hasBody = true)
     Call<WishDeleteDTO> deleteWishData(@Body WishDeleteDTO wishDeleteDTO);
 
     // 장바구니 수정

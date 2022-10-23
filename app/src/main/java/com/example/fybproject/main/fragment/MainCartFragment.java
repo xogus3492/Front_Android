@@ -219,11 +219,12 @@ public class MainCartFragment extends Fragment {
                             }
                         });
             } // 장바구니 조회
-        }
+    }
 
     public void init() {
         addBtn = view.findViewById(R.id.addBtn);
         defaultBtnGroup = view.findViewById(R.id.defaultBtnGroup);
+        addItemBtnGroup = view.findViewById(R.id.addItemBtnGroup);
         addItem = view.findViewById(R.id.addItem);
         addSetBtn = view.findViewById(R.id.addSetBtn);
         addCancelBtn = view.findViewById(R.id.addCancelBtn);

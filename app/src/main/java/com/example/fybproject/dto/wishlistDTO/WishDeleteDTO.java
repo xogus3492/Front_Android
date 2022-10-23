@@ -2,7 +2,7 @@ package com.example.fybproject.dto.wishlistDTO;
 
 public class WishDeleteDTO {
     private long pid;
-    private int status;
+    private String status;
     private String statusMessage;
 
     public WishDeleteDTO(long pid) {
@@ -17,11 +17,11 @@ public class WishDeleteDTO {
         this.pid = pid;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
