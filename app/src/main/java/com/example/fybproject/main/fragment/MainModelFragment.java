@@ -49,12 +49,12 @@ public class MainModelFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_main_model, container, false);
 
-        model = view.findViewById(R.id.videoView);
+        //model = view.findViewById(R.id.videoView);
         //seekBar = view.findViewById(R.id.seekBar);
 
-        Log.d(TAG, "경로 : " + Uri.parse("android.resource://" + mainactivity.getPackageName() + "/" + R.raw.model1));
+        //Log.d(TAG, "경로 : " + Uri.parse("android.resource://" + mainactivity.getPackageName() + "/" + R.raw.model1));
 
-        model.setVideoURI(Uri.parse("android.resource://" + mainactivity.getPackageName() + "/" + R.raw.model1));
+        //model.setVideoURI(Uri.parse("android.resource://" + mainactivity.getPackageName() + "/" + R.raw.model1));
 
         /*model.seekTo(model.getDuration() / 2);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {

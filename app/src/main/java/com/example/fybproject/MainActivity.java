@@ -24,7 +24,7 @@ import com.example.fybproject.main.fragment.MainWithdrawalFragment;
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageView navBar, optionBtn, backBtn, backBtn2;
+    ImageView navBar, optionBtn, backBtn, backBtn2, backBtn3;
     Button homeBtn, searchBtn, modelBtn, cartBtn, mypageBtn;
 
     MainHomeFragment mainHomeFragment;
@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         optionBtn.setOnClickListener(navListener);
         backBtn.setOnClickListener(navListener);
         backBtn2.setOnClickListener(navListener);
+        backBtn3.setOnClickListener(navListener);
         // 설정 버튼
     }
 
@@ -75,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
             {
                 case R.id.homeBtn:
                     navBar.setImageResource(R.drawable.home_navbar);
+                    backBtn3.setVisibility(View.INVISIBLE);
                     backBtn2.setVisibility(View.INVISIBLE);
                     backBtn.setVisibility(View.INVISIBLE);
                     optionBtn.setVisibility(View.INVISIBLE);
@@ -82,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.searchBtn:
                     navBar.setImageResource(R.drawable.search_navbar);
+                    backBtn3.setVisibility(View.INVISIBLE);
                     backBtn2.setVisibility(View.INVISIBLE);
                     backBtn.setVisibility(View.INVISIBLE);
                     optionBtn.setVisibility(View.INVISIBLE);
@@ -89,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.modelBtn:
                     navBar.setImageResource(R.drawable.model_navbar);
+                    backBtn3.setVisibility(View.INVISIBLE);
                     backBtn2.setVisibility(View.INVISIBLE);
                     backBtn.setVisibility(View.INVISIBLE);
                     optionBtn.setVisibility(View.INVISIBLE);
@@ -96,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.cartBtn:
                     navBar.setImageResource(R.drawable.cart_navbar);
+                    backBtn3.setVisibility(View.INVISIBLE);
                     backBtn2.setVisibility(View.INVISIBLE);
                     backBtn.setVisibility(View.INVISIBLE);
                     optionBtn.setVisibility(View.INVISIBLE);
@@ -103,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.myPageBtn:
                     navBar.setImageResource(R.drawable.mypage_navbar);
+                    backBtn3.setVisibility(View.INVISIBLE);
                     backBtn2.setVisibility(View.INVISIBLE);
                     backBtn.setVisibility(View.INVISIBLE);
                     optionBtn.setVisibility(View.VISIBLE);
@@ -123,6 +129,11 @@ public class MainActivity extends AppCompatActivity {
                     backBtn2.setVisibility(View.INVISIBLE);
                     transaction.replace(R.id.frameMain, mainSettingsFragment).addToBackStack(null).commitAllowingStateLoss();
                     break;
+                case R.id.backBtn3:
+                    optionBtn.setVisibility(View.VISIBLE);
+                    backBtn3.setVisibility(View.INVISIBLE);
+                    transaction.replace(R.id.frameMain, mainMypageFragment).addToBackStack(null).commitAllowingStateLoss();
+                    break;
             }
         }
     }; // 네비게이션 바 클릭 리스너
@@ -137,6 +148,7 @@ public class MainActivity extends AppCompatActivity {
         optionBtn = findViewById(R.id.optionBtn);
         backBtn = findViewById(R.id.backBtn);
         backBtn2 = findViewById(R.id.backBtn2);
+        backBtn3 = findViewById(R.id.backBtn3);
 
         mainHomeFragment = new MainHomeFragment();
         mainSearchFragment = new MainSearchFragment();
@@ -158,6 +170,8 @@ public class MainActivity extends AppCompatActivity {
     } // 프로필 수정 버튼
 
     public void changeToMyClosetFragment() {
+        optionBtn.setVisibility(View.INVISIBLE);
+        backBtn3.setVisibility(View.VISIBLE);
         transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.frameMain, mainMyclosetFragment).addToBackStack(null).commitAllowingStateLoss();
     } // 내 옷장 버튼
@@ -165,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
     public void porofileUpdateCancel() {
         getSupportFragmentManager().beginTransaction().remove(mainMypageUpdateFragment).commitAllowingStateLoss();
         getSupportFragmentManager().popBackStack();
-    } // 프로필 취소 버튼
+    } // 프로필 변경 & 취소 버튼
 
     public void changeToChangePwFragment() {
         transaction = fragmentManager.beginTransaction();

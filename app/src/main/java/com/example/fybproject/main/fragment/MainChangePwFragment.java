@@ -133,6 +133,8 @@ public class MainChangePwFragment extends Fragment {
                                         //if (data.getStatus().equals("PHONE_NUM_ERROR"))
                                         //PHONE_CHECK_STATUS_TRUE
                                         Log.d(ContentValues.TAG, "receiveCode : 성공,\nresponseBody : " + data);
+
+                                        Toast.makeText(getContext().getApplicationContext(), "인증번호를 발송하였습니다.", Toast.LENGTH_SHORT).show();
                                         randNum = data.getRandNum();
                                     } else {
                                         try {

@@ -17,7 +17,7 @@
             android:layout_height="80dp"
             android:layout_marginRight="10dp"
             android:layout_marginVertical="3dp"
-            app:srcCompat="@drawable/bonobono" />
+            app:srcCompat="@drawable/closet_img" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -69,8 +69,8 @@
                 android:ems="10"
                 android:layout_marginTop="5dp"
                 android:textSize="14sp"
-                android:inputType="numberSigned"
-                android:text="1,000" />
+                android:inputType="textPersonName"
+                android:text="후드티" />
         </LinearLayout>
 
     </LinearLayout>

@@ -220,8 +220,8 @@ public class MainCartFragment extends Fragment {
                                 Log.d(TAG, "onFailure: " + t.toString());
                             }
                         });
-            } // 장바구니 조회
-    }
+            }
+    }// 장바구니 조회
 
     public void init() {
         addBtn = view.findViewById(R.id.addBtn);

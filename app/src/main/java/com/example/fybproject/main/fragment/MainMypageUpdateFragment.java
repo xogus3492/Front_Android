@@ -97,8 +97,13 @@ public class MainMypageUpdateFragment extends Fragment {
         name = updateName.getText().toString();
         gender = updateGender.getText().toString();
 
-        if(!(gender.equals("남") || gender.equals("여"))) {
-            Toast.makeText(view.getContext().getApplicationContext(), "성별을 '남' 또는 '여'로 입력 해 주세요", Toast.LENGTH_SHORT).show();
+        if(gender.equals("남자") )
+            gender = "M";
+        else if (gender.equals("여자"))
+            gender = "W";
+        else {
+            release();
+            Toast.makeText(view.getContext().getApplicationContext(), "성별을 '남자' 또는 '여자'로 입력 해 주세요", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -122,7 +127,7 @@ public class MainMypageUpdateFragment extends Fragment {
 
                                 updateEmail.setText(data.get(0).getEmail());
                                 updateName.setText(data.get(0).getName());
-                                updateGender.setText(data.get(0).getGender());
+                                updateGender.setText("남자"); // data.get(0).getGender()
                                 updateAge.setText(String.valueOf(data.get(0).getAge()));
                                 updateHeight.setText(String.valueOf(data.get(0).getHeight()));
                                 updateWeight.setText(String.valueOf(data.get(0).getWeight()));
@@ -139,8 +144,8 @@ public class MainMypageUpdateFragment extends Fragment {
                             Log.d(TAG, "onFailure: " + t.toString());
                         }
                     });
-        } // 마이페이지 조회
-    }
+        }
+    }// 마이페이지 조회
 
     View.OnFocusChangeListener editClickListener = new View.OnFocusChangeListener() {
         @Override
@@ -176,7 +181,7 @@ public class MainMypageUpdateFragment extends Fragment {
             switch(view.getId()) {
                 case R.id.updateOkBtn:
                     inputData();
-                    EditDTO editDTO = new EditDTO(email,name, gender, age, weight, height);
+                    EditDTO editDTO = new EditDTO(email, name, gender, age, weight, height);
                     infoService = ServiceGenerator.createService(InfoService.class, JwtToken.getToken());
 
                     if (infoService != null) {
@@ -188,6 +193,10 @@ public class MainMypageUpdateFragment extends Fragment {
                                         if (response.isSuccessful() == true) {
                                             Log.d(TAG, "getUpdateData : 성공,\nresponseBody : " + data);
                                             Log.d(TAG, "=====================================================================");
+
+                                            mainactivity.porofileUpdateCancel();
+
+                                            //Toast.makeText(getContext().getApplicationContext(), "정보가 수정되었습니다.", Toast.LENGTH_SHORT).show();
                                         } else {
                                             try {
                                                 Log.d(TAG, "getUpdateData : 실패,\nresponseBody() : " + data + ",\nresponse.code(): " + response.code() + ",\nresponse.errorBody(): " + response.errorBody().string());
@@ -201,8 +210,7 @@ public class MainMypageUpdateFragment extends Fragment {
                                         Log.d(TAG, "onFailure: " + t.toString());
                                     }
                                 });
-                    } // 마이페이지 조회
-                    mainactivity.porofileUpdateCancel();
+                    } // 마이페이지 수정
                     break;
                 case R.id.updateCancelBtn:
                     mainactivity.porofileUpdateCancel();
@@ -210,4 +218,13 @@ public class MainMypageUpdateFragment extends Fragment {
             }
         }
     };
+
+    public void release() {
+        email = null;
+        name = null;
+        gender = null;
+        age = 0;
+        height = 0;
+        weight = 0;
+    }
 }

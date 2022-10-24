@@ -65,16 +65,18 @@ public class LocalSignInActivity extends AppCompatActivity {
 
                                         if (data.getStatus().equals("LOGIN_STATUS_TRUE")) {
                                             JwtToken.setToken(header.get("Authorization").substring(7));
+                                            Toast.makeText(getApplicationContext(), "환영합니다.", Toast.LENGTH_LONG).show();
 
                                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                             startActivity(intent);
                                         }
-                                        if (data.getStatus().equals("LOGIN_FALSE")) {
-                                            Toast.makeText(getApplicationContext(), "이메일 또는 비밀번호를 다시 확인해 주십시오", Toast.LENGTH_LONG).show();
-                                        }
+
                                     } else {
                                         try {
                                             Log.d(TAG, "LocalLogin : 실패,\nresponseBody() : " + data + ",\nresponse.code(): " + response.code() + ",\nresponse.errorBody(): " + response.errorBody().string());
+                                            //if (data.getStatus().equals("LOGIN_FALSE")) {
+                                                Toast.makeText(getApplicationContext(), "이메일 또는 비밀번호를 다시 확인해 주십시오", Toast.LENGTH_LONG).show();
+                                            //}
                                         } catch (IOException e) {
                                             e.printStackTrace();
                                         }

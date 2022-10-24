@@ -4,6 +4,7 @@ import static android.service.controls.ControlsProviderService.TAG;
 
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -84,6 +85,42 @@ public class SignUpFirstFragment extends Fragment {
                 RegisterDataMediator.setName(s.toString());
             }
         }); // user name
+
+        hideRegisterPw.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                inputRegisterPw.setInputType(InputType.TYPE_CLASS_TEXT);
+                hideRegisterPw.setVisibility(View.GONE);
+                showRegisterPw.setVisibility(View.VISIBLE);
+            }
+        }); // pw 보이기
+
+        showRegisterPw.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                inputRegisterPw.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                showRegisterPw.setVisibility(View.GONE);
+                hideRegisterPw.setVisibility(View.VISIBLE);
+            }
+        }); // pw 숨기기
+
+        hideRegisterPwCheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                inputRegisterPwCheck.setInputType(InputType.TYPE_CLASS_TEXT);
+                hideRegisterPwCheck.setVisibility(View.GONE);
+                showRegisterPwCheck.setVisibility(View.VISIBLE);
+            }
+        }); // pwCheck 보이기
+
+        showRegisterPwCheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                inputRegisterPwCheck.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                showRegisterPwCheck.setVisibility(View.GONE);
+                hideRegisterPwCheck.setVisibility(View.VISIBLE);
+            }
+        }); // pwCheck 숨기기
 
         return view;
     }
