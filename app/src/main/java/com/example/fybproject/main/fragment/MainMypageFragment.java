@@ -104,7 +104,12 @@ public class MainMypageFragment extends Fragment {
                                 Log.d(TAG, "=====================================================================");
 
                                 nameView.setText(data.get(0).getName());
-                                genderView.setText(data.get(0).getGender());
+
+                                if(data.get(0).getGender().equals("M"))
+                                    genderView.setText("남자");
+                                if(data.get(0).getGender().equals("W"))
+                                    genderView.setText("여자");
+
                                 ageView.setText(String.valueOf(data.get(0).getAge()));
                                 heightView.setText(String.valueOf(data.get(0).getHeight()));
                                 weightView.setText(String.valueOf(data.get(0).getWeight()));

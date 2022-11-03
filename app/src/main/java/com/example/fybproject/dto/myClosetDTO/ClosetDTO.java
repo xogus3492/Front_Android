@@ -5,8 +5,7 @@ public class ClosetDTO {
     private String pname;
     private String pnotes;
     private String pkind;
-    private String status;
-    private String statusMessage;
+    private String closetImagePath;
 
     public long getId() {
         return id;
@@ -40,20 +39,12 @@ public class ClosetDTO {
         this.pkind = pkind;
     }
 
-    public String getStatus() {
-        return status;
+    public String getClosetImagePath() {
+        return closetImagePath;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getStatusMessage() {
-        return statusMessage;
-    }
-
-    public void setStatusMessage(String statusMessage) {
-        this.statusMessage = statusMessage;
+    public void setClosetImagePath(String closetImagePath) {
+        this.closetImagePath = closetImagePath;
     }
 
     @Override
@@ -63,6 +54,7 @@ public class ClosetDTO {
                 ", pname = " + pname +
                 ", pnotes = " + pnotes +
                 ", pkind = " + pkind +
+                ", closetImagePath = " + closetImagePath +
                 '}';
     }
 }

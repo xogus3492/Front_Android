@@ -127,7 +127,12 @@ public class MainMypageUpdateFragment extends Fragment {
 
                                 updateEmail.setText(data.get(0).getEmail());
                                 updateName.setText(data.get(0).getName());
-                                updateGender.setText("남자"); // data.get(0).getGender()
+
+                                if(data.get(0).getGender().equals("M"))
+                                    updateGender.setText("남자");
+                                if(data.get(0).getGender().equals("W"))
+                                    updateGender.setText("여자");
+
                                 updateAge.setText(String.valueOf(data.get(0).getAge()));
                                 updateHeight.setText(String.valueOf(data.get(0).getHeight()));
                                 updateWeight.setText(String.valueOf(data.get(0).getWeight()));

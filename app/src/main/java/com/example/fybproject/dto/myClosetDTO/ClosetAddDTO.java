@@ -1,7 +1,7 @@
 package com.example.fybproject.dto.myClosetDTO;
 
 public class ClosetAddDTO {
-    private int id;
+    private long id;
     private String pname;
     private String pnotes;
     private String pkind;
@@ -14,11 +14,11 @@ public class ClosetAddDTO {
         this.pkind = pkind;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

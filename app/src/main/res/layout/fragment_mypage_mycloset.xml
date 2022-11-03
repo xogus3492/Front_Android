@@ -39,7 +39,7 @@
         android:visibility="gone">
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/addClosetItemImg"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginRight="10dp"

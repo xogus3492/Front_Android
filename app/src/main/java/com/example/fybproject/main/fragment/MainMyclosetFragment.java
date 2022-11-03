@@ -2,13 +2,21 @@ package com.example.fybproject.main.fragment;
 
 import static android.content.ContentValues.TAG;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,17 +32,24 @@ import com.example.fybproject.R;
 import com.example.fybproject.client.ServiceGenerator;
 import com.example.fybproject.dto.myClosetDTO.ClosetAddDTO;
 import com.example.fybproject.dto.myClosetDTO.ClosetDTO;
+import com.example.fybproject.dto.myClosetDTO.ClosetImgDTO;
 import com.example.fybproject.interceeptor.JwtToken;
 import com.example.fybproject.listView.closet.ClosetListItem;
 import com.example.fybproject.listView.closet.ClosetListItemAdapter;
 import com.example.fybproject.service.MyClosetService;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.http.Multipart;
 
 public class MainMyclosetFragment extends Fragment {
     View view;
@@ -43,11 +58,15 @@ public class MainMyclosetFragment extends Fragment {
     LinearLayout defaultBtnGroup, addItemBtnGroup
             , addItem;
     EditText closetItemName, closetItemNote, closetItemKind;
+    ImageView closetItemImg;
 
     private RecyclerView closetRecyclerView;
     private ClosetListItemAdapter adapter;
     private ArrayList<ClosetListItem> arr;
     private Context context;
+
+    private static final int REQUEST_CODE = 1000;
+    private MultipartBody.Part body;
 
     MainActivity mainactivity;
 
@@ -87,6 +106,7 @@ public class MainMyclosetFragment extends Fragment {
         addBtn.setOnClickListener(listener);
         addSetBtn.setOnClickListener(listener);
         addCancelBtn.setOnClickListener(listener);
+        closetItemImg.setOnClickListener(listener);
 
         return view;
     }
@@ -133,12 +153,15 @@ public class MainMyclosetFragment extends Fragment {
                                         if (response.isSuccessful() == true) {
                                             Log.d(TAG, "addClosetData : 성공,\nresponseBody : " + data);
                                             Log.d(TAG, "=====================================================================");
+                                            long id = 0;
 
                                             for(ClosetAddDTO real : data) {
                                                 Log.d(TAG, "real: " + real.toString());
+                                                id = real.getId();
+                                                regiClosetImg(id); // 이미지 업로드
                                             }
 
-                                            loadClosetList();
+                                            loadClosetList(); // 옷장 조회
                                             release();
                                         } else {
                                             try {
@@ -156,6 +179,11 @@ public class MainMyclosetFragment extends Fragment {
                                 });
                     }
                     break; // 내 옷장 등록
+                case R.id.addClosetItemImg:
+                    Intent intent = new Intent();
+                    intent.setType("image/*");
+                    intent.setAction(Intent.ACTION_GET_CONTENT);
+                    getActivity().startActivityForResult(intent, REQUEST_CODE);
             }
         }
     };
@@ -212,7 +240,55 @@ public class MainMyclosetFragment extends Fragment {
                             Log.d(TAG, "onFailure: " + t.toString());
                         }
                     });
-        } // 내 옷장 조회
+        }
+    }// 내 옷장 조회
+
+    public void regiClosetImg(long id) {
+
+        myClosetService = ServiceGenerator.createService(MyClosetService.class, JwtToken.getToken());
+
+        if (myClosetService != null) {
+            myClosetService.putClosetData(id,body)
+                    .enqueue(new Callback<ClosetImgDTO>() {
+                        @Override
+                        public void onResponse(Call<ClosetImgDTO> call, Response<ClosetImgDTO> response) {
+                            ClosetImgDTO data = response.body();
+                            if (response.isSuccessful() == true) {
+                                Log.d(TAG, "putClosetData : 성공,\nresponseBody : " + data);
+                                Log.d(TAG, "=====================================================================");
+                            } else {
+                                try {
+                                    Log.d(TAG, "putClosetData : 실패,\nresponseBody() : " + data + ",\nresponse.code(): " + response.code() + ",\nresponse.errorBody(): " + response.errorBody().string());
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<ClosetImgDTO> call, Throwable t) {
+                            Log.d(TAG, "onFailure: " + t.toString());
+                        }
+                    });
+        }
+    } // 이미지 업로드
+
+    public void getImgData(Bitmap img,Uri uri) {
+        closetItemImg.setImageBitmap(img);
+
+        Cursor c = context.getContentResolver().query(Uri.parse(uri.toString()), null,null,null,null);
+        c.moveToNext();
+        @SuppressLint("Range") String absolutePath = c.getString(c.getColumnIndex(MediaStore.MediaColumns.DATA)); // 절대경로 얻기
+        Log.d(TAG, "절대경로 : " + absolutePath);
+
+        File f = new File(absolutePath);
+        Log.d(TAG, "file : " + f.toString());
+
+        RequestBody requestBody = RequestBody.create(MediaType.parse("image/png"), f);
+        Log.d(TAG, "requestBody : " + requestBody.toString());
+
+        body = MultipartBody.Part.createFormData("file", f.getName(), requestBody);
+        Log.d(TAG, "body" + body.toString());
     }
 
     public void init() {
@@ -222,6 +298,7 @@ public class MainMyclosetFragment extends Fragment {
         addItem = view.findViewById(R.id.addClosetItem);
         addSetBtn = view.findViewById(R.id.mAddSetBtn);
         addCancelBtn = view.findViewById(R.id.mAddCancelBtn);
+        closetItemImg = view.findViewById(R.id.addClosetItemImg);
         closetItemName = view.findViewById(R.id.addClosetItemName);
         closetItemNote = view.findViewById(R.id.addClosetItemNote);
         closetItemKind = view.findViewById(R.id.addClosetItemKind);

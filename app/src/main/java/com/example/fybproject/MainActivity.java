@@ -1,15 +1,22 @@
 package com.example.fybproject;
 
+import static android.service.controls.ControlsProviderService.TAG;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.fybproject.main.fragment.MainCartFragment;
 import com.example.fybproject.main.fragment.MainChangePwFragment;
@@ -21,6 +28,10 @@ import com.example.fybproject.main.fragment.MainMypageUpdateFragment;
 import com.example.fybproject.main.fragment.MainSearchFragment;
 import com.example.fybproject.main.fragment.MainSettingsFragment;
 import com.example.fybproject.main.fragment.MainWithdrawalFragment;
+
+import java.io.InputStream;
+
+import retrofit2.http.Multipart;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -205,4 +216,27 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().remove(mainChangePwFragment).commitAllowingStateLoss();
         getSupportFragmentManager().popBackStack();
     } // 비밀번호 변경 완료 시
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1000) {
+            if (resultCode == RESULT_OK) {
+                try {
+                    InputStream in = getContentResolver().openInputStream(data.getData());
+                    Bitmap img = BitmapFactory.decodeStream(in);
+                    in.close();
+
+                    MainMyclosetFragment m = (MainMyclosetFragment) getSupportFragmentManager().findFragmentById(R.id.frameMain);
+                    m.getImgData(img, data.getData());
+                } catch (Exception e) {
+
+                }
+            } else if (resultCode == RESULT_CANCELED) {
+                Toast.makeText(getApplicationContext(), "사진 선택 취소", Toast.LENGTH_LONG).show();
+            }
+        }
+    }
 }
