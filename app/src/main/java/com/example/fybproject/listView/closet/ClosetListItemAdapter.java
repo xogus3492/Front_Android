@@ -17,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.fybproject.R;
 import com.example.fybproject.client.ServiceGenerator;
 import com.example.fybproject.dto.myClosetDTO.ClosetDTO;
@@ -98,6 +99,10 @@ public class ClosetListItemAdapter extends RecyclerView.Adapter<ClosetListItemAd
             name.setText(data.getPname());
             note.setText(data.getPnote());
             kind.setText(data.getPkind());
+
+            // 이미지 불러오기
+            String imageUrl = data.getUrl();
+            Glide.with(context).load(imageUrl).into(img);
 
             name.setFocusableInTouchMode(false);
             note.setFocusableInTouchMode(false);
@@ -243,9 +248,10 @@ public class ClosetListItemAdapter extends RecyclerView.Adapter<ClosetListItemAd
                                         String pname = real.getPname();
                                         String notes = real.getPnotes();
                                         String pkind = real.getPkind();
+                                        String url = real.getClosetImagePath();
                                         Log.d(TAG, "uid[" + index + "]: " + uid + ", pname[" + index + "]: " + pname + ", potes[" + index
-                                                + "]: " + notes + ", pkind[" + index + "]: " + pkind);
-                                        arr.add(new ClosetListItem(uid, pname, notes, pkind));
+                                                + "]: " + notes + ", pkind[" + index + "]: " + pkind + ", url[" + index + "]: " + url);
+                                        arr.add(new ClosetListItem(uid, pname, notes, pkind, url));
                                         // for문에서 빠져 나가면 add한 내용이 없어지는 듯?
 
                                         if (data.size() - 1 == index)

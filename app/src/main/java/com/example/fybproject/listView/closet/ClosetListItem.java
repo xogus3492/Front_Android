@@ -5,17 +5,17 @@ public class ClosetListItem {
     private String pname;
     private String pnote;
     private String pkind;
+    private String url;
 
-    public ClosetListItem(long uid, String pname, String pnote, String pkind) {
+    public ClosetListItem(long uid, String pname, String pnote, String pkind, String url) {
         this.uid = uid;
         this.pname = pname;
         this.pnote = pnote;
         this.pkind = pkind;
+        this.url = url;
     }
 
-    public Long getUid() {
-        return uid;
-    }
+    public Long getUid() { return uid; }
 
     public void setUid(Long uid) {
         this.uid = uid;
@@ -43,5 +43,13 @@ public class ClosetListItem {
 
     public void setPkind(String pkind) {
         this.pkind = pkind;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

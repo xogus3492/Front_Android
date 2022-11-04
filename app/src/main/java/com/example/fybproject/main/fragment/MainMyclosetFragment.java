@@ -72,7 +72,7 @@ public class MainMyclosetFragment extends Fragment {
 
     long id;
     int px, py;
-    String pname, pnote, pkind;
+    String pname, pnote, pkind, closetImagePath;
 
     private MyClosetService myClosetService;
 
@@ -215,9 +215,10 @@ public class MainMyclosetFragment extends Fragment {
                                     pname = real.getPname();
                                     pnote = real.getPnotes();
                                     pkind = real.getPkind();
+                                    closetImagePath = real.getClosetImagePath();
                                     Log.d(TAG, "id[" + index + "]: " + id + ", pname[" + index + "]: " + pname + ", pnotes[" + index
-                                            + "]: " + pnote + ", pkind[" + index + "]: " + pkind);
-                                    arr.add(new ClosetListItem(id, pname, pnote, pkind));
+                                            + "]: " + pnote + ", pkind[" + index + "]: " + pkind + ", url[" + index + "]: " + closetImagePath);
+                                    arr.add(new ClosetListItem(id, pname, pnote, pkind, closetImagePath));
                                     // for문에서 빠져 나가면 add한 내용이 없어지는 듯?
 
                                     if (data.size() - 1 == index)
