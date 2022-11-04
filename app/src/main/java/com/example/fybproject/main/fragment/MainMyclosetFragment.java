@@ -28,6 +28,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fybproject.MainActivity;
+import com.example.fybproject.ProfileImageActivity;
 import com.example.fybproject.R;
 import com.example.fybproject.client.ServiceGenerator;
 import com.example.fybproject.dto.myClosetDTO.ClosetAddDTO;
@@ -180,10 +181,13 @@ public class MainMyclosetFragment extends Fragment {
                     }
                     break; // 내 옷장 등록
                 case R.id.addClosetItemImg:
+                    ProfileImageActivity.verifyStoragePermissions(getActivity());
+
                     Intent intent = new Intent();
                     intent.setType("image/*");
                     intent.setAction(Intent.ACTION_GET_CONTENT);
                     getActivity().startActivityForResult(intent, REQUEST_CODE);
+                    break;
             }
         }
     };
@@ -245,7 +249,6 @@ public class MainMyclosetFragment extends Fragment {
     }// 내 옷장 조회
 
     public void regiClosetImg(long id) {
-
         myClosetService = ServiceGenerator.createService(MyClosetService.class, JwtToken.getToken());
 
         if (myClosetService != null) {
@@ -280,16 +283,16 @@ public class MainMyclosetFragment extends Fragment {
         Cursor c = context.getContentResolver().query(Uri.parse(uri.toString()), null,null,null,null);
         c.moveToNext();
         @SuppressLint("Range") String absolutePath = c.getString(c.getColumnIndex(MediaStore.MediaColumns.DATA)); // 절대경로 얻기
-        Log.d(TAG, "절대경로 : " + absolutePath);
+        //Log.d(TAG, "절대경로 : " + absolutePath);
 
         File f = new File(absolutePath);
-        Log.d(TAG, "file : " + f.toString());
+        //Log.d(TAG, "file : " + f.toString());
 
         RequestBody requestBody = RequestBody.create(MediaType.parse("image/png"), f);
-        Log.d(TAG, "requestBody : " + requestBody.toString());
+        //Log.d(TAG, "requestBody : " + requestBody.toString());
 
         body = MultipartBody.Part.createFormData("file", f.getName(), requestBody);
-        Log.d(TAG, "body" + body.toString());
+        //Log.d(TAG, "body" + body.toString());
     }
 
     public void init() {

@@ -1,27 +1,14 @@
 package com.example.fybproject.dto.authDTO;
 
 public class ProfileImgDTO {
-    private String profileImagePath;
-    private int status;
+    private String status;
     private String statusMessage;
 
-    public ProfileImgDTO(String profileImagePath) {
-        this.profileImagePath = profileImagePath;
-    }
-
-    public String getProfileImagePath() {
-        return profileImagePath;
-    }
-
-    public void setProfileImagePath(String profileImagePath) {
-        this.profileImagePath = profileImagePath;
-    }
-
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

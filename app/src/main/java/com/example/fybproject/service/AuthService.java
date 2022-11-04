@@ -10,14 +10,17 @@ import com.example.fybproject.dto.authDTO.PwChangeDTO;
 import com.example.fybproject.dto.authDTO.RegisterDTO;
 import com.example.fybproject.dto.authDTO.SocialDTO;
 
+import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.HTTP;
+import retrofit2.http.Multipart;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Part;
 
 public interface AuthService {
 
@@ -63,6 +66,7 @@ public interface AuthService {
     Call<PlusInfoDTO> putPlusInfoData(@Body PlusInfoDTO plusInfoDTO);
 
     // 프로필 이미지 설정
+    @Multipart
     @PUT("auth/image")
-    Call<ProfileImgDTO> putImgurlData(@Body ProfileImgDTO profileImgDTO);
+    Call<ProfileImgDTO> putImgurlData(@Part MultipartBody.Part file);
 }

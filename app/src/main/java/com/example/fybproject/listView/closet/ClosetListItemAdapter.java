@@ -118,7 +118,7 @@ public class ClosetListItemAdapter extends RecyclerView.Adapter<ClosetListItemAd
             updateItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Log.d(TAG, "수정 내용 : " + data.getUid() + name.getText().toString() + note.getText().toString() + kind.getText().toString());
+                    //Log.d(TAG, "수정 내용 : " + data.getUid() + name.getText().toString() + note.getText().toString() + kind.getText().toString());
                     ClosetUpdateDTO closetUpdateDTO = new ClosetUpdateDTO(data.getUid(), name.getText().toString(), note.getText().toString(), kind.getText().toString());
                     myClosetService = ServiceGenerator.createService(MyClosetService.class, JwtToken.getToken());
 

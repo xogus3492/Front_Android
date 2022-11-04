@@ -1,5 +1,9 @@
 package com.example.fybproject.mediator;
 
+import static android.service.controls.ControlsProviderService.TAG;
+
+import android.util.Log;
+
 public class RegisterDataMediator {
     private static String email;
     private static String pw;
@@ -61,13 +65,9 @@ public class RegisterDataMediator {
         RegisterDataMediator.weight = weight;
     }
 
-    public static String getGender() {
-        return gender;
-    }
+    public static String getGender() { return gender; }
 
-    public static void setGender(String gender) {
-        RegisterDataMediator.gender = gender;
-    }
+    public static void setGender(String gender) { RegisterDataMediator.gender = gender; }
 
     public static String getForm() {
         return form;

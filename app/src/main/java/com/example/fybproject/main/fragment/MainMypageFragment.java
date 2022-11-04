@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
 import com.example.fybproject.MainActivity;
 import com.example.fybproject.R;
 import com.example.fybproject.client.ServiceGenerator;
@@ -24,6 +25,7 @@ import com.example.fybproject.service.InfoService;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -33,15 +35,18 @@ public class MainMypageFragment extends Fragment {
 
     TextView updateBtn, myClosetBtn
             , nameView, genderView, ageView, heightView, weightView;
+    CircleImageView imgView;
 
     MainActivity mainactivity;
 
+    private Context context;
     private InfoService infoService;
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         mainactivity = (MainActivity)getActivity();
+        this.context = context;
     } // 메인액티비티 객체 가져오기
 
     @Override
@@ -88,6 +93,7 @@ public class MainMypageFragment extends Fragment {
         ageView = view.findViewById(R.id.mypageAge);
         heightView = view.findViewById(R.id.mypageHeight);
         weightView = view.findViewById(R.id.mypageWeight);
+        imgView = view.findViewById(R.id.mypageImg);
     }
 
     public void loadMypage() {
@@ -102,6 +108,10 @@ public class MainMypageFragment extends Fragment {
                             if (response.isSuccessful() == true) {
                                 Log.d(TAG, "getInfoData : 성공,\nresponseBody : " + data);
                                 Log.d(TAG, "=====================================================================");
+
+                                // 이미지 불러오기
+                                String imageUrl = data.get(0).getProfileImagePath();
+                                Glide.with(context).load(imageUrl).into(imgView);
 
                                 nameView.setText(data.get(0).getName());
 

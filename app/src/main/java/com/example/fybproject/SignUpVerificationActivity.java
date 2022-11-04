@@ -2,8 +2,11 @@ package com.example.fybproject;
 
 import static android.service.controls.ControlsProviderService.TAG;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.fybproject.client.ServiceGenerator;
@@ -106,9 +110,9 @@ public class SignUpVerificationActivity extends AppCompatActivity {
                                         if (data.getStatus().equals("REGISTER_STATUS_TRUE")) {
                                             JwtToken.setToken(header.get("Authorization").substring(7));
 
-                                            Intent intent = new Intent(getApplicationContext(), SplashActivity.class);
+                                            Intent intent = new Intent(getApplicationContext(), ProfileImageActivity.class);
                                             startActivity(intent);
-                                            Toast.makeText(getApplicationContext(), "회원가입에 성공하셨습니다.", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(getApplicationContext(), "회원가입을 축하드립니다!", Toast.LENGTH_SHORT).show();
                                         }
 
                                     } else {
@@ -138,14 +142,14 @@ public class SignUpVerificationActivity extends AppCompatActivity {
     }
 
     public void inputData() {
-        if (inputCode.getText().toString() == null) {
+        /*if (inputCode.getText().toString() == null) {
             Toast.makeText(getApplicationContext(), "인증번호를 입력하세요", Toast.LENGTH_SHORT).show();
             return;
         }
         if(!inputCode.getText().toString().equals(randNum)) {
             Toast.makeText(getApplicationContext(), "인증번호가 일치하지 않습니다", Toast.LENGTH_SHORT).show();
             return;
-        }
+        }*/
 
         email = intent.getStringExtra("email");
         pw = intent.getStringExtra("pw");
@@ -158,7 +162,7 @@ public class SignUpVerificationActivity extends AppCompatActivity {
         sholder = intent.getStringExtra("sholder");
         pelvis = intent.getStringExtra("pelvis");
         leg = intent.getStringExtra("leg");
-        code = inputCode.getText().toString();
+        //code = inputCode.getText().toString();
     }
 
     public void inputPhoneData() {
@@ -169,5 +173,4 @@ public class SignUpVerificationActivity extends AppCompatActivity {
 
         pnum = inputPhone.getText().toString();
     }
-
 }

@@ -39,43 +39,43 @@ public class SignUpThirdFragment extends Fragment {
             switch (checkedId) {
                 case R.id.upperBodyBtn:
                     Log.d(TAG, "form : 상체 비만");
-                    RegisterDataMediator.setGender("1");
+                    RegisterDataMediator.setForm("1");
                     break;
                 case R.id.lowerBodyBtn:
                     Log.d(TAG, "form : 하체 비만");
-                    RegisterDataMediator.setGender("2");
+                    RegisterDataMediator.setForm("2");
                     break;
                 case R.id.nomalBodyBtn:
                     Log.d(TAG, "form : 정상 체형");
-                    RegisterDataMediator.setGender("3");
+                    RegisterDataMediator.setForm("3");
                     break;
                 case R.id.sholderHighBtn:
                     Log.d(TAG, "sholder : 상");
-                    RegisterDataMediator.setGender("1");
+                    RegisterDataMediator.setSholder("1");
                     break;
                 case R.id.sholderMiddleBtn:
                     Log.d(TAG, "sholder : 중");
-                    RegisterDataMediator.setGender("2");
+                    RegisterDataMediator.setSholder("2");
                     break;
                 case R.id.sholderLowBtn:
                     Log.d(TAG, "sholder : 하");
-                    RegisterDataMediator.setGender("3");
+                    RegisterDataMediator.setSholder("3");
                     break;
                 case R.id.pelvisHighBtn:
                     Log.d(TAG, "pelvis : 중상");
-                    RegisterDataMediator.setGender("1");
+                    RegisterDataMediator.setPelvis("1");
                     break;
                 case R.id.pelvisLowBtn:
                     Log.d(TAG, "pelvis : 중하");
-                    RegisterDataMediator.setGender("2");
+                    RegisterDataMediator.setPelvis("2");
                     break;
                 case R.id.legHighBtn:
                     Log.d(TAG, "leg : 중상");
-                    RegisterDataMediator.setGender("1");
+                    RegisterDataMediator.setLeg("1");
                     break;
                 case R.id.legLowBtn:
                     Log.d(TAG, "leg : 중하");
-                    RegisterDataMediator.setGender("2");
+                    RegisterDataMediator.setLeg("2");
                     break;
             }
         }
