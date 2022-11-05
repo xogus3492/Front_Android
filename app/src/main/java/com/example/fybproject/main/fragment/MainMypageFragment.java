@@ -110,8 +110,10 @@ public class MainMypageFragment extends Fragment {
                                 Log.d(TAG, "=====================================================================");
 
                                 // 이미지 불러오기
-                                String imageUrl = data.get(0).getProfileImagePath();
-                                Glide.with(context).load(imageUrl).into(imgView);
+                                if(data.get(0).getProfileImagePath() != null) {
+                                    String imageUrl = data.get(0).getProfileImagePath();
+                                    Glide.with(context).load(imageUrl).into(imgView);
+                                }
 
                                 nameView.setText(data.get(0).getName());
 

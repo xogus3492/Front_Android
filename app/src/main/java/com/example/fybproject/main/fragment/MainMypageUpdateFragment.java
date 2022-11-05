@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
 import com.example.fybproject.MainActivity;
 import com.example.fybproject.R;
 import com.example.fybproject.client.ServiceGenerator;
@@ -27,6 +28,7 @@ import com.example.fybproject.service.InfoService;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -36,17 +38,20 @@ public class MainMypageUpdateFragment extends Fragment {
 
     TextView okBtn ,cancelBtn;
     EditText updateEmail, updateName, updateGender, updateAge, updateHeight, updateWeight;
+    CircleImageView imgView;
 
     String email, name, gender;
     int age, height, weight;
 
     MainActivity mainactivity;
 
+    private Context context;
     private InfoService infoService;
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
+        this.context = context;
         mainactivity = (MainActivity)getActivity();
     } // 메인액티비티 객체 가져오기
 
@@ -90,6 +95,7 @@ public class MainMypageUpdateFragment extends Fragment {
         updateAge = view.findViewById(R.id.updateAge);
         updateHeight = view.findViewById(R.id.updateHeight);
         updateWeight = view.findViewById(R.id.updateWeight);
+        imgView = view.findViewById(R.id.mypageUimg);
     }
 
     public void inputData() {
@@ -124,6 +130,12 @@ public class MainMypageUpdateFragment extends Fragment {
                             if (response.isSuccessful() == true) {
                                 Log.d(TAG, "getInfoData : 성공,\nresponseBody : " + data);
                                 Log.d(TAG, "=====================================================================");
+
+                                // 이미지 불러오기
+                                if(data.get(0).getProfileImagePath() != null) {
+                                    String imageUrl = data.get(0).getProfileImagePath();
+                                    Glide.with(context).load(imageUrl).into(imgView);
+                                }
 
                                 updateEmail.setText(data.get(0).getEmail());
                                 updateName.setText(data.get(0).getName());
