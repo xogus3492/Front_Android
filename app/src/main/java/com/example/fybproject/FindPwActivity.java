@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.fybproject.client.ServiceGenerator;
@@ -23,10 +24,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class FindPwActivity extends AppCompatActivity {
-
+    TextView receiveCodeBtn;
     EditText inputEmailForPw, inputPhone, inputCode;
-
-    ImageView receiveCodeBtn, findPwBtn;
+    ImageView findPwBtn;
 
     String pnum, email, randNum, code;
 

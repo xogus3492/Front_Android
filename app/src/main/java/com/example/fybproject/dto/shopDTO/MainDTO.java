@@ -4,6 +4,7 @@ public class MainDTO {
     private String email;
     private String name;
     private String profileImagePath;
+    private String simg;
     private char gender;
     private int height;
     private int weight;
@@ -25,6 +26,22 @@ public class MainDTO {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getProfileImagePath() {
+        return profileImagePath;
+    }
+
+    public void setProfileImagePath(String profileImagePath) {
+        this.profileImagePath = profileImagePath;
+    }
+
+    public String getsImg() {
+        return simg;
+    }
+
+    public void setsImg(String simg) {
+        this.simg = simg;
     }
 
     public char getGender() {
@@ -80,6 +97,8 @@ public class MainDTO {
         return "PostResult {" +
                 "email = " + email +
                 ", name = " + name +
+                ", profileImagePath = " + profileImagePath +
+                ", sImg = " + simg +
                 ", gender = " + gender +
                 ", height = " + height +
                 ", weight = " + weight +

@@ -5,6 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/recommend_shop_bg"
     android:layout_width="match_parent"
+    android:paddingVertical="5dp"
+    android:paddingHorizontal="10dp"
     android:layout_height="wrap_content">
 
     <TextView
@@ -14,13 +16,14 @@
         android:textStyle="bold"
         android:textColor="@color/black"
         android:layout_marginRight="70dp"
+        android:layout_gravity="center_vertical"
         android:text="1" />
 
     <ImageView
-        android:id="@+id/recommenImg"
+        android:id="@+id/recommendImg"
         android:background="@drawable/shop_img"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginRight="100dp"/>
 
     <TextView
@@ -29,5 +32,6 @@
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:textColor="@color/black"
+        android:layout_gravity="center_vertical"
         android:text="비디알" />
 </LinearLayout>

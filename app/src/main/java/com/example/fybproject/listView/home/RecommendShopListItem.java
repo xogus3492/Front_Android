@@ -4,6 +4,7 @@ public class RecommendShopListItem {
     private String rank;
     private String shop;
     private String url;
+    private String simg;
 
     public String getRank() {
         return rank;
@@ -29,9 +30,18 @@ public class RecommendShopListItem {
         this.url = url;
     }
 
-    public RecommendShopListItem(String rank, String shop, String url) {
+    public String getSimg() {
+        return simg;
+    }
+
+    public void setSimg(String simg) {
+        this.simg = simg;
+    }
+
+    public RecommendShopListItem(String rank, String shop, String url, String simg) {
         this.rank = rank;
         this.shop = shop;
         this.url = url;
+        this.simg = simg;
     }
 }

@@ -18,7 +18,11 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".ProfileImageActivity"
-            android:exported="true" />
+            android:exported="true" >
+        </activity>
+        <activity
+            android:name=".SignUpActivity"
+            android:exported="true"></activity>
         <activity
             android:name=".SplashActivity"
             android:exported="true">
@@ -29,14 +33,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SignUpActivity"
-            android:exported="true"></activity>
-        <activity
             android:name=".SignUpVerificationActivity"
-            android:exported="true"></activity>
+            android:exported="true">
+        </activity>
         <activity
             android:name=".FindPwActivity"
-            android:exported="true"></activity>
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".FindPwNewActivity"
+            android:exported="true">
+        </activity>
         <activity
             android:name=".LocalSignInActivity"
             android:exported="true" />

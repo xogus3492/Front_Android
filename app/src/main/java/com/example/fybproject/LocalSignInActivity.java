@@ -64,7 +64,7 @@ public class LocalSignInActivity extends AppCompatActivity {
 
                                         if (data.getStatus().equals("LOGIN_STATUS_TRUE")) {
                                             JwtToken.setToken(header.get("Authorization").substring(7));
-                                            Toast.makeText(getApplicationContext(), "환영합니다.", Toast.LENGTH_LONG).show();
+                                            //Toast.makeText(getApplicationContext(), "환영합니다.", Toast.LENGTH_LONG).show();
 
                                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                             startActivity(intent);

@@ -17,6 +17,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.fybproject.R;
 import com.example.fybproject.client.ServiceGenerator;
 import com.example.fybproject.dto.shopDTO.AnalyzeDTO;
@@ -36,10 +37,15 @@ public class RecommendShopListItemAdapter extends RecyclerView.Adapter<Recommend
 
     private ShopService shopService;
 
+    private Context context;
+
     @NonNull
     @Override
     public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recommenlist_item, parent, false);
+
+        context = parent.getContext();
+
         return new ItemViewHolder(view);
     }
 
@@ -72,13 +78,19 @@ public class RecommendShopListItemAdapter extends RecyclerView.Adapter<Recommend
 
             rank = itemView.findViewById(R.id.rank);
             shop = itemView.findViewById(R.id.recommendKrName);
-            img = itemView.findViewById(R.id.recommenImg);
+            img = itemView.findViewById(R.id.recommendImg);
             layout = itemView.findViewById(R.id.recommendItem);
         }
 
         void onBind(RecommendShopListItem data) {
             rank.setText(data.getRank());
             shop.setText(data.getShop());
+
+            // 이미지 불러오기
+            if(data.getSimg() != null) {
+                String imageUrl = data.getSimg();
+                Glide.with(context).load(imageUrl).into(img);
+            }
 
             layout.setOnClickListener(new View.OnClickListener() {
                 @Override

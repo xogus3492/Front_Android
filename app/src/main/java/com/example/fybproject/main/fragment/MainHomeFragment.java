@@ -49,7 +49,7 @@ public class MainHomeFragment extends Fragment {
     private ArrayList<SearchListItem> fArr;
     private Context mContext;
 
-    String shop, surl;
+    String shop, surl, simg;
     String name;
 
     private ShopService shopService, shopFilterService;
@@ -269,8 +269,9 @@ public class MainHomeFragment extends Fragment {
 
                                     shop = real.getShop();
                                     surl = real.getSurl();
+                                    simg = real.getsImg();
                                     Log.d(TAG, "shop" + index + ": " + shop + "\nsurl" + index + ": " + surl);
-                                    arr.add(new RecommendShopListItem(String.valueOf(index + 1), shop, surl));
+                                    arr.add(new RecommendShopListItem(String.valueOf(index + 1), shop, surl, simg));
                                     // for문에서 빠져 나가면 add한 내용이 없어지는 듯?
 
                                     index++;
