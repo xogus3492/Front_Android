@@ -217,7 +217,6 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().popBackStack();
     } // 비밀번호 변경 완료 시
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

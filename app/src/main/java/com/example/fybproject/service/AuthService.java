@@ -1,5 +1,6 @@
 package com.example.fybproject.service;
 
+import com.example.fybproject.dto.authDTO.PhysicalDTO;
 import com.example.fybproject.dto.authDTO.PlusInfoDTO;
 import com.example.fybproject.dto.authDTO.CheckDTO;
 import com.example.fybproject.dto.authDTO.DeleteDTO;
@@ -45,9 +46,10 @@ public interface AuthService {
     @HTTP(method = "DELETE", path = "auth/", hasBody = true)
     Call<DeleteDTO> deleteUserData(@Body DeleteDTO deleteDTO);
 
+
     // 로그아웃
-    @DELETE("auth/logout")
-    Call<LogoutDTO> deleteLogoutData();
+    @HTTP(method = "DELETE", path = "auth/logout", hasBody = true)
+    Call<LogoutDTO> deleteLogoutData(@Body LogoutDTO logoutDTO);
 
     // 휴대폰 인증
     @POST("auth/check")
@@ -69,4 +71,8 @@ public interface AuthService {
     @Multipart
     @PUT("auth/image")
     Call<ProfileImgDTO> putImgurlData(@Part MultipartBody.Part file);
+
+    // 신체 정보 조회
+    @GET("auth/model")
+    Call<PhysicalDTO> getPhysicalData();
 }

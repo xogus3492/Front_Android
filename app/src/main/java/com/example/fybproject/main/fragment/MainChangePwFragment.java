@@ -39,10 +39,9 @@ import retrofit2.Response;
 public class MainChangePwFragment extends Fragment {
     View view;
 
-    TextView ChangePwOkBtn;
+    TextView ChangePwOkBtn, receiveCodeForChangePw;
     EditText emailForChangePw, pwForChangePw, newPwForChangePw, phoneForChangePw, codeForChangePw;
-    ImageView hideChangePw, showChangePw, hideChangeNewPw, showChangeNewPw
-            ,receiveCodeForChangePw;
+    ImageView hideChangePw, showChangePw, hideChangeNewPw, showChangeNewPw;
 
     String pnum, randNum, code
             ,email, pw, newPw;

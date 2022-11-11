@@ -34,6 +34,7 @@ import retrofit2.Response;
 
 public class MainWithdrawalFragment extends Fragment {
     View view;
+    private JwtToken JwtToken;
 
     TextView doWithdrawalBtn;
     EditText inputPw;

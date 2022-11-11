@@ -37,7 +37,7 @@ public class ClosetListItemAdapter extends RecyclerView.Adapter<ClosetListItemAd
     View view;
 
     private ArrayList<ClosetListItem> listData;
-
+    private JwtToken JwtToken;
     private RecyclerView closetRecyclerView;
     private ClosetListItemAdapter adapter;
     private ArrayList<ClosetListItem> arr;

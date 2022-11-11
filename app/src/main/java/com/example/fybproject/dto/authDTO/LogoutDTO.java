@@ -3,6 +3,11 @@ package com.example.fybproject.dto.authDTO;
 public class LogoutDTO {
     private String status;
     private String statusMessage;
+    private String token;
+
+    public LogoutDTO(String token) {
+        this.token = token;
+    }
 
     public String  getStatus() {
         return status;
@@ -18,6 +23,14 @@ public class LogoutDTO {
 
     public void setStatusMessage(String statusMessage) {
         this.statusMessage = statusMessage;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     @Override

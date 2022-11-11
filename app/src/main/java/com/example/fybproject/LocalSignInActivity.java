@@ -33,6 +33,7 @@ public class LocalSignInActivity extends AppCompatActivity {
     TextView findPw;
     ImageView loginBtn, showPw, hidePw;
     EditText inputEmail, inputPw;
+    private JwtToken JwtToken;
 
     String email, pw;
 

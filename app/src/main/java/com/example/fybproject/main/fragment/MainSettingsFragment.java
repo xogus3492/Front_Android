@@ -85,10 +85,13 @@ public class MainSettingsFragment extends Fragment {
                     mainactivity.changeToWithdrawalFragment();
                     break;
                 case R.id.logoutBtn:
+                    Log.d(TAG, "로그아웃 토큰: " + JwtToken.getToken());
+
+                    LogoutDTO logoutDTO = new LogoutDTO("Bearer " + JwtToken.getToken());
                     authService = ServiceGenerator.createService(AuthService.class, JwtToken.getToken());
 
                     if (authService != null) {
-                        authService.deleteLogoutData()
+                        authService.deleteLogoutData(logoutDTO)
                                 .enqueue(new Callback<LogoutDTO>() {
                                     @Override
                                     public void onResponse(Call<LogoutDTO> call, Response<LogoutDTO> response) {
@@ -96,6 +99,7 @@ public class MainSettingsFragment extends Fragment {
                                         if (response.isSuccessful() == true) {
                                             Log.d(TAG, "logout : 성공,\nresponseBody : " + data);
                                             Log.d(TAG, "=====================================================================");
+                                            // JwtToken.setToken(null);
                                             Toast.makeText(view.getContext().getApplicationContext(), "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show();
                                             mainactivity.goSplash();
                                         } else {

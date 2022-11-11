@@ -25,7 +25,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cartRecyclerView"
-        android:layout_width="960px"
+        android:layout_width="match_parent"
         android:layout_height="900px"/>
     <!-- 190 -->
 
@@ -62,17 +62,19 @@
         android:id="@+id/addItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/list_bg"
-        android:layout_marginHorizontal="20dp"
+        android:background="@drawable/box"
         android:layout_marginTop="20dp"
+        android:paddingHorizontal="20dp"
         android:visibility="gone">
 
         <ImageView
             android:id="@+id/imageView4"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_marginRight="10dp"
             android:layout_marginVertical="3dp"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center_vertical"
             app:srcCompat="@drawable/cart_img" />
 
         <LinearLayout

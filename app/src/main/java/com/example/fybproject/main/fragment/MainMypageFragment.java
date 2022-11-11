@@ -138,6 +138,6 @@ public class MainMypageFragment extends Fragment {
                             Log.d(TAG, "onFailure: " + t.toString());
                         }
                     });
-        } // 마이페이지 조회
-    }
+        }
+    } // 마이페이지 조회
 }

@@ -41,6 +41,7 @@ public class CartListItemAdapter extends RecyclerView.Adapter<CartListItemAdapte
 
     private ArrayList<CartListItem> listData;
 
+    private JwtToken JwtToken;
     private RecyclerView cartRecyclerView;
     private CartListItemAdapter adapter;
     private ArrayList<CartListItem> arr;
@@ -79,8 +80,7 @@ public class CartListItemAdapter extends RecyclerView.Adapter<CartListItemAdapte
 
     class ItemViewHolder extends RecyclerView.ViewHolder {
         EditText name, note, price, url;
-        ImageView img, selectItemCancel;
-        TextView updateItem, deleteItem, goUrl;
+        ImageView img, selectItemCancel, updateItem, deleteItem, goUrl;
         LinearLayout layout, selectAction;
 
         public ItemViewHolder(@NonNull View itemView) {
