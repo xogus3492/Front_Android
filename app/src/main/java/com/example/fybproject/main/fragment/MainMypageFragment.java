@@ -19,7 +19,7 @@ import com.example.fybproject.MainActivity;
 import com.example.fybproject.R;
 import com.example.fybproject.client.ServiceGenerator;
 import com.example.fybproject.dto.infoDTO.InfoDTO;
-import com.example.fybproject.interceeptor.JwtToken;
+import com.example.fybproject.interceptor.JwtToken;
 import com.example.fybproject.service.InfoService;
 
 import java.io.IOException;

@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -25,7 +24,7 @@ import com.example.fybproject.client.ServiceGenerator;
 import com.example.fybproject.dto.wishlistDTO.WishDeleteDTO;
 import com.example.fybproject.dto.wishlistDTO.WishUpdateDTO;
 import com.example.fybproject.dto.wishlistDTO.WishlistDTO;
-import com.example.fybproject.interceeptor.JwtToken;
+import com.example.fybproject.interceptor.JwtToken;
 import com.example.fybproject.mediator.CartMediator;
 import com.example.fybproject.service.WishlistService;
 

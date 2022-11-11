@@ -21,7 +21,7 @@ import com.example.fybproject.R;
 import com.example.fybproject.client.ServiceGenerator;
 import com.example.fybproject.dto.shopDTO.FilterDTO;
 import com.example.fybproject.dto.shopDTO.MainDTO;
-import com.example.fybproject.interceeptor.JwtToken;
+import com.example.fybproject.interceptor.JwtToken;
 import com.example.fybproject.listView.home.RecommendShopListItem;
 import com.example.fybproject.listView.home.RecommendShopListItemAdapter;
 import com.example.fybproject.listView.search.SearchListItem;
@@ -81,6 +81,7 @@ public class MainHomeFragment extends Fragment {
             filterRecyclerView.setAdapter(adapter);
             filterRecyclerView.setLayoutManager(new GridLayoutManager(mContext, 2));
 
+            Log.d(TAG, "");
             shopFilterService = ServiceGenerator.createService(ShopService.class, JwtToken.getToken());
 
             switch (checkedId) {

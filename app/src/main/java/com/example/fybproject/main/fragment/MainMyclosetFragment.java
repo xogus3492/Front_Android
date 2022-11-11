@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -34,14 +33,13 @@ import com.example.fybproject.client.ServiceGenerator;
 import com.example.fybproject.dto.myClosetDTO.ClosetAddDTO;
 import com.example.fybproject.dto.myClosetDTO.ClosetDTO;
 import com.example.fybproject.dto.myClosetDTO.ClosetImgDTO;
-import com.example.fybproject.interceeptor.JwtToken;
+import com.example.fybproject.interceptor.JwtToken;
 import com.example.fybproject.listView.closet.ClosetListItem;
 import com.example.fybproject.listView.closet.ClosetListItemAdapter;
 import com.example.fybproject.service.MyClosetService;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 
 import okhttp3.MediaType;
@@ -50,7 +48,6 @@ import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.http.Multipart;
 
 public class MainMyclosetFragment extends Fragment {
     View view;

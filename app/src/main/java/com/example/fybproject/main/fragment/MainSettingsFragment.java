@@ -3,13 +3,11 @@ package com.example.fybproject.main.fragment;
 import static android.content.ContentValues.TAG;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,17 +17,12 @@ import androidx.fragment.app.Fragment;
 
 import com.example.fybproject.MainActivity;
 import com.example.fybproject.R;
-import com.example.fybproject.SplashActivity;
 import com.example.fybproject.client.ServiceGenerator;
-import com.example.fybproject.dto.authDTO.LoginDTO;
 import com.example.fybproject.dto.authDTO.LogoutDTO;
-import com.example.fybproject.dto.infoDTO.InfoDTO;
-import com.example.fybproject.interceeptor.JwtToken;
+import com.example.fybproject.interceptor.JwtToken;
 import com.example.fybproject.service.AuthService;
-import com.example.fybproject.service.InfoService;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;

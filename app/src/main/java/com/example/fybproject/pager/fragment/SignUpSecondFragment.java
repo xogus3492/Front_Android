@@ -43,7 +43,7 @@ public class SignUpSecondFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
                 Log.d(TAG, "age : " + s);
-                RegisterDataMediator.setAge(Integer.parseInt(s.toString()));
+                RegisterDataMediator.setAge(s.toString());
             }
         }); // user age
 
@@ -61,7 +61,7 @@ public class SignUpSecondFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
                 Log.d(TAG, "height : " + s);
-                RegisterDataMediator.setHeight(Integer.parseInt(s.toString()));
+                RegisterDataMediator.setHeight(s.toString());
             }
         }); //user height
 
@@ -79,7 +79,7 @@ public class SignUpSecondFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
                 Log.d(TAG, "weight : " + s);
-                RegisterDataMediator.setWeight(Integer.parseInt(s.toString()));
+                RegisterDataMediator.setWeight(s.toString());
             }
         }); // user weight
 

@@ -4,18 +4,15 @@ import static android.content.ContentValues.TAG;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.example.fybproject.client.ServiceGenerator;
-import com.example.fybproject.dto.authDTO.LoginDTO;
 import com.example.fybproject.dto.authDTO.SocialDTO;
-import com.example.fybproject.interceeptor.JwtToken;
+import com.example.fybproject.interceptor.JwtToken;
 import com.example.fybproject.service.AuthService;
 
 import java.io.IOException;

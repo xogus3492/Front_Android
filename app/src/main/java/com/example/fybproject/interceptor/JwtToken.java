@@ -1,4 +1,4 @@
-package com.example.fybproject.interceeptor;
+package com.example.fybproject.interceptor;
 
 public class JwtToken {
 

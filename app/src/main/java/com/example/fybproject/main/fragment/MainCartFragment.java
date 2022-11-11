@@ -3,10 +3,7 @@ package com.example.fybproject.main.fragment;
 import static android.content.ContentValues.TAG;
 
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.service.controls.ControlsProviderService;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,10 +24,9 @@ import com.example.fybproject.R;
 import com.example.fybproject.client.ServiceGenerator;
 import com.example.fybproject.dto.wishlistDTO.WishAddDTO;
 import com.example.fybproject.dto.wishlistDTO.WishlistDTO;
-import com.example.fybproject.interceeptor.JwtToken;
+import com.example.fybproject.interceptor.JwtToken;
 import com.example.fybproject.listView.cart.CartListItem;
 import com.example.fybproject.listView.cart.CartListItemAdapter;
-import com.example.fybproject.mediator.CartMediator;
 import com.example.fybproject.service.WishlistService;
 
 import java.io.IOException;

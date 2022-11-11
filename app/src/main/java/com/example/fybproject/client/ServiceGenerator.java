@@ -5,7 +5,7 @@ import static android.service.controls.ControlsProviderService.TAG;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.example.fybproject.interceeptor.AuthenticationInterceptor;
+import com.example.fybproject.interceptor.AuthenticationInterceptor;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;

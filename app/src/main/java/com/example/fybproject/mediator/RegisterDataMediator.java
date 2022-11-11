@@ -7,15 +7,16 @@ import android.util.Log;
 public class RegisterDataMediator {
     private static String email;
     private static String pw;
+    private static String pwCheck;
     private static String name;
-    private static int age;
-    private static int height;
-    private static int weight;
-    private static String gender;
-    private static String form;
-    private static String sholder;
-    private static String pelvis;
-    private static String leg;
+    private static String age;
+    private static String height;
+    private static String weight;
+    private static String gender = "";
+    private static String form = "";
+    private static String sholder = "";
+    private static String pelvis = "";
+    private static String leg = "";
 
     public static String getEmail() {
         return email;
@@ -33,6 +34,14 @@ public class RegisterDataMediator {
         RegisterDataMediator.pw = pw;
     }
 
+    public static String getPwCheck() {
+        return pwCheck;
+    }
+
+    public static void setPwCheck(String pwCheck) {
+        RegisterDataMediator.pwCheck = pwCheck;
+    }
+
     public static String getName() {
         return name;
     }
@@ -41,27 +50,27 @@ public class RegisterDataMediator {
         RegisterDataMediator.name = name;
     }
 
-    public static int getAge() {
+    public static String getAge() {
         return age;
     }
 
-    public static void setAge(int age) {
+    public static void setAge(String age) {
         RegisterDataMediator.age = age;
     }
 
-    public static int getHeight() {
+    public static String getHeight() {
         return height;
     }
 
-    public static void setHeight(int height) {
+    public static void setHeight(String height) {
         RegisterDataMediator.height = height;
     }
 
-    public static int getWeight() {
+    public static String getWeight() {
         return weight;
     }
 
-    public static void setWeight(int weight) {
+    public static void setWeight(String weight) {
         RegisterDataMediator.weight = weight;
     }
 

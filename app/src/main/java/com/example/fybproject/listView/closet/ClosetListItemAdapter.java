@@ -23,7 +23,7 @@ import com.example.fybproject.client.ServiceGenerator;
 import com.example.fybproject.dto.myClosetDTO.ClosetDTO;
 import com.example.fybproject.dto.myClosetDTO.ClosetDeleteDTO;
 import com.example.fybproject.dto.myClosetDTO.ClosetUpdateDTO;
-import com.example.fybproject.interceeptor.JwtToken;
+import com.example.fybproject.interceptor.JwtToken;
 import com.example.fybproject.service.MyClosetService;
 
 import java.io.IOException;

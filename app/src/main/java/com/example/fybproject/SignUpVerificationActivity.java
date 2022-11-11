@@ -2,27 +2,25 @@ package com.example.fybproject;
 
 import static android.service.controls.ControlsProviderService.TAG;
 
-import android.Manifest;
-import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.fybproject.client.ServiceGenerator;
 import com.example.fybproject.dto.authDTO.CheckDTO;
-import com.example.fybproject.dto.authDTO.LoginDTO;
 import com.example.fybproject.dto.authDTO.RegisterDTO;
-import com.example.fybproject.interceeptor.JwtToken;
+import com.example.fybproject.interceptor.JwtToken;
+import com.example.fybproject.mediator.RegisterDataMediator;
 import com.example.fybproject.service.AuthService;
 
 import java.io.IOException;
@@ -35,8 +33,9 @@ import retrofit2.Response;
 public class SignUpVerificationActivity extends AppCompatActivity {
     Intent intent;
 
+    TextView receiveCodeBtn;
     EditText inputPhone, inputCode;
-    ImageView receiveCodeBtn, doSignupBtn;
+    ImageView doSignupBtn;
 
     String pnum, randNum, code
             ,email, pw, name, gender, form, sholder, pelvis, leg;
@@ -55,7 +54,7 @@ public class SignUpVerificationActivity extends AppCompatActivity {
         receiveCodeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                inputPhoneData();
+                if(inputPhoneData() == 1) return;
                 CheckDTO checkDTO = new CheckDTO(pnum);
                 authService = ServiceGenerator.createService(AuthService.class);
 
@@ -92,7 +91,7 @@ public class SignUpVerificationActivity extends AppCompatActivity {
         doSignupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                inputData();
+                if(inputData() == 1) return;
                 RegisterDTO registerDTO = new RegisterDTO(email, pw, name, gender, height, weight, age, form, sholder, pelvis, leg);
                 authService = ServiceGenerator.createService(AuthService.class);
 
@@ -104,7 +103,7 @@ public class SignUpVerificationActivity extends AppCompatActivity {
                                     RegisterDTO data = response.body();
                                     Headers header = response.headers();
                                     if (response.isSuccessful() == true) {
-                                        Log.d(ContentValues.TAG, "Register : 성공,\nresponseBody : " + data + ",\njwtToken : " + header.get("Authorization"));
+                                        Log.d(ContentValues.TAG, "register : 성공,\nresponseBody : " + data + ",\njwtToken : " + header.get("Authorization"));
                                         Log.d(ContentValues.TAG, "=====================================================================");
 
                                         if (data.getStatus().equals("REGISTER_STATUS_TRUE")) {
@@ -115,9 +114,10 @@ public class SignUpVerificationActivity extends AppCompatActivity {
                                             Toast.makeText(getApplicationContext(), "회원가입을 축하드립니다!", Toast.LENGTH_SHORT).show();
                                         }
 
+
                                     } else {
                                         try {
-                                            Log.d(ContentValues.TAG, "Register : 실패,\nresponseBody() : " + data + ",\nresponse.code(): " + response.code() + ",\nresponse.errorBody(): " + response.errorBody().string());
+                                            Log.d(ContentValues.TAG, "register : 실패,\nresponseBody() : " + data + ",\nresponse.code(): " + response.code() + ",\nresponse.errorBody(): " + response.errorBody().string());
                                         } catch (IOException e) {
                                             e.printStackTrace();
                                         }
@@ -132,6 +132,8 @@ public class SignUpVerificationActivity extends AppCompatActivity {
                 }
             }
         }); // 회원가입 버튼
+
+
     }
 
     public void init() {
@@ -141,15 +143,8 @@ public class SignUpVerificationActivity extends AppCompatActivity {
         inputCode = findViewById(R.id.inputCodeForRegister);
     }
 
-    public void inputData() {
-        /*if (inputCode.getText().toString() == null) {
-            Toast.makeText(getApplicationContext(), "인증번호를 입력하세요", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if(!inputCode.getText().toString().equals(randNum)) {
-            Toast.makeText(getApplicationContext(), "인증번호가 일치하지 않습니다", Toast.LENGTH_SHORT).show();
-            return;
-        }*/
+    public int inputData() {
+        if(exception() == 1) return 1;
 
         email = intent.getStringExtra("email");
         pw = intent.getStringExtra("pw");
@@ -162,15 +157,39 @@ public class SignUpVerificationActivity extends AppCompatActivity {
         sholder = intent.getStringExtra("sholder");
         pelvis = intent.getStringExtra("pelvis");
         leg = intent.getStringExtra("leg");
-        //code = inputCode.getText().toString();
+        code = inputCode.getText().toString();
+
+        return 0;
     }
 
-    public void inputPhoneData() {
-        if (inputPhone.getText().toString() == null) {
+    public int inputPhoneData() {
+        if (inputPhone.getText().toString().equals("")) {
             Toast.makeText(getApplicationContext(), "전화번호를 입력하세요", Toast.LENGTH_SHORT).show();
-            return;
+            return 1;
+        }
+        if (inputPhone.getText().toString().length() != 11) {
+            Toast.makeText(getApplicationContext(), "휴대폰 번호를 입력하세요", Toast.LENGTH_SHORT).show();
+            return 1;
         }
 
-        pnum = inputPhone.getText().toString();
+        StringBuffer s = new StringBuffer();
+        s.append(inputPhone.getText().toString());
+        s.insert(3, "-");
+        s.insert(8, "-");
+        pnum = String.valueOf(s);
+        Log.d(TAG, "휴대전화 번호 : " + pnum);
+        return 0;
+    }
+
+    public int exception() {
+        if (inputCode.getText().toString().equals("")) {
+            Toast.makeText(getApplicationContext(), "인증번호를 입력하세요", Toast.LENGTH_SHORT).show();
+            return 1;
+        }
+        if(!inputCode.getText().toString().equals(randNum)) {
+            Toast.makeText(getApplicationContext(), "인증번호가 일치하지 않습니다", Toast.LENGTH_SHORT).show();
+            return 1;
+        }
+        return 0;
     }
 }

@@ -23,11 +23,8 @@ import android.widget.Toast;
 
 import com.example.fybproject.client.ServiceGenerator;
 import com.example.fybproject.dto.authDTO.ProfileImgDTO;
-import com.example.fybproject.dto.myClosetDTO.ClosetImgDTO;
-import com.example.fybproject.interceeptor.JwtToken;
-import com.example.fybproject.main.fragment.MainMyclosetFragment;
+import com.example.fybproject.interceptor.JwtToken;
 import com.example.fybproject.service.AuthService;
-import com.example.fybproject.service.MyClosetService;
 
 import java.io.File;
 import java.io.IOException;
