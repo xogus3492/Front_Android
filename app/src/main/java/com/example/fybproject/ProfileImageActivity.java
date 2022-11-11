@@ -48,11 +48,11 @@ public class ProfileImageActivity extends AppCompatActivity {
     private AuthService authService;
 
     // Storage Permissions
-    private static final int REQUEST_EXTERNAL_STORAGE = 1;
+    /*private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private static String[] PERMISSIONS_STORAGE = {
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE
-    };
+    };*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +70,7 @@ public class ProfileImageActivity extends AppCompatActivity {
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.pImg:
-                    verifyStoragePermissions(getParent());
+                    //verifyStoragePermissions(getParent());
 
                     Intent intent = new Intent();
                     intent.setType("image/*");
@@ -144,7 +144,7 @@ public class ProfileImageActivity extends AppCompatActivity {
                     File f = new File(absolutePath);
                     //Log.d(TAG, "file : " + f.toString());
 
-                    RequestBody requestBody = RequestBody.create(MediaType.parse("image/png"), f);
+                    RequestBody requestBody = RequestBody.create(MediaType.parse("image/jpg"), f);
                     //Log.d(TAG, "requestBody : " + requestBody.toString());
 
                     body = MultipartBody.Part.createFormData("file", f.getName(), requestBody);
@@ -158,7 +158,7 @@ public class ProfileImageActivity extends AppCompatActivity {
         }
     }
 
-    public static void verifyStoragePermissions(Activity activity) {
+    /*public static void verifyStoragePermissions(Activity activity) {
         // Check if we have write permission
         int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
@@ -170,5 +170,5 @@ public class ProfileImageActivity extends AppCompatActivity {
                     REQUEST_EXTERNAL_STORAGE
             );
         }
-    }
+    }*/
 }

@@ -178,7 +178,7 @@ public class MainMyclosetFragment extends Fragment {
                     }
                     break; // 내 옷장 등록
                 case R.id.addClosetItemImg:
-                    ProfileImageActivity.verifyStoragePermissions(getActivity());
+                    //ProfileImageActivity.verifyStoragePermissions(getActivity());
 
                     Intent intent = new Intent();
                     intent.setType("image/*");
@@ -277,19 +277,23 @@ public class MainMyclosetFragment extends Fragment {
     public void getImgData(Bitmap img,Uri uri) {
         closetItemImg.setImageBitmap(img);
 
+        Log.d(TAG, "확인1");
+
         Cursor c = context.getContentResolver().query(Uri.parse(uri.toString()), null,null,null,null);
         c.moveToNext();
+        Log.d(TAG, "확인2");
         @SuppressLint("Range") String absolutePath = c.getString(c.getColumnIndex(MediaStore.MediaColumns.DATA)); // 절대경로 얻기
+        Log.d(TAG,"확인3 : " + absolutePath);
         //Log.d(TAG, "절대경로 : " + absolutePath);
 
         File f = new File(absolutePath);
-        //Log.d(TAG, "file : " + f.toString());
+        Log.d(TAG, "file : " + f.toString());
 
-        RequestBody requestBody = RequestBody.create(MediaType.parse("image/png"), f);
-        //Log.d(TAG, "requestBody : " + requestBody.toString());
+        RequestBody requestBody = RequestBody.create(MediaType.parse("image/jpg"), f);
+        Log.d(TAG, "requestBody : " + requestBody.toString());
 
         body = MultipartBody.Part.createFormData("file", f.getName(), requestBody);
-        //Log.d(TAG, "body" + body.toString());
+        Log.d(TAG, "body" + body.toString());
     }
 
     public void init() {
