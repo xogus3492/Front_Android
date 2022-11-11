@@ -17,6 +17,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.fybproject.R;
 import com.example.fybproject.client.ServiceGenerator;
 import com.example.fybproject.dto.shopDTO.AnalyzeDTO;
@@ -36,10 +37,15 @@ public class SearchListItemAdapter extends RecyclerView.Adapter<SearchListItemAd
 
     private ShopService shopService;
 
+    private Context context;
+
     @NonNull
     @Override
     public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.searchlist_item, parent, false);
+
+        this.context = parent.getContext();
+
         return new ItemViewHolder(view);
     }
 
@@ -78,6 +84,12 @@ public class SearchListItemAdapter extends RecyclerView.Adapter<SearchListItemAd
             Log.d(TAG, "data.getShop() : " + data.getShop());
             shop.setText(data.getShop());
 
+            // 이미지 불러오기
+            if(data.getSimg() != null) {
+                String imageUrl = data.getSimg();
+                Glide.with(context).load(imageUrl).into(img);
+            }
+
             searchItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -91,7 +103,7 @@ public class SearchListItemAdapter extends RecyclerView.Adapter<SearchListItemAd
                     char gender = MainUserDataMediator.getGender();
                     int age = MainUserDataMediator.getAge();
 
-                    Log.d(TAG, "sid = " + sid + ", gender = " + gender + ", age = " + age + ", url = " + url);
+                    //Log.d(TAG, "sid = " + sid + ", gender = " + gender + ", age = " + age + ", url = " + url);
                     AnalyzeDTO analyzeDTO = new AnalyzeDTO(sid, gender, age, url);
                     shopService = ServiceGenerator.createService(ShopService.class, JwtToken.getToken());
 

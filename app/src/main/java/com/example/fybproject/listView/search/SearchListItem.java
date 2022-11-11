@@ -3,6 +3,7 @@ package com.example.fybproject.listView.search;
 public class SearchListItem {
     private String shop;
     private String surl;
+    private String simg;
 
     public String getShop() {
         return shop;
@@ -20,8 +21,17 @@ public class SearchListItem {
         this.surl = surl;
     }
 
-    public SearchListItem(String shop, String surl) {
+    public String getSimg() {
+        return simg;
+    }
+
+    public void setSimg(String simg) {
+        this.simg = simg;
+    }
+
+    public SearchListItem(String shop, String surl, String simg) {
         this.shop = shop;
         this.surl = surl;
+        this.simg = simg;
     }
 }

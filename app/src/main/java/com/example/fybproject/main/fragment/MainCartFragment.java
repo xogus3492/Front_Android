@@ -104,7 +104,6 @@ public class MainCartFragment extends Fragment {
                     cartItemNote.setText(null);
                     cartItemPrice.setText(null);
                     cartItemUrl.setText(null);
-                    py = 570;
                     cartRecyclerView.setLayoutParams(new LinearLayout.LayoutParams(px, py));
                     addItem.setVisibility(View.VISIBLE);
                     defaultBtnGroup.setVisibility(View.GONE);

@@ -34,7 +34,7 @@
             android:id="@+id/textView16"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="님의 체험 기반 추천 쇼핑몰"
+            android:text="님을 위한 실시간 스토어 순위"
             android:textSize="10sp"/>
 
     </LinearLayout>
@@ -61,15 +61,6 @@
         android:layout_marginLeft="20dp"
         android:layout_gravity="start"
         android:orientation="horizontal">
-
-        <RadioButton
-            android:id="@+id/countBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
-            android:checked="true"
-            android:text="조회 수"
-            android:textSize="10sp"/>
 
         <RadioButton
             android:id="@+id/ageBtn"

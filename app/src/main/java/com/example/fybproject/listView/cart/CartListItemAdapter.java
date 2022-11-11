@@ -40,7 +40,6 @@ public class CartListItemAdapter extends RecyclerView.Adapter<CartListItemAdapte
 
     private ArrayList<CartListItem> listData;
 
-    private JwtToken JwtToken;
     private RecyclerView cartRecyclerView;
     private CartListItemAdapter adapter;
     private ArrayList<CartListItem> arr;
@@ -289,7 +288,7 @@ public class CartListItemAdapter extends RecyclerView.Adapter<CartListItemAdapte
                                 Log.d(TAG, "onFailure: " + t.toString());
                             }
                         });
-            } // 장바구니 조회
+            }
         } // 장바구니 조회
     }
 }

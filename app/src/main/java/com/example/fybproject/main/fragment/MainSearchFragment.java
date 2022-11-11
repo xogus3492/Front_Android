@@ -77,15 +77,16 @@ public class MainSearchFragment extends Fragment {
                                 Log.d(TAG, "=====================================================================");
 
                                 int index = 0;
-                                String shop, surl;
+                                String shop, surl, simg;
                                 arr = new ArrayList<>();
                                 for (SearchDTO real : data) {
                                     Log.d(TAG, "real: " + real.toString());
 
                                     shop = real.getShop();
                                     surl = real.getSurl();
+                                    simg = real.getSimg();
                                     Log.d(TAG, "shop" + index + ": " + shop + "\nsurl" + index + ": " + surl);
-                                    arr.add(new SearchListItem(shop, surl));
+                                    arr.add(new SearchListItem(shop, surl, simg));
                                     // for문에서 빠져 나가면 add한 내용이 없어지는 듯?
 
                                     if(data.size() - 1 == index) {
@@ -128,15 +129,16 @@ public class MainSearchFragment extends Fragment {
                                         Log.d(TAG, "=====================================================================");
 
                                         int index = 0;
-                                        String shop, surl;
+                                        String shop, surl, simg;
                                         arr = new ArrayList<>();
                                         for (SearchDTO real : data) {
                                             Log.d(TAG, "real: " + real.toString());
 
                                             shop = real.getShop();
                                             surl = real.getSurl();
+                                            simg = real.getSimg();
                                             Log.d(TAG, "shop" + index + ": " + shop + "\nsurl" + index + ": " + surl);
-                                            arr.add(new SearchListItem(shop, surl));
+                                            arr.add(new SearchListItem(shop, surl, simg));
                                             // for문에서 빠져 나가면 add한 내용이 없어지는 듯?
 
                                             if(data.size() - 1 == index) {

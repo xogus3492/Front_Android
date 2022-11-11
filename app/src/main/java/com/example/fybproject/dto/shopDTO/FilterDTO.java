@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName;
 public class FilterDTO {
     private String shop;
     private String surl;
+    private String simg;
 
     public String getShop() {
         return shop;
@@ -20,5 +21,13 @@ public class FilterDTO {
 
     public void setSurl(String surl) {
         this.surl = surl;
+    }
+
+    public String getSimg() {
+        return simg;
+    }
+
+    public void setSimg(String simg) {
+        this.simg = simg;
     }
 }

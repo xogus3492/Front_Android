@@ -3,8 +3,7 @@ package com.example.fybproject.dto.shopDTO;
 public class SearchDTO {
     private String shop;
     private String surl;
-
-    public SearchDTO() { }
+    private String simg;
 
     public SearchDTO(String shop) {
         this.shop = shop;
@@ -26,11 +25,20 @@ public class SearchDTO {
         this.surl = surl;
     }
 
+    public String getSimg() {
+        return simg;
+    }
+
+    public void setSimg(String simg) {
+        this.simg = simg;
+    }
+
     @Override
     public String toString() {
         return "PostResult {" +
                 "shop = " + shop +
                 ", surl = " + surl +
+                ", smig = " + simg +
                 '}';
     }
 }
