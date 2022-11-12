@@ -161,7 +161,6 @@ public class MainMyclosetFragment extends Fragment {
                                             }
 
                                             loadClosetList(); // 옷장 조회
-                                            release();
                                         } else {
                                             try {
                                                 Log.d(TAG, "addClosetData : 실패,\nresponseBody() : " + data + ",\nresponse.code(): " + response.code() + ",\nresponse.errorBody(): " + response.errorBody().string());
@@ -214,9 +213,9 @@ public class MainMyclosetFragment extends Fragment {
                                     Log.d(TAG, "real: " + real.toString());
 
                                     id = real.getId();
-                                    pname = real.getPname();
-                                    pnote = real.getPnotes();
-                                    pkind = real.getPkind();
+                                    String pname = real.getPname();
+                                    String pnote = real.getPnotes();
+                                    String pkind = real.getPkind();
                                     closetImagePath = real.getClosetImagePath();
                                     Log.d(TAG, "id[" + index + "]: " + id + ", pname[" + index + "]: " + pname + ", pnotes[" + index
                                             + "]: " + pnote + ", pkind[" + index + "]: " + pkind + ", url[" + index + "]: " + closetImagePath);
@@ -327,6 +326,7 @@ public class MainMyclosetFragment extends Fragment {
         pname = null;
         pnote = null;
         pkind = null;
+        body = null;
     }
 
 }

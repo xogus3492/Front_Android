@@ -221,7 +221,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         if (requestCode == 1000) {
             if (resultCode == RESULT_OK) {
                 try {
@@ -237,6 +236,23 @@ public class MainActivity extends AppCompatActivity {
             } else if (resultCode == RESULT_CANCELED) {
                 Toast.makeText(getApplicationContext(), "사진 선택 취소", Toast.LENGTH_LONG).show();
             }
-        }
+        } // 옷장 사진
+
+        if (requestCode == 1001) {
+            if (resultCode == RESULT_OK) {
+                try {
+                    InputStream in = getContentResolver().openInputStream(data.getData());
+                    Bitmap img = BitmapFactory.decodeStream(in);
+                    in.close();
+
+                    MainMypageUpdateFragment m = (MainMypageUpdateFragment) getSupportFragmentManager().findFragmentById(R.id.frameMain);
+                    m.getImgData(img, data.getData());
+                } catch (Exception e) {
+
+                }
+            } else if (resultCode == RESULT_CANCELED) {
+                Toast.makeText(getApplicationContext(), "사진 선택 취소", Toast.LENGTH_LONG).show();
+            }
+        } // 프로필 사진
     }
 }
