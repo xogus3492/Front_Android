@@ -130,29 +130,21 @@ public class ProfileImageActivity extends AppCompatActivity {
         if (requestCode == 1001) {
             if (resultCode == RESULT_OK) {
                 try {
-                    Uri selectedImage = data.getData();
-
-                    Log.d(TAG, "url : " + selectedImage);
                     InputStream in = getContentResolver().openInputStream(data.getData());
                     Bitmap img = BitmapFactory.decodeStream(in);
                     in.close();
 
                     pImg.setImageBitmap(img);
 
-                    Cursor c = getContentResolver()
-                            .query(Uri.parse(
-                                    selectedImage.toString()
-                            ), null,null,null,null);
-                    assert c != null;
-
-                    c.moveToFirst();
+                    Cursor c = getContentResolver().query(Uri.parse(data.getData().toString()), null,null,null,null);
+                    c.moveToNext();
                     @SuppressLint("Range") String absolutePath = c.getString(c.getColumnIndex(MediaStore.MediaColumns.DATA)); // 절대경로 얻기
-                    Log.d(TAG, "절대경로 : " + absolutePath);
+                    //Log.d(TAG, "절대경로 : " + absolutePath);
 
                     File f = new File(absolutePath);
                     Log.d(TAG, "file : " + f.toString());
 
-                    RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), f);
+                    RequestBody requestBody = RequestBody.create(MediaType.parse("image/jpg"), f);
                     Log.d(TAG, "requestBody : " + requestBody.toString());
 
                     body = MultipartBody.Part.createFormData("file", f.getName(), requestBody);

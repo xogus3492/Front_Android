@@ -83,7 +83,7 @@ public class ClothesListItemAdapter extends RecyclerView.Adapter<ClothesListItem
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    itemView.setBackgroundResource(R.drawable.clothes_item_select);
+                    //itemView.setBackgroundResource(R.drawable.clothes_item_select); 선택시 테두리표시
                     mCallback.onClick(imgName);
                 }
             });

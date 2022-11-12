@@ -118,6 +118,7 @@ public class MainMyclosetFragment extends Fragment {
                     closetItemName.setText(null);
                     closetItemNote.setText(null);
                     closetItemKind.setText(null);
+                    closetItemImg.setImageResource(R.drawable.closet_img);
                     py = 570;
                     closetRecyclerView.setLayoutParams(new LinearLayout.LayoutParams(px, py));
                     addItem.setVisibility(View.VISIBLE);
@@ -154,7 +155,7 @@ public class MainMyclosetFragment extends Fragment {
                                             long id = 0;
 
                                             for(ClosetAddDTO real : data) {
-                                                Log.d(TAG, "real: " + real.toString());
+                                                //Log.d(TAG, "real: " + real.toString());
                                                 id = real.getId();
                                                 regiClosetImg(id); // 이미지 업로드
                                             }
@@ -277,13 +278,9 @@ public class MainMyclosetFragment extends Fragment {
     public void getImgData(Bitmap img,Uri uri) {
         closetItemImg.setImageBitmap(img);
 
-        Log.d(TAG, "확인1");
-
         Cursor c = context.getContentResolver().query(Uri.parse(uri.toString()), null,null,null,null);
         c.moveToNext();
-        Log.d(TAG, "확인2");
         @SuppressLint("Range") String absolutePath = c.getString(c.getColumnIndex(MediaStore.MediaColumns.DATA)); // 절대경로 얻기
-        Log.d(TAG,"확인3 : " + absolutePath);
         //Log.d(TAG, "절대경로 : " + absolutePath);
 
         File f = new File(absolutePath);

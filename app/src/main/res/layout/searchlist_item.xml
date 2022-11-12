@@ -16,11 +16,20 @@
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
-        <ImageView
+        <!-- <ImageView
             android:id="@+id/searchShopImg"
             android:background="@drawable/shop_img"
             android:layout_width="150dp"
-            android:layout_height="150dp" />
+            android:layout_height="150dp" /> -->
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/searchShopImg"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:padding="10dp"
+            app:civ_border_overlay="true"
+            app:civ_border_color="#000000"
+            android:src="@drawable/shop_img"/>
 
         <TextView
             android:id="@+id/searchShopName"

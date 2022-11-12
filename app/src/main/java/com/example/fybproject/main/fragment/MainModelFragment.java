@@ -58,7 +58,6 @@ public class MainModelFragment extends Fragment implements OnItemClick {
     String gender, imgName, physical;
     Uri uri;
     char form, pelvis, shoulder, leg;
-    int height, weight;
 
     private AuthService authService;
     private InfoService infoService;
@@ -143,15 +142,27 @@ public class MainModelFragment extends Fragment implements OnItemClick {
     }
 
     public void createList() {
-        int i = 0, j = 0;
+        int i = 0, j = 0; // 옷 갯수
 
         if(gender.equals("M")) {
             i = 1;
             j = 6;
+
+            //남자일 때 썸네일
+            uri = Uri.parse("https://chw-bucket.s3.ap-northeast-2.amazonaws.com/model/" + "TT4" + "_"+ physical + ".mp4");
+            Log.d(TAG, "경로 : " + uri);
+            modeling.setVideoURI(uri);
+            modeling.seekTo( 1 );
         }
         if(gender.equals("W")) {
             i = 7;
             j = 15;
+
+            // 여자일 때 썸네일
+            uri = Uri.parse("https://chw-bucket.s3.ap-northeast-2.amazonaws.com/model/" + "WTC1" + "_"+ physical + ".mp4");
+            Log.d(TAG, "경로 : " + uri);
+            modeling.setVideoURI(uri);
+            modeling.seekTo( 1 );
         }
 
         adapter = new ClothesListItemAdapter(this);

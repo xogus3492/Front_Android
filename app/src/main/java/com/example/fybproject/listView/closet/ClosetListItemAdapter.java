@@ -100,8 +100,10 @@ public class ClosetListItemAdapter extends RecyclerView.Adapter<ClosetListItemAd
             kind.setText(data.getPkind());
 
             // 이미지 불러오기
-            String imageUrl = data.getUrl();
-            Glide.with(context).load(imageUrl).into(img);
+            if(data.getUrl() != null) {
+                String imageUrl = data.getUrl();
+                Glide.with(context).load(imageUrl).into(img);
+            }
 
             name.setFocusableInTouchMode(false);
             note.setFocusableInTouchMode(false);

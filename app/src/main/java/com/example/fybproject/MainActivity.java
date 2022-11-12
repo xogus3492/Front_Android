@@ -62,7 +62,8 @@ public class MainActivity extends AppCompatActivity {
         fragmentManager = getSupportFragmentManager();
         transaction = fragmentManager.beginTransaction();
 
-        transaction.replace(R.id.frameMain, mainHomeFragment).commitAllowingStateLoss();
+        //transaction.replace(R.id.frameMain, mainHomeFragment).commitAllowingStateLoss();
+        transaction.replace(R.id.frameMain, mainMyclosetFragment).commitAllowingStateLoss();
 
         homeBtn.setOnClickListener(navListener);
         searchBtn.setOnClickListener(navListener);
