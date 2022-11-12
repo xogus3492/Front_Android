@@ -75,9 +75,10 @@ public class ClosetListItemAdapter extends RecyclerView.Adapter<ClosetListItemAd
 
     class ItemViewHolder extends RecyclerView.ViewHolder {
         EditText name, note, kind;
-        ImageView img, selectItemCancel;
-        TextView updateItem, deleteItem;
+        ImageView img, selectItemCancel, updateItem, deleteItem;
         LinearLayout layout, selectAction;
+
+        String str1, str2, str3;
 
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -193,12 +194,15 @@ public class ClosetListItemAdapter extends RecyclerView.Adapter<ClosetListItemAd
             public void onClick(View view) {
                 Log.d(ContentValues.TAG, "아이템 클릭됨");
 
+                str1 = name.getText().toString();
+                str2 = note.getText().toString();
+                str3 = kind.getText().toString();
+
                 name.setFocusableInTouchMode(true);
                 note.setFocusableInTouchMode(true);
                 kind.setFocusableInTouchMode(true);
-                name.setCursorVisible(true);
-                note.setCursorVisible(true);
-                kind.setCursorVisible(true);
+
+                name.requestFocus();
 
                 selectItemCancel.setVisibility(View.VISIBLE);
                 selectAction.setVisibility(View.VISIBLE);
@@ -210,12 +214,13 @@ public class ClosetListItemAdapter extends RecyclerView.Adapter<ClosetListItemAd
             public void onClick(View view) {
                 layout.setBackground(view.getResources().getDrawable(R.drawable.list_bg));
 
+                name.setText(str1);
+                note.setText(str2);
+                kind.setText(str3);
+
                 name.setFocusableInTouchMode(false);
                 note.setFocusableInTouchMode(false);
                 kind.setFocusableInTouchMode(false);
-                name.setCursorVisible(false);
-                note.setCursorVisible(false);
-                kind.setCursorVisible(false);
 
                 selectItemCancel.setVisibility(View.GONE);
                 selectAction.setVisibility(View.GONE);

@@ -15,6 +15,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FybProject"
+        android:windowSoftInputMode="adjustPan"
         android:usesCleartextTraffic="true">
         <activity
             android:name=".ProfileImageActivity"
@@ -53,8 +54,7 @@
             android:exported="true"></activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true"
-            android:windowSoftInputMode="adjustNothing"></activity>
+            android:exported="true"></activity>
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
