@@ -103,7 +103,7 @@ public class CartListItemAdapter extends RecyclerView.Adapter<CartListItemAdapte
 
             name.setText(data.getPname());
             note.setText(data.getNotes());
-            price.setText(String.valueOf(data.getPrice()));
+            price.setText(String.valueOf(data.getPrice()) + " ₩");
             url.setText(data.getpUrl());
 
             name.setFocusableInTouchMode(false);
