@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:letterSpacing="-0.1"
         android:text="체형"
         android:textSize="12sp" />
 
@@ -27,6 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
             android:text="상체 비만"
+            android:letterSpacing="-0.1"
             android:textSize="10sp"/>
 
         <RadioButton
@@ -35,6 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
             android:text="하체 비만"
+            android:letterSpacing="-0.1"
             android:textSize="10sp"/>
 
         <RadioButton
@@ -42,6 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="정상 체형"
+            android:letterSpacing="-0.1"
             android:textSize="10sp"/>
     </RadioGroup>
 
@@ -50,6 +54,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="어깨 너비"
+        android:letterSpacing="-0.1"
         android:textSize="12sp" />
 
     <RadioGroup
@@ -88,6 +93,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="골반 너비"
+        android:letterSpacing="-0.1"
         android:textSize="12sp" />
 
     <RadioGroup
@@ -103,6 +109,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
             android:text="중상"
+            android:letterSpacing="-0.1"
             android:textSize="10sp"/>
 
         <RadioButton
@@ -110,6 +117,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="중하"
+            android:letterSpacing="-0.1"
             android:textSize="10sp"/>
     </RadioGroup>
 
@@ -118,6 +126,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="다리 두께"
+        android:letterSpacing="-0.1"
         android:textSize="12sp" />
 
     <RadioGroup
@@ -132,6 +141,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
+            android:letterSpacing="-0.1"
             android:text="중상"
             android:textSize="10sp"/>
 
@@ -140,6 +150,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="중하"
+            android:letterSpacing="-0.1"
             android:textSize="10sp"/>
     </RadioGroup>
 

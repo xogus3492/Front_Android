@@ -66,6 +66,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textSize="10sp"
+                android:letterSpacing="-0.1"
+                android:textColor="#000000"
                 android:text="guest" />
 
             <TextView
@@ -73,7 +76,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="님을 위한 추천 아이템" />
+                android:textSize="10sp"
+                android:letterSpacing="-0.1"
+                android:text=" 님을 위한 추천 아이템" />
         </LinearLayout>
 
         <LinearLayout
@@ -112,7 +117,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-
         <ImageView
             android:id="@+id/mInfo"
             android:layout_width="wrap_content"
@@ -140,6 +144,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textSize="10sp"
+                android:letterSpacing="-0.1"
                 android:text="키" />
 
             <TextView
@@ -149,6 +154,7 @@
                 android:layout_weight="1"
                 android:gravity="right"
                 android:textSize="10sp"
+                android:letterSpacing="-0.1"
                 android:textStyle="bold"
                 android:text="188" />
         </LinearLayout>
@@ -166,6 +172,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textSize="10sp"
+                android:letterSpacing="-0.1"
                 android:text="몸무게" />
 
             <TextView
@@ -175,6 +182,7 @@
                 android:layout_weight="1"
                 android:gravity="right"
                 android:textSize="10sp"
+                android:letterSpacing="-0.1"
                 android:textStyle="bold"
                 android:text="72" />
         </LinearLayout>
@@ -192,6 +200,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textSize="10sp"
+                android:letterSpacing="-0.1"
                 android:text="체형" />
 
             <TextView
@@ -201,6 +210,7 @@
                 android:layout_weight="1"
                 android:gravity="right"
                 android:textSize="10sp"
+                android:letterSpacing="-0.1"
                 android:textStyle="bold"
                 android:text="정상 체형" />
         </LinearLayout>
@@ -218,6 +228,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textSize="10sp"
+                android:letterSpacing="-0.1"
                 android:text="어깨 너비" />
 
             <TextView
@@ -227,6 +238,7 @@
                 android:layout_weight="1"
                 android:gravity="right"
                 android:textSize="10sp"
+                android:letterSpacing="-0.1"
                 android:textStyle="bold"
                 android:text="중" />
         </LinearLayout>
@@ -243,6 +255,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:letterSpacing="-0.1"
                 android:textSize="10sp"
                 android:text="골반 너비" />
 
@@ -253,6 +266,7 @@
                 android:layout_weight="1"
                 android:gravity="right"
                 android:textSize="10sp"
+                android:letterSpacing="-0.1"
                 android:textStyle="bold"
                 android:text="중하" />
         </LinearLayout>
@@ -270,6 +284,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textSize="10sp"
+                android:letterSpacing="-0.1"
                 android:text="다리 두께" />
 
             <TextView
@@ -279,6 +294,7 @@
                 android:layout_weight="1"
                 android:gravity="right"
                 android:textSize="10sp"
+                android:letterSpacing="-0.1"
                 android:textStyle="bold"
                 android:text="중상" />
         </LinearLayout>

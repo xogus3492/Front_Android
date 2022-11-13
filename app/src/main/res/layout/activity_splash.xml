@@ -26,6 +26,7 @@
         android:paddingHorizontal="100dp"
         android:layout_marginTop="300dp"
         android:text="회원가입"
+        android:letterSpacing="-0.1"
         android:textSize="15sp"
         android:textColor="@color/white"
         android:clickable="true"/>
@@ -40,13 +41,15 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="계정이 있으십니까?   " />
+            android:letterSpacing="-0.1"
+            android:text="계정이 있으십니까?       " />
 
         <TextView
             android:id="@+id/splashLoginBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="로그인"
+            android:letterSpacing="-0.1"
             android:textColor="#000000"
             android:textStyle="bold"
             android:clickable="true"/>

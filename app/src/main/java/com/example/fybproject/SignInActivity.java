@@ -12,7 +12,6 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.fybproject.client.ServiceGenerator;
-import com.example.fybproject.client.SosicalServiceGenerator;
 import com.example.fybproject.dto.authDTO.SocialLoginDTO;
 import com.example.fybproject.dto.authDTO.SocialUrlDTO;
 import com.example.fybproject.interceptor.JwtToken;
@@ -29,7 +28,7 @@ public class SignInActivity extends AppCompatActivity {
 
     ImageView localLoginBtn, kakaoLoginBtn, googleLoginBtn;
 
-    private AuthService authService, oauthService;
+    private AuthService authService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +60,8 @@ public class SignInActivity extends AppCompatActivity {
                                     if (response.isSuccessful() == true) {
                                         Log.d(TAG, "KakaoUrl : 성공,\nresponseBody : " + data);
 
-                                        kakaoLogin(data.getUrl());
+                                        Intent intentUrl = new Intent(Intent.ACTION_VIEW, Uri.parse(data.getUrl()));
+                                        startActivity(intentUrl);
                                     } else {
                                         try {
                                             Log.d(TAG, "KakaoUrl : 실패,\nresponseBody : " + data + ",\nresponse.code(): " + response.code() + ",\nresponse.errorBody(): " + response.errorBody().string());
@@ -125,7 +125,7 @@ public class SignInActivity extends AppCompatActivity {
         }); // 구글 로그인*/
     }
 
-    public void kakaoLogin(String url) {
+    /*public void kakaoLogin(String url) {
         oauthService = ServiceGenerator.createService(AuthService.class);
 
         if (oauthService != null) {
@@ -137,7 +137,7 @@ public class SignInActivity extends AppCompatActivity {
                             Headers header = response.headers();
 
                             if (response.isSuccessful() == true) {
-                                Log.d(TAG, "KakaoLogin : 성공,\nresponseBody : " + data /*+ ",\njwtToken : " + header.get("Authorization")*/);
+                                Log.d(TAG, "KakaoLogin : 성공,\nresponseBody : " + data + ",\njwtToken : " + header.get("Authorization"));
 
                                         if (data.getStatus().equals("SOCIAL_REGISTER_STATUS_TRUE")) {
                                             JwtToken.setToken(header.get("Authorization"));
@@ -165,7 +165,7 @@ public class SignInActivity extends AppCompatActivity {
                         }
                     });
         }
-    }
+    }*/
 
     public void init() {
         localLoginBtn = findViewById(R.id.localLoginBtn);

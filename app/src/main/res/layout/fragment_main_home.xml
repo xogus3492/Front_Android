@@ -13,6 +13,7 @@
         android:gravity="center"
         android:padding="5dp"
         android:text="FYB가 추천하는 최적의 쇼핑몰을 둘러보세요"
+        android:letterSpacing="-0.1"
         android:textColor="@color/black"
         android:textSize="12sp"/>
 
@@ -27,6 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="guest"
+            android:letterSpacing="-0.1"
             android:textSize="10sp"
             android:textColor="#000000"/>
 
@@ -34,7 +36,8 @@
             android:id="@+id/textView16"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="님을 위한 실시간 스토어 순위"
+            android:text=" 님을 위한 실시간 스토어 순위"
+            android:letterSpacing="-0.1"
             android:textSize="10sp"/>
 
     </LinearLayout>
@@ -52,6 +55,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
         android:text="필터"
+        android:letterSpacing="-0.1"
         android:textSize="10sp"/>
 
     <RadioGroup
@@ -68,6 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
             android:text="나이"
+            android:letterSpacing="-0.1"
             android:textSize="10sp"/>
 
         <RadioButton
@@ -75,6 +80,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="성별"
+            android:letterSpacing="-0.1"
             android:textSize="10sp"/>
     </RadioGroup>
 

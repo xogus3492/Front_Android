@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:letterSpacing="-0.1"
         android:text="성별"
         android:textSize="12sp"/>
 
@@ -27,6 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
+            android:letterSpacing="-0.1"
             android:text="남성"
             android:textSize="10sp"/>
 
@@ -34,6 +36,7 @@
             android:id="@+id/femaleBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:letterSpacing="-0.1"
             android:text="여성"
             android:textSize="10sp"/>
     </RadioGroup>
@@ -44,6 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
         android:text="나이"
+        android:letterSpacing="-0.1"
         android:textSize="12sp" />
 
     <EditText
@@ -52,6 +56,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="14sp"
+        android:letterSpacing="-0.1"
         android:padding="5dp"
         android:ems="10"
         android:inputType="numberSigned" />
@@ -62,6 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:text="키"
+        android:letterSpacing="-0.1"
         android:textSize="12sp" />
 
     <EditText
@@ -71,6 +77,7 @@
         android:layout_height="wrap_content"
         android:textSize="14sp"
         android:padding="5dp"
+        android:letterSpacing="-0.1"
         android:ems="10"
         android:inputType="numberSigned" />
 
@@ -79,6 +86,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
+        android:letterSpacing="-0.1"
         android:text="몸무게"
         android:textSize="12sp" />
 
@@ -88,6 +96,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="14sp"
+        android:letterSpacing="-0.1"
         android:padding="5dp"
         android:ems="10"
         android:inputType="numberSigned" />

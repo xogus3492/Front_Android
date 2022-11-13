@@ -94,7 +94,7 @@ public class MainSettingsFragment extends Fragment {
                                             Log.d(TAG, "=====================================================================");
                                             // JwtToken.setToken(null);
                                             Toast.makeText(view.getContext().getApplicationContext(), "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show();
-                                            mainactivity.goSplash();
+                                            mainactivity.logout();
                                         } else {
                                             try {
                                                 Log.d(TAG, "getInfoData : 실패,\nresponseBody() : " + data + ",\nresponse.code(): " + response.code() + ",\nresponse.errorBody(): " + response.errorBody().string());

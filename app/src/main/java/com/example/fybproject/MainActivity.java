@@ -235,6 +235,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     } // 스플래시 화면 이동
 
+    public void logout() {
+        moveTaskToBack(true);
+        finishAndRemoveTask();
+        android.os.Process.killProcess(android.os.Process.myPid());
+    } // 로그아웃
+
     public void moveToSettingsFragment() {
         getSupportFragmentManager().beginTransaction().remove(mainChangePwFragment).commitAllowingStateLoss();
         getSupportFragmentManager().popBackStack();

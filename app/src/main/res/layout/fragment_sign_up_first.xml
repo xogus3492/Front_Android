@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="이메일 주소"
+        android:letterSpacing="-0.1"
         android:textSize="12sp" />
 
     <EditText
@@ -22,6 +23,7 @@
             android:layout_height="wrap_content"
             android:textSize="14sp"
             android:padding="5dp"
+        android:letterSpacing="-0.1"
             android:ems="10"
             android:inputType="textEmailAddress" />
 
@@ -30,6 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:letterSpacing="-0.1"
         android:text="비밀번호"
         android:textSize="12sp"/>
 
@@ -44,6 +47,7 @@
             android:background="@drawable/text_view_form"
             android:textSize="14sp"
             android:padding="5dp"
+            android:letterSpacing="-0.1"
             android:ems="10"
             android:inputType="textPassword"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -86,6 +90,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="비밀번호 확인"
+        android:letterSpacing="-0.1"
         android:textSize="12sp"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -98,6 +103,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/text_view_form"
             android:textSize="14sp"
+            android:letterSpacing="-0.1"
             android:padding="5dp"
             android:ems="10"
             android:inputType="textPassword"
@@ -140,6 +146,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:letterSpacing="-0.1"
         android:text="이름"
         android:textSize="12sp"/>
 
@@ -150,6 +157,7 @@
         android:layout_height="wrap_content"
         android:textSize="14sp"
         android:padding="5dp"
+        android:letterSpacing="-0.1"
         android:ems="10"
         android:inputType="textPersonName" />
 

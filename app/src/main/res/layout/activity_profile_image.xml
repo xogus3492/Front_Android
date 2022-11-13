@@ -47,6 +47,7 @@
                 android:paddingVertical="5dp"
                 android:paddingHorizontal="38dp"
                 android:text="저장"
+                android:letterSpacing="-0.1"
                 android:textColor="@color/black"
                 android:clickable="true"/>
 
@@ -60,6 +61,7 @@
                 android:paddingVertical="5dp"
                 android:paddingHorizontal="30dp"
                 android:text="건너띄기"
+                android:letterSpacing="-0.1"
                 android:textColor="@color/black"
                 android:clickable="true"/>
 

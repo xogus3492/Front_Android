@@ -40,6 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="60dp"
                 android:text="이메일 주소"
+                android:letterSpacing="-0.1"
                 android:textSize="12sp"/>
 
             <EditText
@@ -50,6 +51,7 @@
                 android:textSize="14sp"
                 android:padding="5dp"
                 android:ems="10"
+                android:letterSpacing="-0.1"
                 android:inputType="textEmailAddress" />
 
             <TextView
@@ -58,6 +60,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="비밀번호"
+                android:letterSpacing="-0.1"
                 android:textSize="12sp"/>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -73,6 +76,7 @@
                     android:padding="5dp"
                     android:ems="10"
                     android:inputType="textPassword"
+                    android:letterSpacing="-0.1"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -115,6 +119,7 @@
                 android:layout_gravity="end"
                 android:text="비밀번호 찾기"
                 android:textSize="8sp"
+                android:letterSpacing="-0.1"
                 android:clickable="true"/>
 
             <ImageView

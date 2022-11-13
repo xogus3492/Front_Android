@@ -234,7 +234,7 @@ public class MainMypageUpdateFragment extends Fragment {
                     //intent.setAction(Intent.ACTION_GET_CONTENT);
                     getActivity().startActivityForResult(intent, REQUEST_CODE);
                     break;
-                case R.id.button://R.id.updateOkBtn:
+                case R.id.updateOkBtn://R.id.button:
                     inputData();
                     EditDTO editDTO = new EditDTO(email, name, gender, age, weight, height);
                     infoService = ServiceGenerator.createService(InfoService.class, JwtToken.getToken());
