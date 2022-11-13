@@ -149,7 +149,7 @@ public class SearchListItemAdapter extends RecyclerView.Adapter<SearchListItemAd
         else if (shop.equals("룩핀")) sid = 8;
         else if (shop.equals("에이블리")) sid = 9;
         else if (shop.equals("하이버")) sid = 10;
-        else if (shop.equals("스타일쉐어")) sid = 11;
+        else if (shop.equals("MMMC")) sid = 11;
         else if (shop.equals("머스트잇")) sid = 12;
         else if (shop.equals("트렌비")) sid = 13;
         else if (shop.equals("발란")) sid = 14;
@@ -157,8 +157,37 @@ public class SearchListItemAdapter extends RecyclerView.Adapter<SearchListItemAd
         else if (shop.equals("Mango")) sid = 16;
         else if (shop.equals("크로켓")) sid = 17;
         else if (shop.equals("Farfetch")) sid = 18;
-        else if (shop.equals("W컨셉")) sid = 19;
-        else if (shop.equals("LFmaall")) sid = 20;
+        else if (shop.equals("스타일쉐어")) sid = 19;
+        else if (shop.equals("LFmall")) sid = 20;
+        else if (shop.equals("Feellike")) sid = 21;
+        else if (shop.equals("무드인블루")) sid = 22;
+        else if (shop.equals("필링스")) sid = 23;
+        else if (shop.equals("마윤")) sid = 24;
+        else if (shop.equals("minitmute")) sid = 25;
+        else if (shop.equals("venument")) sid = 26;
+        else if (shop.equals("The Barnnet")) sid = 27;
+        else if (shop.equals("kindabeige")) sid =28;
+        else if (shop.equals("yourclothes_")) sid = 29;
+        else if (shop.equals("세임")) sid = 30;
+        else if (shop.equals("thebucket")) sid = 31;
+        else if (shop.equals("ASIDE")) sid = 32;
+        else if (shop.equals("ELLFIVE")) sid = 33;
+        else if (shop.equals("all_for_myself_")) sid = 34;
+        else if (shop.equals("year_closet")) sid = 35;
+        else if (shop.equals("데이도어")) sid = 36;
+        else if (shop.equals("멜팅픽셀")) sid = 37;
+        else if (shop.equals("유스토리")) sid = 38;
+        else if (shop.equals("폴리테루")) sid = 39;
+        else if (shop.equals("이에이")) sid = 40;
+        else if (shop.equals("해칭룸")) sid = 41;
+        else if (shop.equals("mfpen")) sid = 42;
+        else if (shop.equals("Art if acts")) sid = 43;
+        else if (shop.equals("BEHEAVYER")) sid = 44;
+        else if (shop.equals("시도")) sid = 45;
+        else if (shop.equals("HERITAGEFLOSS")) sid = 46;
+        else if (shop.equals("TheOpenProduct")) sid = 47;
+        else if (shop.equals("앵글런")) sid = 48;
+        else if (shop.equals("999휴머니티")) sid = 49;
 
         return sid;
     }

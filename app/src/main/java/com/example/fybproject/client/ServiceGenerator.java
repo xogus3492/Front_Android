@@ -31,7 +31,7 @@ public class ServiceGenerator {
 
     public static <S> S createService(Class<S> serviceClass, final String authToken) {
         if (!TextUtils.isEmpty(authToken)) {
-            Log.i(TAG, "ServiceGenerator.java : " + authToken);
+            //Log.i(TAG, "ServiceGenerator.java : " + authToken);
             AuthenticationInterceptor interceptor =
                     new AuthenticationInterceptor("Bearer " + authToken);
 

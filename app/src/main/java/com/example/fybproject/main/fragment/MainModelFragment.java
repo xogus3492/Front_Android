@@ -52,8 +52,7 @@ public class MainModelFragment extends Fragment implements OnItemClick {
 
     TextView mHeight, mWeight, mForm, mShoulder, mPelvis, mLeg;
     VideoView modeling;
-    ImageView circle, goStore, mInfo;
-    LinearLayout storeContainer;
+    ImageView circle, mInfo;
 
     private RecyclerView rV;
     private ClothesListItemAdapter adapter;
@@ -96,7 +95,6 @@ public class MainModelFragment extends Fragment implements OnItemClick {
         getUserInfo();
 
         mInfo.setOnClickListener(onClickListener);
-        goStore.setOnClickListener(intentListener);
         modeling.setOnErrorListener(errorListener);
 
         circle.setOnTouchListener(new View.OnTouchListener() {
@@ -161,13 +159,7 @@ public class MainModelFragment extends Fragment implements OnItemClick {
         mShoulder = view.findViewById(R.id.mShoulder);
         mPelvis = view.findViewById(R.id.mPelvis);
         mLeg = view.findViewById(R.id.mLeg);
-        storeContainer = view.findViewById(R.id.storeContainer);
-        goStore = view.findViewById(R.id.goStore);
         mInfo = view.findViewById(R.id.mInfo);
-
-        // 인스타그램 이미지
-        String imageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/1200px-Instagram_logo_2022.svg.png";
-        Glide.with(context).load(imageUrl).into(goStore);
     }
 
     public void createList() {

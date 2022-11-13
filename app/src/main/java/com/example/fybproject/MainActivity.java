@@ -22,6 +22,7 @@ import com.example.fybproject.main.fragment.MainCartFragment;
 import com.example.fybproject.main.fragment.MainChangePwFragment;
 import com.example.fybproject.main.fragment.MainHomeFragment;
 import com.example.fybproject.main.fragment.MainModelFragment;
+import com.example.fybproject.main.fragment.MainMyclosetAddFragment;
 import com.example.fybproject.main.fragment.MainMyclosetFragment;
 import com.example.fybproject.main.fragment.MainMypageFragment;
 import com.example.fybproject.main.fragment.MainMypageUpdateFragment;
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     MainMypageFragment mainMypageFragment;
     MainMypageUpdateFragment mainMypageUpdateFragment;
     MainMyclosetFragment mainMyclosetFragment;
+    MainMyclosetAddFragment mainMyclosetAddFragment;
     MainSettingsFragment mainSettingsFragment;
     MainChangePwFragment mainChangePwFragment;
     MainWithdrawalFragment mainWithdrawalFragment;
@@ -62,8 +64,8 @@ public class MainActivity extends AppCompatActivity {
         fragmentManager = getSupportFragmentManager();
         transaction = fragmentManager.beginTransaction();
 
-        //transaction.replace(R.id.frameMain, mainHomeFragment).commitAllowingStateLoss();
-        transaction.replace(R.id.frameMain, mainMypageFragment).commitAllowingStateLoss();
+        transaction.replace(R.id.frameMain, mainHomeFragment).commitAllowingStateLoss();
+        //transaction.replace(R.id.frameMain, mainMypageFragment).commitAllowingStateLoss();
 
         homeBtn.setOnClickListener(navListener);
         searchBtn.setOnClickListener(navListener);
@@ -169,6 +171,7 @@ public class MainActivity extends AppCompatActivity {
         mainMypageFragment = new MainMypageFragment();
         mainMypageUpdateFragment = new MainMypageUpdateFragment();
         mainMyclosetFragment = new MainMyclosetFragment();
+        mainMyclosetAddFragment = new MainMyclosetAddFragment();
         mainSettingsFragment = new MainSettingsFragment();
         mainChangePwFragment = new MainChangePwFragment();
         mainWithdrawalFragment = new MainWithdrawalFragment();
@@ -187,6 +190,12 @@ public class MainActivity extends AppCompatActivity {
         transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.frameMain, mainMyclosetFragment).addToBackStack(null).commitAllowingStateLoss();
     } // 내 옷장 버튼
+
+    public void changeToClosetAddFragment() {
+        transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.frameMain, mainMyclosetAddFragment).addToBackStack(null).commitAllowingStateLoss();
+        backBtn3.setVisibility(View.INVISIBLE);
+    } // 내 옷장 추가 버튼
 
     public void porofileUpdateCancel() {
         getSupportFragmentManager().beginTransaction().remove(mainMypageUpdateFragment).commitAllowingStateLoss();
@@ -228,7 +237,7 @@ public class MainActivity extends AppCompatActivity {
                     Bitmap img = BitmapFactory.decodeStream(in);
                     in.close();
 
-                    MainMyclosetFragment m = (MainMyclosetFragment) getSupportFragmentManager().findFragmentById(R.id.frameMain);
+                    MainMyclosetAddFragment m = (MainMyclosetAddFragment) getSupportFragmentManager().findFragmentById(R.id.frameMain);
                     m.getImgData(img, data.getData());
                 } catch (Exception e) {
 

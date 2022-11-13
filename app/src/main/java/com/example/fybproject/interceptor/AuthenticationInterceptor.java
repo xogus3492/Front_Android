@@ -22,7 +22,7 @@ public class AuthenticationInterceptor implements Interceptor {
     public Response intercept(Chain chain) throws IOException {
         Request original = chain.request();
 
-        Log.i(TAG, "AuthenticationIntercepter.java : " + authToken);
+        //Log.i(TAG, "AuthenticationIntercepter.java : " + authToken);
 
         Request.Builder builder = original.newBuilder()
                 .addHeader("Authorization",authToken);

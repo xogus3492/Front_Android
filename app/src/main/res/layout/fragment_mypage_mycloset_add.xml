@@ -2,6 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
+    android:paddingBottom="100dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
@@ -11,8 +13,8 @@
         android:layout_height="wrap_content"
         android:background="@drawable/box"
         android:paddingHorizontal="20dp"
-        android:layout_marginTop="20dp"
         android:orientation="vertical"
+        android:paddingBottom="50dp"
         android:gravity="center_vertical">
 
             <ImageView
@@ -24,36 +26,69 @@
 
             <EditText
                 android:id="@+id/addClosetItemName"
-                android:background="@null"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:textSize="13sp"
+                android:textSize="20sp"
+                android:layout_marginTop="60dp"
+                android:letterSpacing="-0.1"
                 android:inputType="textPersonName"
                 android:hint="옷 이름" />
 
             <EditText
                 android:id="@+id/addClosetItemNote"
-                android:background="@null"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:ems="10"
-                android:textSize="13sp"
+                android:textSize="20sp"
+                android:layout_marginTop="10dp"
+                android:letterSpacing="-0.1"
                 android:inputType="textPersonName"
                 android:hint="설명" />
 
             <EditText
                 android:id="@+id/addClosetItemKind"
-                android:background="@null"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:layout_marginTop="2dp"
-                android:textSize="13sp"
+                android:textSize="20sp"
+                android:layout_marginTop="10dp"
+                android:letterSpacing="-0.1"
                 android:inputType="textPersonName"
                 android:hint="종류" />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/mAddItemBtnGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp">
+
+        <TextView
+            android:id="@+id/mAddSetBtn"
+            android:background="@drawable/btn_form"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingVertical="5dp"
+            android:paddingHorizontal="30dp"
+            android:layout_marginRight="10dp"
+            android:text="저장"
+            android:letterSpacing="-0.1"
+            android:textColor="@color/black"
+            android:clickable="true"/>
+
+        <TextView
+            android:id="@+id/mAddCancelBtn"
+            android:background="@drawable/btn_form"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingVertical="5dp"
+            android:paddingHorizontal="30dp"
+            android:text="취소"
+            android:letterSpacing="-0.1"
+            android:textColor="@color/black"
+            android:clickable="true"/>
     </LinearLayout>
 
 </LinearLayout>

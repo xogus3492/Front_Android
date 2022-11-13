@@ -6,8 +6,6 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.example.fybproject.interceptor.AuthenticationInterceptor;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;

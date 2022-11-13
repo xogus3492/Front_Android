@@ -52,25 +52,14 @@ import retrofit2.Response;
 public class MainMyclosetFragment extends Fragment {
     View view;
 
-    TextView addBtn, addCancelBtn, addSetBtn;
-    LinearLayout defaultBtnGroup, addItemBtnGroup
-            , addItem;
-    EditText closetItemName, closetItemNote, closetItemKind;
-    ImageView closetItemImg;
+    TextView addBtn;
 
     private RecyclerView closetRecyclerView;
     private ClosetListItemAdapter adapter;
     private ArrayList<ClosetListItem> arr;
+
     private Context context;
-
-    private static final int REQUEST_CODE = 1000;
-    private MultipartBody.Part body;
-
-    MainActivity mainactivity;
-
-    long id;
-    int px, py;
-    String pname, pnote, pkind, closetImagePath;
+    private MainActivity mainactivity;
 
     private MyClosetService myClosetService;
 
@@ -96,15 +85,10 @@ public class MainMyclosetFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view =  inflater.inflate(R.layout.fragment_mypage_mycloset, container, false);
 
-        px = 960;
-
         init();
         loadClosetList();
 
         addBtn.setOnClickListener(listener);
-        addSetBtn.setOnClickListener(listener);
-        addCancelBtn.setOnClickListener(listener);
-        closetItemImg.setOnClickListener(listener);
 
         return view;
     }
@@ -112,86 +96,7 @@ public class MainMyclosetFragment extends Fragment {
     View.OnClickListener listener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-
-            switch (view.getId()) {
-                case R.id.mAddBtn:
-                    closetItemName.setText(null);
-                    closetItemNote.setText(null);
-                    closetItemKind.setText(null);
-                    closetItemImg.setImageResource(R.drawable.closet_img);
-                    py = 570;
-                    closetRecyclerView.setLayoutParams(new LinearLayout.LayoutParams(px, py));
-                    addItem.setVisibility(View.VISIBLE);
-                    defaultBtnGroup.setVisibility(View.GONE);
-                    addItemBtnGroup.setVisibility(View.VISIBLE);
-                    break;
-                case R.id.mAddCancelBtn:
-                    py = 900;
-                    closetRecyclerView.setLayoutParams(new LinearLayout.LayoutParams(px, py));
-                    addItem.setVisibility(View.GONE);
-                    defaultBtnGroup.setVisibility(View.VISIBLE);
-                    addItemBtnGroup.setVisibility(View.GONE);
-                    break;
-                case R.id.mAddSetBtn:
-                    py = 900;
-                    closetRecyclerView.setLayoutParams(new LinearLayout.LayoutParams(px, py));
-                    addItem.setVisibility(View.GONE);
-                    defaultBtnGroup.setVisibility(View.VISIBLE);
-                    addItemBtnGroup.setVisibility(View.GONE);
-
-                    inputAddData();
-                    ClosetAddDTO closetAddDTO = new ClosetAddDTO(pname, pnote, pkind);
-                    myClosetService = ServiceGenerator.createService(MyClosetService.class, JwtToken.getToken());
-
-                    if (myClosetService != null) {
-                        myClosetService.postClosetData(closetAddDTO)
-                                .enqueue(new Callback<ArrayList<ClosetAddDTO>>() {
-                                    @Override
-                                    public void onResponse(Call<ArrayList<ClosetAddDTO>> call, Response<ArrayList<ClosetAddDTO>> response) {
-                                        ArrayList<ClosetAddDTO> data = response.body();
-                                        if (response.isSuccessful() == true) {
-                                            Log.d(TAG, "addClosetData : 성공,\nresponseBody : " + data);
-                                            Log.d(TAG, "=====================================================================");
-                                            long id = 0;
-
-                                            for(ClosetAddDTO real : data) {
-                                                //Log.d(TAG, "real: " + real.toString());
-                                                id = real.getId();
-                                                regiClosetImg(id); // 이미지 업로드
-                                            }
-                                            try {
-                                                Thread.sleep(500);
-                                                Log.d(TAG, "시간 지연");
-                                            } catch (InterruptedException e) {
-                                                e.printStackTrace();
-                                            } // 시간 지연
-                                            loadClosetList(); // 옷장 조회
-                                        } else {
-                                            try {
-                                                Log.d(TAG, "addClosetData : 실패,\nresponseBody() : " + data + ",\nresponse.code(): " + response.code() + ",\nresponse.errorBody(): " + response.errorBody().string());
-                                            } catch (IOException e) {
-                                                e.printStackTrace();
-                                            }
-                                        }
-                                    }
-
-                                    @Override
-                                    public void onFailure(Call<ArrayList<ClosetAddDTO>> call, Throwable t) {
-                                        Log.d(TAG, "onFailure: " + t.toString());
-                                    }
-                                });
-                    }
-                    break; // 내 옷장 등록
-                case R.id.addClosetItemImg:
-                    //ProfileImageActivity.verifyStoragePermissions(getActivity());
-
-                    Intent intent = new Intent(Intent.ACTION_PICK);
-                    //intent.setType("image/*");
-                    intent.setType(MediaStore.Images.Media.CONTENT_TYPE);
-                    //intent.setAction(Intent.ACTION_GET_CONTENT);
-                    getActivity().startActivityForResult(intent, REQUEST_CODE);
-                    break;
-            }
+                    mainactivity.changeToClosetAddFragment();
         }
     };
 
@@ -218,11 +123,11 @@ public class MainMyclosetFragment extends Fragment {
                                 for (ClosetDTO real : data) {
                                     Log.d(TAG, "real: " + real.toString());
 
-                                    id = real.getId();
+                                    long id = real.getId();
                                     String pname = real.getPname();
                                     String pnote = real.getPnotes();
                                     String pkind = real.getPkind();
-                                    closetImagePath = real.getClosetImagePath();
+                                    String closetImagePath = real.getClosetImagePath();
                                     Log.d(TAG, "id[" + index + "]: " + id + ", pname[" + index + "]: " + pname + ", pnotes[" + index
                                             + "]: " + pnote + ", pkind[" + index + "]: " + pkind + ", url[" + index + "]: " + closetImagePath);
                                     arr.add(new ClosetListItem(id, pname, pnote, pkind, closetImagePath));
@@ -233,7 +138,6 @@ public class MainMyclosetFragment extends Fragment {
 
                                     index++;
                                 }
-                                release();
                             } else {
                                 try {
                                     Log.d(TAG, "getClosetData : 실패,\nresponseBody() : " + data + ",\nresponse.code(): " + response.code() + ",\nresponse.errorBody(): " + response.errorBody().string());
@@ -251,96 +155,11 @@ public class MainMyclosetFragment extends Fragment {
         }
     }// 내 옷장 조회
 
-    public void regiClosetImg(long id) {
-        myClosetService = ServiceGenerator.createService(MyClosetService.class, JwtToken.getToken());
-
-        if (myClosetService != null) {
-            myClosetService.putClosetData(id,body)
-                    .enqueue(new Callback<ClosetImgDTO>() {
-                        @Override
-                        public void onResponse(Call<ClosetImgDTO> call, Response<ClosetImgDTO> response) {
-                            ClosetImgDTO data = response.body();
-                            if (response.isSuccessful() == true) {
-                                Log.d(TAG, "putClosetData : 성공,\nresponseBody : " + data);
-                                Log.d(TAG, "=====================================================================");
-                            } else {
-                                try {
-                                    Log.d(TAG, "putClosetData : 실패,\nresponseBody() : " + data + ",\nresponse.code(): " + response.code() + ",\nresponse.errorBody(): " + response.errorBody().string());
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(Call<ClosetImgDTO> call, Throwable t) {
-                            Log.d(TAG, "onFailure: " + t.toString());
-                        }
-                    });
-        }
-    } // 이미지 업로드
-
-    public void getImgData(Bitmap img,Uri uri) {
-        closetItemImg.setImageBitmap(img);
-
-        Log.d(TAG, "uri는?? " + uri);
-        Cursor cursor = context.getContentResolver().query(uri, null, null, null, null );
-        cursor.moveToNext();
-        @SuppressLint("Range") String absolutePath = cursor.getString( cursor.getColumnIndex( "_data" ) );
-        cursor.close();
-        Log.d(TAG, "절대경로 : " + absolutePath);
-        // 절대경로 얻기
-
-        /*Cursor c = context.getContentResolver().query(Uri.parse(uri.toString()), null,null,null,null);
-        c.moveToNext();
-        @SuppressLint("Range") String absolutePath = c.getString(c.getColumnIndex(MediaStore.MediaColumns.DATA)); // 절대경로 얻기
-        //Log.d(TAG, "절대경로 : " + absolutePath);*/
-
-        File f = new File(absolutePath);
-        Log.d(TAG, "file : " + f.toString());
-
-        RequestBody requestBody = RequestBody.create(MediaType.parse("image/jpg"), f);
-        Log.d(TAG, "requestBody : " + requestBody.toString());
-
-        body = MultipartBody.Part.createFormData("file", f.getName(), requestBody);
-        Log.d(TAG, "body" + body.toString());
-    }
-
     public void init() {
         addBtn = view.findViewById(R.id.mAddBtn);
-        defaultBtnGroup = view.findViewById(R.id.mDefaultBtnGroup);
-        addItemBtnGroup = view.findViewById(R.id.mAddItemBtnGroup);
-        addItem = view.findViewById(R.id.addClosetItem);
-        addSetBtn = view.findViewById(R.id.mAddSetBtn);
-        addCancelBtn = view.findViewById(R.id.mAddCancelBtn);
-        closetItemImg = view.findViewById(R.id.addClosetItemImg);
-        closetItemName = view.findViewById(R.id.addClosetItemName);
-        closetItemNote = view.findViewById(R.id.addClosetItemNote);
-        closetItemKind = view.findViewById(R.id.addClosetItemKind);
         closetRecyclerView = view.findViewById(R.id.cRecyclerView);
     }
 
-    public void inputAddData() {
-        try {
-            if(closetItemName.getText().toString() == null && closetItemNote.getText().toString() == null &&
-                    closetItemKind.getText().toString() == null) {
-                Toast.makeText(context.getApplicationContext(), "모든 항목을 입력 해 주세요.", Toast.LENGTH_SHORT).show();
-                return;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        pname = closetItemName.getText().toString();
-        pnote = closetItemNote.getText().toString();
-        pkind = closetItemKind.getText().toString();
-    }
 
-    public void release() {
-        id = 0;
-        pname = null;
-        pnote = null;
-        pkind = null;
-        body = null;
-    }
 
 }
