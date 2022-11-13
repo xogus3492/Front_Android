@@ -228,9 +228,10 @@ public class MainMypageUpdateFragment extends Fragment {
                 case R.id.mypageUimg:
                     //ProfileImageActivity.verifyStoragePermissions(getActivity());
 
-                    Intent intent = new Intent();
-                    intent.setType("image/*");
-                    intent.setAction(Intent.ACTION_GET_CONTENT);
+                    Intent intent = new Intent(Intent.ACTION_PICK);
+                    //intent.setType("image/*");
+                    intent.setType(MediaStore.Images.Media.CONTENT_TYPE);
+                    //intent.setAction(Intent.ACTION_GET_CONTENT);
                     getActivity().startActivityForResult(intent, REQUEST_CODE);
                     break;
                 case R.id.button://R.id.updateOkBtn:
@@ -313,10 +314,18 @@ public class MainMypageUpdateFragment extends Fragment {
     public void getImgData(Bitmap img, Uri uri) {
         imgView.setImageBitmap(img);
 
-        Cursor c = context.getContentResolver().query(Uri.parse(uri.toString()), null,null,null,null);
+        Log.d(TAG, "uri는?? " + uri);
+        Cursor cursor = context.getContentResolver().query(uri, null, null, null, null );
+        cursor.moveToNext();
+        @SuppressLint("Range") String absolutePath = cursor.getString( cursor.getColumnIndex( "_data" ) );
+        cursor.close();
+        Log.d(TAG, "절대경로 : " + absolutePath);
+        // 절대경로 얻기
+
+        /*Cursor c = context.getContentResolver().query(Uri.parse(uri.toString()), null,null,null,null);
         c.moveToNext();
         @SuppressLint("Range") String absolutePath = c.getString(c.getColumnIndex(MediaStore.MediaColumns.DATA)); // 절대경로 얻기
-        //Log.d(TAG, "절대경로 : " + absolutePath);
+        Log.d(TAG, "절대경로 : " + absolutePath);*/
 
         File f = new File(absolutePath);
         Log.d(TAG, "file : " + f.toString());

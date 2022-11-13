@@ -4,6 +4,8 @@ import static android.service.controls.ControlsProviderService.TAG;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,15 +15,19 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.fybproject.MainActivity;
 import com.example.fybproject.R;
 import com.example.fybproject.client.ServiceGenerator;
@@ -46,7 +52,8 @@ public class MainModelFragment extends Fragment implements OnItemClick {
 
     TextView mHeight, mWeight, mForm, mShoulder, mPelvis, mLeg;
     VideoView modeling;
-    ImageView circle;
+    ImageView circle, goStore, mInfo;
+    LinearLayout storeContainer;
 
     private RecyclerView rV;
     private ClothesListItemAdapter adapter;
@@ -88,6 +95,8 @@ public class MainModelFragment extends Fragment implements OnItemClick {
         getPysicalData();
         getUserInfo();
 
+        mInfo.setOnClickListener(onClickListener);
+        goStore.setOnClickListener(intentListener);
         modeling.setOnErrorListener(errorListener);
 
         circle.setOnTouchListener(new View.OnTouchListener() {
@@ -118,16 +127,29 @@ public class MainModelFragment extends Fragment implements OnItemClick {
         }
     }; // 미디어플레이어 에러 이벤트
 
-    /*MediaPlayer.OnCompletionListener onCompletionListener = new MediaPlayer.OnCompletionListener() {
+    View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
-        public void onCompletion(MediaPlayer mediaPlayer) {
-            Uri uri = Uri.parse("https://chw-bucket.s3.ap-northeast-2.amazonaws.com/model/" + imgName + "_"+ physical + ".mp4");
-            Log.d(TAG, "경로 : " + uri);
-            modeling.setVideoURI(uri);
-            modeling.seekTo( 1 );
-            modeling.start();
+        public void onClick(View view) {
+            AlertDialog.Builder dlg = new AlertDialog.Builder(context);
+            dlg.setTitle("이용 방법"); //제목
+            dlg.setMessage("체험해 보고 싶으신 옷을 선택하여 체험해 보세요.\n사이트 이동 이미지를 누르시면 선택하신 옷과 관련된 사이트로 이동합니다."); // 메시지
+            //dlg.setIcon(R.drawable.deum); // 아이콘 설정
+            // 확인 버튼
+            dlg.setPositiveButton("확인",new DialogInterface.OnClickListener(){
+                public void onClick(DialogInterface dialog, int which) {
+                }
+            });
+            dlg.show();
         }
-    }; // 영상 재생 다시시작*/
+    }; // 다이얼로그
+
+    View.OnClickListener intentListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Intent intentUrl = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.instagram.com/clovis_kr/"));
+            context.startActivity(intentUrl);
+        }
+    }; // 관련상품 이동
 
     public void init() {
         modeling = view.findViewById(R.id.videoView);
@@ -139,6 +161,13 @@ public class MainModelFragment extends Fragment implements OnItemClick {
         mShoulder = view.findViewById(R.id.mShoulder);
         mPelvis = view.findViewById(R.id.mPelvis);
         mLeg = view.findViewById(R.id.mLeg);
+        storeContainer = view.findViewById(R.id.storeContainer);
+        goStore = view.findViewById(R.id.goStore);
+        mInfo = view.findViewById(R.id.mInfo);
+
+        // 인스타그램 이미지
+        String imageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/1200px-Instagram_logo_2022.svg.png";
+        Glide.with(context).load(imageUrl).into(goStore);
     }
 
     public void createList() {

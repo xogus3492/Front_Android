@@ -72,11 +72,11 @@ public class ProfileImageActivity extends AppCompatActivity {
                 case R.id.pImg:
                     //verifyStoragePermissions(getParent());
 
-                    Intent intent = new Intent();
-                    intent.setType("image/jpeg");
-                    intent.setAction(Intent.ACTION_GET_CONTENT);
+                    Intent intent = new Intent(Intent.ACTION_PICK);
+                    //intent.setType("image/*");
+                    intent.setType(MediaStore.Images.Media.CONTENT_TYPE);
+                    //intent.setAction(Intent.ACTION_GET_CONTENT);
                     startActivityForResult(intent, REQUEST_CODE);
-                    break;
                 case R.id.pImgOk:
                     Log.d(TAG, "확인1");
                     authService = ServiceGenerator.createService(AuthService.class, JwtToken.getToken());
@@ -136,10 +136,18 @@ public class ProfileImageActivity extends AppCompatActivity {
 
                     pImg.setImageBitmap(img);
 
-                    Cursor c = getContentResolver().query(Uri.parse(data.getData().toString()), null,null,null,null);
+                    Log.d(TAG, "uri는?? " + data.getData());
+                    Cursor cursor = getContentResolver().query(data.getData(), null, null, null, null );
+                    cursor.moveToNext();
+                    @SuppressLint("Range") String absolutePath = cursor.getString( cursor.getColumnIndex( "_data" ) );
+                    cursor.close();
+                    Log.d(TAG, "절대경로 : " + absolutePath);
+                    // 절대경로 얻기
+
+                    /*Cursor c = context.getContentResolver().query(Uri.parse(uri.toString()), null,null,null,null);
                     c.moveToNext();
                     @SuppressLint("Range") String absolutePath = c.getString(c.getColumnIndex(MediaStore.MediaColumns.DATA)); // 절대경로 얻기
-                    //Log.d(TAG, "절대경로 : " + absolutePath);
+                    Log.d(TAG, "절대경로 : " + absolutePath);*/
 
                     File f = new File(absolutePath);
                     Log.d(TAG, "file : " + f.toString());
