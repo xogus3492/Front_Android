@@ -1,6 +1,6 @@
 package com.example.fybproject.dto.authDTO;
 
-public class SocialDTO {
+public class SocialLoginDTO {
     private String status;
     private String statusMessage;
 

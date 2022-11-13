@@ -5,13 +5,16 @@ import static android.content.ContentValues.TAG;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.example.fybproject.client.ServiceGenerator;
-import com.example.fybproject.dto.authDTO.SocialDTO;
+import com.example.fybproject.client.SosicalServiceGenerator;
+import com.example.fybproject.dto.authDTO.SocialLoginDTO;
+import com.example.fybproject.dto.authDTO.SocialUrlDTO;
 import com.example.fybproject.interceptor.JwtToken;
 import com.example.fybproject.service.AuthService;
 
@@ -26,7 +29,7 @@ public class SignInActivity extends AppCompatActivity {
 
     ImageView localLoginBtn, kakaoLoginBtn, googleLoginBtn;
 
-    private AuthService authService;
+    private AuthService authService, oauthService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +37,6 @@ public class SignInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_in);
 
         init();
-
-        authService = ServiceGenerator.createService(AuthService.class);
 
         localLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,46 +52,34 @@ public class SignInActivity extends AppCompatActivity {
                 authService = ServiceGenerator.createService(AuthService.class);
 
                 if (authService != null) {
-                    authService.getKakaoData()
-                            .enqueue(new Callback<SocialDTO>() {
+                    authService.getKakaoUrl()
+                            .enqueue(new Callback<SocialUrlDTO>() {
                                 @Override
-                                public void onResponse(Call<SocialDTO> call, Response<SocialDTO> response) {
-                                    SocialDTO data = response.body();
-                                    Headers header = response.headers();
+                                public void onResponse(Call<SocialUrlDTO> call, Response<SocialUrlDTO> response) {
+                                    SocialUrlDTO data = response.body();
 
                                     if (response.isSuccessful() == true) {
-                                        Log.d(TAG, "KakaoLogin : 성공,\nresponseBody : " + data + ",\njwtToken : " + header.get("Authorization"));
+                                        Log.d(TAG, "KakaoUrl : 성공,\nresponseBody : " + data);
 
-                                        if (data.getStatus().equals("SOCIAL_REGISTER_STATUS_TRUE")) {
-                                            JwtToken.setToken(header.get("Authorization"));
-
-                                            Intent intent = new Intent(getApplicationContext(), SocialSignUpActivity.class);
-                                            startActivity(intent);
-                                        }
-                                        if (data.getStatus().equals("LOGIN_STATUS_TRUE")) {
-                                            JwtToken.setToken(header.get("Authorization"));
-
-                                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                            startActivity(intent);
-                                        }
+                                        kakaoLogin(data.getUrl());
                                     } else {
                                         try {
-                                            Log.d(TAG, "KakaoLogin : 실패,\nresponseBody : " + data + ",\nresponse.code(): " + response.code() + ",\nresponse.errorBody(): " + response.errorBody().string());
+                                            Log.d(TAG, "KakaoUrl : 실패,\nresponseBody : " + data + ",\nresponse.code(): " + response.code() + ",\nresponse.errorBody(): " + response.errorBody().string());
                                         } catch (IOException e) {
                                             e.printStackTrace();
                                         }
                                     }
                                 }
                                 @Override
-                                public void onFailure(Call<SocialDTO> call, Throwable t) {
+                                public void onFailure(Call<SocialUrlDTO> call, Throwable t) {
                                     Log.d(TAG, "onFailure: " + t.toString());
                                 }
                             });
                 }
             }
-        }); // 카카오 로그인
+        }); // 카카오 로그인 url 받기
 
-        googleLoginBtn.setOnClickListener(new View.OnClickListener() {
+        /*googleLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 authService = ServiceGenerator.createService(AuthService.class);
@@ -133,7 +122,49 @@ public class SignInActivity extends AppCompatActivity {
                             });
                 }
             }
-        }); // 구글 로그인
+        }); // 구글 로그인*/
+    }
+
+    public void kakaoLogin(String url) {
+        oauthService = ServiceGenerator.createService(AuthService.class);
+
+        if (oauthService != null) {
+            oauthService.getKakaoLogin(url)
+                    .enqueue(new Callback<SocialLoginDTO>() {
+                        @Override
+                        public void onResponse(Call<SocialLoginDTO> call, Response<SocialLoginDTO> response) {
+                            SocialLoginDTO data = response.body();
+                            Headers header = response.headers();
+
+                            if (response.isSuccessful() == true) {
+                                Log.d(TAG, "KakaoLogin : 성공,\nresponseBody : " + data /*+ ",\njwtToken : " + header.get("Authorization")*/);
+
+                                        if (data.getStatus().equals("SOCIAL_REGISTER_STATUS_TRUE")) {
+                                            JwtToken.setToken(header.get("Authorization"));
+
+                                            Intent intent = new Intent(getApplicationContext(), SocialSignUpActivity.class);
+                                            startActivity(intent);
+                                        }
+                                        if (data.getStatus().equals("LOGIN_STATUS_TRUE")) {
+                                            JwtToken.setToken(header.get("Authorization"));
+
+                                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                            startActivity(intent);
+                                        }
+                            } else {
+                                try {
+                                    Log.d(TAG, "KakaoLogin : 실패,\nresponseBody : " + data + ",\nresponse.code(): " + response.code() + ",\nresponse.errorBody(): " + response.errorBody().string());
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+                        @Override
+                        public void onFailure(Call<SocialLoginDTO> call, Throwable t) {
+                            Log.d(TAG, "onFailure: " + t.toString());
+                        }
+                    });
+        }
     }
 
     public void init() {

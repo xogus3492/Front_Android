@@ -9,12 +9,12 @@ import com.example.fybproject.dto.authDTO.LogoutDTO;
 import com.example.fybproject.dto.authDTO.ProfileImgDTO;
 import com.example.fybproject.dto.authDTO.PwChangeDTO;
 import com.example.fybproject.dto.authDTO.RegisterDTO;
-import com.example.fybproject.dto.authDTO.SocialDTO;
+import com.example.fybproject.dto.authDTO.SocialLoginDTO;
+import com.example.fybproject.dto.authDTO.SocialUrlDTO;
 
 import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.HTTP;
 import retrofit2.http.Multipart;
@@ -22,6 +22,7 @@ import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Part;
+import retrofit2.http.Path;
 
 public interface AuthService {
 
@@ -57,11 +58,14 @@ public interface AuthService {
 
     // 구글 로그인
     @GET("auth/google")
-    Call<SocialDTO> getGoogleData();
+    Call<SocialUrlDTO> getGoogleData();
 
     // 카카오 로그인
     @GET("auth/kakao")
-    Call<SocialDTO> getKakaoData();
+    Call<SocialUrlDTO> getKakaoUrl();
+
+    @GET("{path}")
+    Call<SocialLoginDTO> getKakaoLogin(@Path("path") String url);
 
     // 소셜 로그인 이후 추가 정보 요청
     @PUT("auth")
