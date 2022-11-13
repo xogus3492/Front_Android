@@ -62,8 +62,6 @@ public class MainMyclosetAddFragment extends Fragment {
 
     private MyClosetService myClosetService;
 
-
-    long id;
     String pname, pnote, pkind;
 
     @Override
@@ -89,10 +87,6 @@ public class MainMyclosetAddFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_mypage_mycloset_add, container, false);
 
         init();
-        closetItemName.setText("");
-        closetItemNote.setText("");
-        closetItemKind.setText("");
-        closetItemImg.setImageResource(R.drawable.closet_img);
 
         setItem.setOnClickListener(listener);
         cancelItem.setOnClickListener(listener);
@@ -163,6 +157,7 @@ public class MainMyclosetAddFragment extends Fragment {
                     break; // 내 옷장 등록
 
                 case R.id.mAddCancelBtn:
+                    release();
                     mainactivity.changeToMyClosetFragment();
                     break; // 취소 버튼
                 case R.id.addClosetItemImg:
@@ -253,5 +248,10 @@ public class MainMyclosetAddFragment extends Fragment {
         pnote = null;
         pkind = null;
         body = null;
+
+        closetItemName.setText("");
+        closetItemNote.setText("");
+        closetItemKind.setText("");
+        closetItemImg.setImageResource(R.drawable.closet_img);
     }
 }

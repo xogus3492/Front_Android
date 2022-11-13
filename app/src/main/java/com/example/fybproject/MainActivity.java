@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.fybproject.main.fragment.MainCartAddFragment;
 import com.example.fybproject.main.fragment.MainCartFragment;
 import com.example.fybproject.main.fragment.MainChangePwFragment;
 import com.example.fybproject.main.fragment.MainHomeFragment;
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     MainSearchFragment mainSearchFragment;
     MainModelFragment mainModelFragment;
     MainCartFragment mainCartFragment;
+    MainCartAddFragment mainCartAddFragment;
     MainMypageFragment mainMypageFragment;
     MainMypageUpdateFragment mainMypageUpdateFragment;
     MainMyclosetFragment mainMyclosetFragment;
@@ -168,6 +170,7 @@ public class MainActivity extends AppCompatActivity {
         mainSearchFragment = new MainSearchFragment();
         mainModelFragment = new MainModelFragment();
         mainCartFragment = new MainCartFragment();
+        mainCartAddFragment = new MainCartAddFragment();
         mainMypageFragment = new MainMypageFragment();
         mainMypageUpdateFragment = new MainMypageUpdateFragment();
         mainMyclosetFragment = new MainMyclosetFragment();
@@ -183,6 +186,16 @@ public class MainActivity extends AppCompatActivity {
         transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.frameMain, mainMypageUpdateFragment).addToBackStack(null).commitAllowingStateLoss();
     } // 프로필 수정 버튼
+
+    public void changeToMyCartFragment() {
+        transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.frameMain, mainCartFragment).addToBackStack(null).commitAllowingStateLoss();
+    } // 장바구니 추가 취소
+
+    public void changeToMyCartAddFragment() {
+        transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.frameMain, mainCartAddFragment).addToBackStack(null).commitAllowingStateLoss();
+    } // 장바구니 추가 버튼
 
     public void changeToMyClosetFragment() {
         optionBtn.setVisibility(View.INVISIBLE);
@@ -254,7 +267,7 @@ public class MainActivity extends AppCompatActivity {
                     Bitmap img = BitmapFactory.decodeStream(in);
                     in.close();
 
-                    MainMypageUpdateFragment m = (MainMypageUpdateFragment) getSupportFragmentManager().findFragmentById(R.id.frameMain);
+                    MainMyclosetAddFragment m = (MainMyclosetAddFragment) getSupportFragmentManager().findFragmentById(R.id.frameMain);
                     m.getImgData(img, data.getData());
                 } catch (Exception e) {
 

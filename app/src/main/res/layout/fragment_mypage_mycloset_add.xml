@@ -12,9 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/box"
+        android:layout_marginTop="20dp"
         android:paddingHorizontal="20dp"
         android:orientation="vertical"
-        android:paddingBottom="50dp"
         android:gravity="center_vertical">
 
             <ImageView
@@ -37,7 +37,6 @@
 
             <EditText
                 android:id="@+id/addClosetItemNote"
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"

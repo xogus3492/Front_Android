@@ -152,36 +152,6 @@
                 android:clickable="true"/>
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/addItemBtnGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone">
-
-            <TextView
-                android:id="@+id/addSetBtn"
-                android:background="@drawable/btn_form"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingVertical="5dp"
-                android:paddingHorizontal="30dp"
-                android:layout_marginRight="10dp"
-                android:text="저장"
-                android:textColor="@color/black"
-                android:clickable="true"/>
-
-            <TextView
-                android:id="@+id/addCancelBtn"
-                android:background="@drawable/btn_form"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingVertical="5dp"
-                android:paddingHorizontal="30dp"
-                android:text="취소"
-                android:textColor="@color/black"
-                android:clickable="true"/>
-        </LinearLayout>
-
         <!--<LinearLayout
             android:id="@+id/selectItemBtnGroup"
             android:layout_width="wrap_content"

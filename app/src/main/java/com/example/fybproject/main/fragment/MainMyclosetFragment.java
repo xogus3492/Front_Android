@@ -96,7 +96,7 @@ public class MainMyclosetFragment extends Fragment {
     View.OnClickListener listener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-                    mainactivity.changeToClosetAddFragment();
+            mainactivity.changeToClosetAddFragment();
         }
     };
 
@@ -159,7 +159,5 @@ public class MainMyclosetFragment extends Fragment {
         addBtn = view.findViewById(R.id.mAddBtn);
         closetRecyclerView = view.findViewById(R.id.cRecyclerView);
     }
-
-
 
 }
