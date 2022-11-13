@@ -2,12 +2,17 @@ package com.example.fybproject.main.fragment;
 
 import static android.content.ContentValues.TAG;
 
+import android.app.Service;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -18,6 +23,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fybproject.MainActivity;
 import com.example.fybproject.R;
 import com.example.fybproject.client.ServiceGenerator;
 import com.example.fybproject.dto.shopDTO.SearchDTO;
@@ -45,17 +51,22 @@ public class MainSearchFragment extends Fragment {
 
     String shop;
 
+    private MainActivity mainActivity;
+
     private ShopService shopService;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         mContext = context;
+        mainActivity = (MainActivity) getActivity();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_main_search, container, false);
+
+        mainActivity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
 
         init();
 
@@ -164,6 +175,16 @@ public class MainSearchFragment extends Fragment {
                 }
             }
         }); // 쇼핑몰 검색
+
+        inputShop.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if (b)
+                    mainActivity.hideNav();
+                else
+                    mainActivity.showNav();
+            }
+        });
 
         return view;
     }

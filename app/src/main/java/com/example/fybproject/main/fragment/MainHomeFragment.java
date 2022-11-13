@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fybproject.MainActivity;
 import com.example.fybproject.R;
 import com.example.fybproject.client.ServiceGenerator;
 import com.example.fybproject.dto.shopDTO.FilterDTO;
@@ -49,6 +51,8 @@ public class MainHomeFragment extends Fragment {
     private ArrayList<SearchListItem> fArr;
     private Context mContext;
 
+    private MainActivity mainActivity;
+
     String name;
 
     private ShopService shopService;
@@ -56,12 +60,15 @@ public class MainHomeFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        mainActivity = (MainActivity)getActivity();
         mContext = context;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_main_home, container, false);
+
+        mainActivity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_UNSPECIFIED);
 
         init();
         loadViewsShop();

@@ -110,6 +110,7 @@ public class CartListItemAdapter extends RecyclerView.Adapter<CartListItemAdapte
             name.setFocusableInTouchMode(false);
             note.setFocusableInTouchMode(false);
             price.setFocusableInTouchMode(false);
+            url.setFocusableInTouchMode(false);
 
             layout.setOnClickListener(listener);
             name.setOnClickListener(listener);
@@ -206,7 +207,7 @@ public class CartListItemAdapter extends RecyclerView.Adapter<CartListItemAdapte
             public void onClick(View view) {
                 Log.d(ContentValues.TAG, "아이템 클릭됨");
 
-                str1 = name.getText().toString();
+                /*str1 = name.getText().toString();
                 str2 = note.getText().toString();
                 str3 = price.getText().toString();
                 str4 = url.getText().toString();
@@ -216,7 +217,7 @@ public class CartListItemAdapter extends RecyclerView.Adapter<CartListItemAdapte
                 price.setFocusableInTouchMode(true);
                 url.setFocusableInTouchMode(true);
 
-                name.requestFocus();
+                name.requestFocus();*/
 
                 url.setVisibility(View.VISIBLE);
                 selectItemCancel.setVisibility(View.VISIBLE);
@@ -229,7 +230,7 @@ public class CartListItemAdapter extends RecyclerView.Adapter<CartListItemAdapte
             public void onClick(View view) {
                 layout.setBackground(view.getResources().getDrawable(R.drawable.list_bg));
 
-                name.setText(str1);
+                /*name.setText(str1);
                 note.setText(str2);
                 price.setText(str3);
                 url.setText(str4);
@@ -237,6 +238,7 @@ public class CartListItemAdapter extends RecyclerView.Adapter<CartListItemAdapte
                 name.setFocusableInTouchMode(false);
                 note.setFocusableInTouchMode(false);
                 price.setFocusableInTouchMode(false);
+                url.setFocusableInTouchMode(false);*/
 
                 url.setVisibility(View.GONE);
                 selectItemCancel.setVisibility(View.GONE);

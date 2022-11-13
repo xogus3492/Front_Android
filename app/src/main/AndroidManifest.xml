@@ -15,7 +15,7 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.FybProject"
-        android:windowSoftInputMode="adjustNothing"
+
         android:usesCleartextTraffic="true">
         <activity
             android:name=".ProfileImageActivity"

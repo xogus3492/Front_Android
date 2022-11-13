@@ -194,7 +194,7 @@ public class ClosetListItemAdapter extends RecyclerView.Adapter<ClosetListItemAd
             public void onClick(View view) {
                 Log.d(ContentValues.TAG, "아이템 클릭됨");
 
-                str1 = name.getText().toString();
+                /*str1 = name.getText().toString();
                 str2 = note.getText().toString();
                 str3 = kind.getText().toString();
 
@@ -202,7 +202,7 @@ public class ClosetListItemAdapter extends RecyclerView.Adapter<ClosetListItemAd
                 note.setFocusableInTouchMode(true);
                 kind.setFocusableInTouchMode(true);
 
-                name.requestFocus();
+                name.requestFocus();*/
 
                 selectItemCancel.setVisibility(View.VISIBLE);
                 selectAction.setVisibility(View.VISIBLE);
@@ -214,13 +214,13 @@ public class ClosetListItemAdapter extends RecyclerView.Adapter<ClosetListItemAd
             public void onClick(View view) {
                 layout.setBackground(view.getResources().getDrawable(R.drawable.list_bg));
 
-                name.setText(str1);
+                /*name.setText(str1);
                 note.setText(str2);
                 kind.setText(str3);
 
                 name.setFocusableInTouchMode(false);
                 note.setFocusableInTouchMode(false);
-                kind.setFocusableInTouchMode(false);
+                kind.setFocusableInTouchMode(false);*/
 
                 selectItemCancel.setVisibility(View.GONE);
                 selectAction.setVisibility(View.GONE);

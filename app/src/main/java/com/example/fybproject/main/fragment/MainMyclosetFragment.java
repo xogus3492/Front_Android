@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -52,7 +53,7 @@ import retrofit2.Response;
 public class MainMyclosetFragment extends Fragment {
     View view;
 
-    TextView addBtn;
+    TextView addBtn, noCloset;
 
     private RecyclerView closetRecyclerView;
     private ClosetListItemAdapter adapter;
@@ -84,6 +85,8 @@ public class MainMyclosetFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view =  inflater.inflate(R.layout.fragment_mypage_mycloset, container, false);
+
+        mainactivity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_UNSPECIFIED);
 
         init();
         loadClosetList();
@@ -117,6 +120,10 @@ public class MainMyclosetFragment extends Fragment {
                             if (response.isSuccessful() == true) {
                                 Log.d(TAG, "getClosetData : 성공,\nresponseBody : " + data);
                                 Log.d(TAG, "=====================================================================");
+                                if(data != null) {
+                                    noCloset.setVisibility(View.GONE);
+                                    closetRecyclerView.setVisibility(View.VISIBLE);
+                                }
 
                                 int index = 0;
                                 arr = new ArrayList<>();
@@ -141,6 +148,10 @@ public class MainMyclosetFragment extends Fragment {
                             } else {
                                 try {
                                     Log.d(TAG, "getClosetData : 실패,\nresponseBody() : " + data + ",\nresponse.code(): " + response.code() + ",\nresponse.errorBody(): " + response.errorBody().string());
+                                    if(data == null) {
+                                        noCloset.setVisibility(View.VISIBLE);
+                                        closetRecyclerView.setVisibility(View.GONE);
+                                    }
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                 }
@@ -158,6 +169,7 @@ public class MainMyclosetFragment extends Fragment {
     public void init() {
         addBtn = view.findViewById(R.id.mAddBtn);
         closetRecyclerView = view.findViewById(R.id.cRecyclerView);
+        noCloset = view.findViewById(R.id.noCloset);
     }
 
 }

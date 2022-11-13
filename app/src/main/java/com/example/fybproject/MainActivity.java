@@ -14,8 +14,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.fybproject.main.fragment.MainCartAddFragment;
@@ -39,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
     ImageView navBar, optionBtn, backBtn, backBtn2, backBtn3;
     Button homeBtn, searchBtn, modelBtn, cartBtn, mypageBtn;
+    LinearLayout navBtn;
 
     MainHomeFragment mainHomeFragment;
     MainSearchFragment mainSearchFragment;
@@ -67,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         transaction = fragmentManager.beginTransaction();
 
         transaction.replace(R.id.frameMain, mainHomeFragment).commitAllowingStateLoss();
-        //transaction.replace(R.id.frameMain, mainMypageFragment).commitAllowingStateLoss();
+        //transaction.replace(R.id.frameMain, mainCartFragment).commitAllowingStateLoss();
 
         homeBtn.setOnClickListener(navListener);
         searchBtn.setOnClickListener(navListener);
@@ -165,6 +168,7 @@ public class MainActivity extends AppCompatActivity {
         backBtn = findViewById(R.id.backBtn);
         backBtn2 = findViewById(R.id.backBtn2);
         backBtn3 = findViewById(R.id.backBtn3);
+        navBtn = findViewById(R.id.navBtn);
 
         mainHomeFragment = new MainHomeFragment();
         mainSearchFragment = new MainSearchFragment();
@@ -235,6 +239,16 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     } // 스플래시 화면 이동
 
+    public void hideNav() {
+        navBtn.setVisibility(View.INVISIBLE);
+        navBar.setVisibility(View.INVISIBLE);
+    }
+
+    public void showNav() {
+        navBtn.setVisibility(View.VISIBLE);
+        navBar.setVisibility(View.VISIBLE);
+    }
+
     public void logout() {
         moveTaskToBack(true);
         finishAndRemoveTask();
@@ -245,6 +259,8 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().remove(mainChangePwFragment).commitAllowingStateLoss();
         getSupportFragmentManager().popBackStack();
     } // 비밀번호 변경 완료 시
+
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

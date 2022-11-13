@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -32,6 +33,7 @@ import com.example.fybproject.service.WishlistService;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -39,7 +41,7 @@ import retrofit2.Response;
 public class MainCartFragment extends Fragment {
     View view;
 
-    TextView addBtn
+    TextView addBtn, noCart
             , totalPrice;
 
     private RecyclerView cartRecyclerView;
@@ -77,6 +79,8 @@ public class MainCartFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view =  inflater.inflate(R.layout.fragment_main_cart, container, false);
 
+        mainactivity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_UNSPECIFIED);
+
         init();
         loadCartList();
 
@@ -109,6 +113,10 @@ public class MainCartFragment extends Fragment {
                             if (response.isSuccessful() == true) {
                                 Log.d(TAG, "getWishData : 성공,\nresponseBody : " + data);
                                 Log.d(TAG, "=====================================================================");
+                                if(data != null) {
+                                    noCart.setVisibility(View.GONE);
+                                    cartRecyclerView.setVisibility(View.VISIBLE);
+                                }
 
                                 int index = 0;
                                 arr = new ArrayList<>();
@@ -135,6 +143,11 @@ public class MainCartFragment extends Fragment {
                             } else {
                                 try {
                                     Log.d(TAG, "getWisgData : 실패,\nresponseBody() : " + data + ",\nresponse.code(): " + response.code() + ",\nresponse.errorBody(): " + response.errorBody().string());
+                                    if(data == null) {
+                                        Log.d(TAG, "2 수행됨");
+                                        noCart.setVisibility(View.VISIBLE);
+                                        cartRecyclerView.setVisibility(View.GONE);
+                                    }
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                 }
@@ -152,6 +165,7 @@ public class MainCartFragment extends Fragment {
     public void init() {
         addBtn = view.findViewById(R.id.addBtn);
         cartRecyclerView = view.findViewById(R.id.cartRecyclerView);
+        noCart = view.findViewById(R.id.noCart);
         //totalPrice = view.findViewById(R.id.totalPrice);
     }
 
