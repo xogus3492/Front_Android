@@ -130,7 +130,7 @@ public class MainMyclosetAddFragment extends Fragment {
                                                 regiClosetImg(id); // 이미지 업로드
                                             }
                                             try {
-                                                Thread.sleep(1000);
+                                                Thread.sleep(1500);
                                                 Log.d(TAG, "시간 지연");
                                             } catch (InterruptedException e) {
                                                 e.printStackTrace();

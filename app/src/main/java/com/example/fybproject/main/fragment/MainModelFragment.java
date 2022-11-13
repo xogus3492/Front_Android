@@ -50,7 +50,7 @@ import retrofit2.Response;
 public class MainModelFragment extends Fragment implements OnItemClick {
     View view;
 
-    TextView mHeight, mWeight, mForm, mShoulder, mPelvis, mLeg;
+    TextView mHeight, mWeight, mForm, mShoulder, mPelvis, mLeg, mName;
     VideoView modeling;
     ImageView circle, mInfo
             , img1, img2, img3;
@@ -131,7 +131,7 @@ public class MainModelFragment extends Fragment implements OnItemClick {
         public void onClick(View view) {
             AlertDialog.Builder dlg = new AlertDialog.Builder(context);
             dlg.setTitle("이용 방법"); //제목
-            dlg.setMessage("체험해 보고 싶으신 옷을 선택하여 체험해 보세요.\n사이트 이동 이미지를 누르시면 선택하신 옷과 관련된 사이트로 이동합니다."); // 메시지
+            dlg.setMessage("체험해 보고 싶은 옷을 선택하고 회전 버튼을 꾹 눌러주세요."); // 메시지
             //dlg.setIcon(R.drawable.deum); // 아이콘 설정
             // 확인 버튼
             dlg.setPositiveButton("확인",new DialogInterface.OnClickListener(){
@@ -161,6 +161,7 @@ public class MainModelFragment extends Fragment implements OnItemClick {
         mPelvis = view.findViewById(R.id.mPelvis);
         mLeg = view.findViewById(R.id.mLeg);
         mInfo = view.findViewById(R.id.mInfo);
+        mName = view.findViewById(R.id.mName);
         img1 = view.findViewById(R.id.img1);
         img2 = view.findViewById(R.id.img2);
         img3 = view.findViewById(R.id.img3);
@@ -231,8 +232,7 @@ public class MainModelFragment extends Fragment implements OnItemClick {
                                 gender = data.get(0).getGender();
                                 createList();
 
-                                //nameView.setText(data.get(0).getName());
-
+                                mName.setText(data.get(0).getName());
                                 mHeight.setText(String.valueOf(data.get(0).getHeight()));
                                 mWeight.setText(String.valueOf(data.get(0).getWeight()));
                             } else {
