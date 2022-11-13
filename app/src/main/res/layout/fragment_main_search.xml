@@ -44,10 +44,11 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/searchRecyclerView"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="635dp"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="30dp"
+            android:layout_gravity="center_horizontal"
             android:orientation="vertical" />
 
 </LinearLayout>
