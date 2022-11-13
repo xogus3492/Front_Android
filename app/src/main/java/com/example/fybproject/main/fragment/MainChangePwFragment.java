@@ -5,6 +5,7 @@ import static android.content.ContentValues.TAG;
 import android.content.ContentValues;
 import android.content.Context;
 import android.os.Bundle;
+import android.service.controls.ControlsProviderService;
 import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -44,6 +45,7 @@ public class MainChangePwFragment extends Fragment {
             ,email, pw, newPw;
 
     MainActivity mainactivity;
+    private Context context;
 
     private AuthService authService, authService1;
 
@@ -51,6 +53,7 @@ public class MainChangePwFragment extends Fragment {
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
+        this.context = context;
         mainactivity = (MainActivity)getActivity();
     } // 메인액티비티 객체 가져오기
 
@@ -201,25 +204,44 @@ public class MainChangePwFragment extends Fragment {
         showChangeNewPw = view.findViewById(R.id.showChangeNewPw);
     }
 
-    public void inputData() {
+    public int inputData() {
+        if(exception() == 1) return 1;
+
         email = emailForChangePw.getText().toString();
         pw = pwForChangePw.getText().toString();
         newPw = newPwForChangePw.getText().toString();
 
-        if (codeForChangePw.getText().toString() != null) {
-            code = codeForChangePw.getText().toString();
-        } else {
-            Toast.makeText(view.getContext().getApplicationContext(), "인증번호를 입력하세요", Toast.LENGTH_SHORT).show();
-            return;
-        }
+        return 0;
     }
 
-    public void inputPhoneData() {
-        if (phoneForChangePw.getText().toString() != null) {
-            pnum = phoneForChangePw.getText().toString();
-        } else {
-            Toast.makeText(view.getContext().getApplicationContext(), "전화번호를 입력하세요", Toast.LENGTH_SHORT).show();
-            return;
+    public int inputPhoneData() {
+        if (phoneForChangePw.getText().toString().equals("")) {
+            Toast.makeText(context, "전화번호를 입력하세요", Toast.LENGTH_SHORT).show();
+            return 1;
         }
+        if (phoneForChangePw.getText().toString().length() != 11) {
+            Toast.makeText(context, "휴대폰 번호를 입력하세요", Toast.LENGTH_SHORT).show();
+            return 1;
+        }
+
+        StringBuffer s = new StringBuffer();
+        s.append(phoneForChangePw.getText().toString());
+        s.insert(3, "-");
+        s.insert(8, "-");
+        pnum = String.valueOf(s);
+        Log.d(ControlsProviderService.TAG, "휴대전화 번호 : " + pnum);
+        return 0;
+    }
+
+    public int exception() {
+        if (codeForChangePw.getText().toString().equals("")) {
+            Toast.makeText(context, "인증번호를 입력하세요", Toast.LENGTH_SHORT).show();
+            return 1;
+        }
+        if(!codeForChangePw.getText().toString().equals(randNum)) {
+            Toast.makeText(context, "인증번호가 일치하지 않습니다", Toast.LENGTH_SHORT).show();
+            return 1;
+        }
+        return 0;
     }
 }

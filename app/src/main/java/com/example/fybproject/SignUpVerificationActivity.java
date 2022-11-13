@@ -37,7 +37,7 @@ public class SignUpVerificationActivity extends AppCompatActivity {
     EditText inputPhone, inputCode;
     ImageView doSignupBtn;
 
-    String pnum, randNum, code
+    String pnum, randNum
             ,email, pw, name, gender, form, sholder, pelvis, leg;
     int age, height, weight;
 
@@ -157,7 +157,6 @@ public class SignUpVerificationActivity extends AppCompatActivity {
         sholder = intent.getStringExtra("sholder");
         pelvis = intent.getStringExtra("pelvis");
         leg = intent.getStringExtra("leg");
-        code = inputCode.getText().toString();
 
         return 0;
     }

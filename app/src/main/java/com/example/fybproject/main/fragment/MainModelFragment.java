@@ -52,7 +52,8 @@ public class MainModelFragment extends Fragment implements OnItemClick {
 
     TextView mHeight, mWeight, mForm, mShoulder, mPelvis, mLeg;
     VideoView modeling;
-    ImageView circle, mInfo;
+    ImageView circle, mInfo
+            , img1, img2, img3;
 
     private RecyclerView rV;
     private ClothesListItemAdapter adapter;
@@ -160,6 +161,9 @@ public class MainModelFragment extends Fragment implements OnItemClick {
         mPelvis = view.findViewById(R.id.mPelvis);
         mLeg = view.findViewById(R.id.mLeg);
         mInfo = view.findViewById(R.id.mInfo);
+        img1 = view.findViewById(R.id.img1);
+        img2 = view.findViewById(R.id.img2);
+        img3 = view.findViewById(R.id.img3);
     }
 
     public void createList() {
@@ -174,6 +178,14 @@ public class MainModelFragment extends Fragment implements OnItemClick {
             Log.d(TAG, "경로 : " + uri);
             modeling.setVideoURI(uri);
             modeling.seekTo( 1 );
+
+            // 남자 추천 이미지 썸네일
+            String imageUrl = "https://chw-bucket.s3.ap-northeast-2.amazonaws.com/images/TT4-1.jpg";
+            Glide.with(context).load(imageUrl).into(img1);
+            imageUrl = "https://chw-bucket.s3.ap-northeast-2.amazonaws.com/images/TT4-2.jpg";
+            Glide.with(context).load(imageUrl).into(img2);
+            imageUrl = "https://chw-bucket.s3.ap-northeast-2.amazonaws.com/images/TT4-3.jpg";
+            Glide.with(context).load(imageUrl).into(img3);
         }
         if(gender.equals("W")) {
             i = 7;
@@ -184,6 +196,14 @@ public class MainModelFragment extends Fragment implements OnItemClick {
             Log.d(TAG, "경로 : " + uri);
             modeling.setVideoURI(uri);
             modeling.seekTo( 1 );
+
+            // 여자 추천 이미지 썸네일
+            String imageUrl = "https://chw-bucket.s3.ap-northeast-2.amazonaws.com/images/WTC1-1.jpg";
+            Glide.with(context).load(imageUrl).into(img1);
+            imageUrl = "https://chw-bucket.s3.ap-northeast-2.amazonaws.com/images/WTC1-2.jpg";
+            Glide.with(context).load(imageUrl).into(img2);
+            imageUrl = "https://chw-bucket.s3.ap-northeast-2.amazonaws.com/images/WTC1-3.jpg";
+            Glide.with(context).load(imageUrl).into(img3);
         }
 
         adapter = new ClothesListItemAdapter(this);
@@ -294,6 +314,13 @@ public class MainModelFragment extends Fragment implements OnItemClick {
         uri = Uri.parse("https://chw-bucket.s3.ap-northeast-2.amazonaws.com/model/" + imgName + "_"+ physical + ".mp4");
         Log.d(TAG, "경로 : " + uri);
         modeling.setVideoURI(uri);
-        modeling.seekTo( 1 );
-    }// 비디오 불러오기
+        modeling.seekTo( 1 );// 비디오 불러오기
+
+        String imageUrl = "https://chw-bucket.s3.ap-northeast-2.amazonaws.com/images/" + imgName + "-1.jpg";
+        Glide.with(context).load(imageUrl).into(img1);
+        imageUrl = "https://chw-bucket.s3.ap-northeast-2.amazonaws.com/images/" + imgName + "-2.jpg";
+        Glide.with(context).load(imageUrl).into(img2);
+        imageUrl = "https://chw-bucket.s3.ap-northeast-2.amazonaws.com/images/" + imgName + "-3.jpg";
+        Glide.with(context).load(imageUrl).into(img3);
+    }
 }
